@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cosmic Website</title>
+    <title>Gemini Voyages</title>
     <!-- DM Sans Font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,30 +13,201 @@
     <!-- Three.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        /* Custom CSS for DM Sans font and global styles */
-        body {
-            font-family: 'DM Sans', sans-serif; /* Apply DM Sans */
-            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
-            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-            background-color: #1a082b; /* Dark space background for the entire body */
-            position: relative; /* Needed for fixed canvas positioning */
+        /* CSS Variables for Theme */
+        :root {
+            /* Dark Mode Defaults */
+            --bg-dark: #1a082b;
+            --bg-medium: #2d1a42;
+            --bg-light: #402c58;
+            --text-light: #f0f0f0;
+            --text-medium: #d0d0d0;
+            --accent-purple: #bb86fc;
+            --accent-blue: #82aaff;
+            --border-color: rgba(109, 40, 217, 0.5); /* For quiz container */
+            --shadow-color: rgba(139, 92, 246, 0.3); /* For quiz container */
+            --quiz-bg: rgba(30, 0, 60, 0.8);
+            --quiz-text: #E0E7FF;
+            --quiz-radio-border: #6D28D9;
+            --quiz-radio-bg: #1A0033;
+            --quiz-radio-checked: #8B5CF6;
+            --quiz-radio-dot: #FFFFFF;
+            --quiz-radio-focus-shadow: rgba(139, 92, 246, 0.5);
+            --quiz-card-bg: rgba(30, 0, 60, 0.8);
+            --quiz-card-border: rgba(109, 40, 217, 0.5);
+            --quiz-score-bg: rgba(75, 0, 130, 0.7); /* Darker purple for results */
+            --quiz-score-text: #E0E7FF;
+            --quiz-score-highlight: #FCD34D; /* Yellow */
+            --success-bg: rgba(21, 128, 61, 0.5); /* Green-900 with opacity */
+            --success-border: #166534; /* Green-700 */
+            --success-text: #86EFAC; /* Green-300 */
+            --error-bg: rgba(153, 27, 27, 0.5); /* Red-900 with opacity */
+            --error-border: #991B1B; /* Red-700 */
+            --error-text: #F87171; /* Red-300 */
+            --button-primary-bg: #bb86fc;
+            --button-primary-text: #ffffff;
+            --button-secondary-bg: #82aaff;
+            --button-secondary-text: #ffffff;
+            --navbar-bg: #2d1a42; /* Darker grey-purple for navbar */
+            --footer-bg: #2d1a42; /* Darker grey-purple for footer */
+            --text-default: #f0f0f0; /* Default text color */
         }
 
-        /* Marquee Effect */
-        .marquee-container {
+        /* Light Mode Overrides */
+        body.light-mode {
+            --bg-dark: #fbfbfb; /* Very light background */
+            --bg-medium: #f2f2f2; /* Slightly darker light background */
+            --bg-light: #e6e6e6; /* Even darker light background */
+            --text-light: #1a082b; /* Dark text for contrast */
+            --text-medium: #2d1a42; /* Slightly lighter dark text */
+            --accent-purple: #6c42a2; /* Deeper purple for light mode */
+            --accent-blue: #3d7ee0; /* Stronger blue for light mode */
+            --border-color: rgba(90, 130, 200, 0.5); /* Blue-ish border for light mode */
+            --shadow-color: rgba(90, 130, 200, 0.3); /* Blue-ish shadow for light mode */
+            --quiz-bg: rgba(255, 255, 255, 0.9); /* White transparent quiz background */
+            --quiz-text: #1a082b; /* Dark text for quiz in light mode */
+            --quiz-radio-border: #4a90e2; /* Blue */
+            --quiz-radio-bg: #ffffff; /* White background for unselected radio */
+            --quiz-radio-checked: #4a90e2; /* Blue when checked */
+            --quiz-radio-dot: #FFFFFF;
+            --quiz-radio-focus-shadow: rgba(74, 144, 226, 0.5);
+            --quiz-card-bg: rgba(240, 240, 240, 0.9); /* Light grey card background */
+            --quiz-card-border: rgba(120, 160, 220, 0.5);
+            --quiz-score-bg: rgba(230, 240, 255, 0.9); /* Light blue-ish for results */
+            --quiz-score-text: #1a082b;
+            --quiz-score-highlight: #D4A700; /* Darker yellow/gold */
+            --success-bg: rgba(200, 250, 200, 0.8); /* Light green for success */
+            --success-border: #60B88F; /* Deeper green */
+            --success-text: #28a745; /* Standard green */
+            --error-bg: rgba(250, 200, 200, 0.8); /* Light red for error */
+            --error-border: #C85E5E; /* Deeper red */
+            --error-text: #dc3545; /* Standard red */
+            --button-primary-bg: #82aaff;
+            --button-primary-text: #1a082b;
+            --button-secondary-bg: #bb86fc;
+            --button-secondary-text: #1a082b;
+            --navbar-bg: #e0e0e0; /* Light grey for navbar */
+            --footer-bg: #e0e0e0; /* Light grey for footer */
+            --text-default: #1a082b; /* Default text color in light mode */
+        }
+
+
+        /* Apply CSS variables to global elements and Tailwind overrides */
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+        html {
+            scroll-padding-top: 0px; /* Will be set dynamically by JS */
+        }
+        .bg-space-dark { background-color: var(--bg-dark); }
+        .bg-space-medium { background-color: var(--bg-medium); }
+        .bg-space-light { background-color: var(--bg-light); }
+        .text-star-light { color: var(--text-light); }
+        .text-star-medium { color: var(--text-medium); }
+        .text-accent-purple { color: var(--accent-purple); }
+        .text-accent-blue { color: var(--accent-blue); }
+        .border-accent-purple { border-color: var(--accent-purple); }
+        .hover\:bg-accent-purple:hover { background-color: var(--accent-purple); }
+        .hover\:text-accent-purple:hover { color: var(--accent-purple); }
+        .hover\:bg-accent-blue:hover { background-color: var(--accent-blue); }
+        .hover\:text-accent-blue:hover { color: var(--accent-blue); }
+
+        /* Specific element background/text color overrides for theme */
+        nav { background-color: var(--navbar-bg); }
+        footer { background-color: var(--footer-bg); }
+        #getStartedBtn {
+             background-color: var(--button-primary-bg);
+             color: var(--button-primary-text);
+        }
+        #learnMoreBtn {
+            border-color: var(--accent-blue);
+            color: var(--button-secondary-text);
+        }
+        #learnMoreBtn:hover {
+            background-color: var(--accent-blue);
+            color: var(--text-light);
+        }
+        /* Specific glow for H1 based on theme */
+        body:not(.light-mode) .h1-glow {
+            text-shadow: 0 0 8px rgba(187, 134, 252, 0.7), 0 0 15px rgba(130, 170, 255, 0.5);
+        }
+        body.light-mode .h1-glow {
+            text-shadow: none; /* No glow in light mode */
+        }
+
+
+        /* General styles from previous versions */
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* Nav Logo Marquee */
+        .logo-text-marquee-container {
+            /* flex-grow: 1; Not needed, we want specific width */
+            flex-shrink: 0; /* Prevent it from shrinking */
             overflow: hidden;
             white-space: nowrap;
-            box-sizing: border-box;
-            width: 100%;
-            display: inline-block; /* Essential for animation */
+            width: 200px; /* Or a more responsive width like w-1/4, w-1/3 depending on desired responsiveness */
+            height: 30px; /* Align with text height */
+            display: flex;
+            align-items: center; /* Vertically center the scrolling text */
+            margin-left: 0.5rem; /* Space between logo image and text */
         }
 
-        .marquee-content {
+        .logo-marquee-content {
             display: inline-block;
             padding-left: 100%; /* Start off-screen */
-            animation: marquee 15s linear infinite; /* Adjust duration for speed */
+            animation: logoMarquee 20s linear infinite; /* Adjust speed as needed */
         }
 
+        .logo-text-marquee-container:hover .logo-marquee-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes logoMarquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+
+        /* Home Page Marquee Container Styles (for News & Updates) */
+        .home-marquee-container {
+            background-color: var(--bg-light); /* Distinct background from body and nav */
+            color: var(--text-light);
+            padding: 0.5rem 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+            border-radius: 0.5rem; /* Rounded corners */
+            margin-top: 2rem; /* Space from hero section */
+            margin-bottom: 2rem; /* Space to features section */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Subtle shadow */
+            height: 30px; /* Fixed height for marquee to prevent content jump */
+            display: flex;
+            align-items: center; /* Vertically center the text */
+            justify-content: center;
+        }
+        .home-marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 40s linear infinite;
+        }
+        .home-marquee-container:hover .home-marquee-content {
+            animation-play-state: paused;
+        }
         @keyframes marquee {
             0% { transform: translate(0, 0); }
             100% { transform: translate(-100%, 0); }
@@ -44,291 +215,311 @@
 
         /* Full-page Three.js canvas */
         .threejs-canvas {
-            position: fixed; /* Fixed to cover the entire viewport */
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100vw; /* Viewport width */
-            height: 100vh; /* Viewport height */
+            width: 100vw;
+            height: 100vh;
             display: block;
-            z-index: -1; /* Place it behind all content */
+            z-index: -1;
         }
 
         /* Hero section content container */
         .hero-content-wrapper {
-            position: relative; /* Stacks above the canvas */
-            z-index: 10; /* Ensure content is on top */
-            min-height: 500px; /* Ensures enough space for hero content */
+            position: relative;
+            z-index: 10;
+            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             text-align: center;
             padding: 2rem;
             max-width: 90%;
-            margin: 0 auto; /* Center the hero content */
+            margin: 0 auto;
         }
 
-        /* Modal Styles (kept for general action modal) */
+        /* Modal Styles */
         .modal {
-            display: none; /* Hidden by default */
+            display: none; /* Controlled by JS, but default to hidden */
             position: fixed;
-            z-index: 10000; /* High z-index to appear on top */
+            z-index: 10000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.7); /* Darker overlay */
+            background-color: rgba(0,0,0,0.7);
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
         .modal-content {
-            background-color: #2d1a42; /* Space-themed modal background */
+            background-color: var(--bg-medium);
             margin: auto;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2 px 4px -1px rgba(0, 0, 0, 0.1);
-            max-width: 90%;
-            width: 400px;
+            border: 1px solid var(--border-color);
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
             text-align: center;
-            color: #e0e0e0; /* Light text for modal */
-            transform: translateY(-50px); /* Initial offset for animation */
-            opacity: 0; /* Start invisible */
-            animation: modalFadeIn 0.3s ease-out forwards;
+            box-shadow: 0 4px 15px var(--shadow-color);
         }
-
-        @keyframes modalFadeIn {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close-button {
-            float: right;
+        .modal .close-button {
+            color: var(--text-medium);
+            position: absolute;
+            top: 10px;
+            right: 10px;
             font-size: 28px;
             font-weight: bold;
-            color: #888;
             cursor: pointer;
         }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: #bbb;
+        .modal .close-button:hover,
+        .modal .close-button:focus {
+            color: var(--text-light);
             text-decoration: none;
             cursor: pointer;
         }
 
+
         /* Section transition effect */
         .content-section {
-            display: none; /* Hidden by default */
+            display: none;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-            position: relative; /* Ensure content sections stack above canvas */
-            z-index: 10; /* Higher than canvas */
-            text-align: center; /* Explicitly center text within content sections */
+            position: relative;
+            z-index: 10;
+            text-align: center;
         }
-
         .content-section.active {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Space-ey Color Palette */
-        /* Increased contrast for main text colors */
-        .bg-space-dark { background-color: #1a082b; } /* Very dark purple-blue */
-        .bg-space-medium { background-color: #2d1a42; } /* Slightly lighter purple-blue */
-        .bg-space-light { background-color: #402c58; } /* Even lighter purple-blue */
-        .text-star-light { color: #f0f0f0; } /* Brighter off-white for general text */
-        .text-star-medium { color: #d0d0d0; } /* Slightly darker off-white for secondary text */
-        .text-accent-purple { color: #bb86fc; } /* Bright purple accent */
-        .text-accent-blue { color: #82aaff; } /* Bright blue accent */
-        .border-accent-purple { border-color: #bb86fc; }
-        .hover\:bg-accent-purple:hover { background-color: #bb86fc; }
-        .hover\:text-accent-purple:hover { color: #bb86fc; }
-        .hover\:bg-accent-blue:hover { background-color: #82aaff; }
-        .hover\:text-accent-blue:hover { color: #82aaff; }
-
-        /* Custom button styling for glowing effect */
-        .button-glow {
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            border: none; /* Remove default button border */
-            cursor: pointer; /* Indicate interactivity */
-        }
-        .button-glow::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
-            transition: all 0.5s ease-out;
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-            z-index: -1;
-        }
-        .button-glow:hover::before {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-
-        /* Additional enhancements */
-        .h1-glow {
-            text-shadow: 0 0 8px rgba(187, 134, 252, 0.7), 0 0 15px rgba(130, 170, 255, 0.5); /* Subtle glow for H1 */
-        }
-
         /* Dropdown menu specific styles */
         .dropdown {
             position: relative;
-            display: inline-block; /* For positioning dropdown relative to its parent */
+            display: inline-block;
+            color: var(--text-medium);
+            font-weight: 500;
+            border-radius: 0.375rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .dropdown:hover {
+            color: var(--accent-blue);
+        }
+        .dropdown > a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease-in-out; /* Smooth transition for rotation */
+            transform: rotate(0deg); /* Default: points up */
+        }
+        .dropdown.open .dropdown-arrow {
+            transform: rotate(180deg); /* When open: points down */
         }
 
         .dropdown-content {
             display: none; /* Hidden by default */
             position: absolute;
-            background-color: #2d1a42; /* Medium space background */
-            min-width: 160px;
+            background-color: var(--bg-medium);
             box-shadow: 0 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1; /* Ensure it's above other content */
+            z-index: 1;
             border-radius: 8px;
-            overflow: hidden; /* For rounded corners on children */
-            top: calc(100% + 8px); /* Position below the nav link, with some gap */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Adjust for centering */
-            padding: 8px 0; /* Vertical padding inside dropdown */
+            overflow: hidden;
+            top: calc(100% + 8px); /* Position below the toggle */
+            left: 50%; /* Center horizontally relative to its parent .dropdown */
+            transform: translateX(-50%); /* Adjust for perfect centering */
+            padding: 8px;
+            flex-direction: row; /* Always horizontal */
+            gap: 10px;
+            justify-content: center; /* Center items within dropdown */
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            min-width: max-content; /* Ensure dropdown is wide enough for content */
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .dropdown.open .dropdown-content {
+            display: flex; /* Show as flex when open */
+        }
+
+        @media (max-width: 768px) {
+            .dropdown-content {
+                left: 0;
+                transform: translateX(0);
+                width: 100%;
+                justify-content: flex-start;
+            }
         }
 
         .dropdown-content a {
-            color: #d0d0d0; /* text-star-medium */
-            padding: 12px 16px;
+            color: var(--text-medium);
+            padding: 8px 12px;
             text-decoration: none;
-            display: block;
-            text-align: left;
+            display: inline-block;
+            text-align: center;
             transition: background-color 0.2s ease;
+            font-family: 'DM Sans', sans-serif;
+            border-radius: 6px;
+            white-space: nowrap;
         }
 
         .dropdown-content a:hover {
-            background-color: #402c58; /* bg-space-light */
-            color: #f0f0f0; /* text-star-light */
+            background-color: var(--bg-light);
+            color: var(--text-light);
         }
 
-        /* Show the dropdown menu on hover */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
 
-        /* Quiz Page Specific Styles (integrated into main flow) */
+        /* Quiz Page Specific Styles */
         .quiz-page-container {
-            background: linear-gradient(to bottom right, #0F0022, #2A0050, #001040); /* Deep space gradient */
-            color: #E0E7FF; /* Light blue-ish white for text */
+            background-color: var(--quiz-bg);
+            backdrop-filter: blur(3px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px var(--shadow-color);
+            color: var(--quiz-text); /* Uses --quiz-text, which changes with theme */
             padding: 20px;
-            border-radius: 20px; /* More rounded */
-            border: 2px solid #6D28D9;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5); /* Glow effect */
-            overflow-y: auto; /* Enable scrolling for long quizzes */
-            margin-top: 2rem; /* Add some space from surrounding content */
+            border-radius: 20px;
+            overflow-y: auto;
+            margin-top: 2rem;
             margin-bottom: 2rem;
-            max-width: 800px; /* Wider for quiz content */
+            max-width: 800px;
+            width: 90%;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center content horizontally within the flex container */
-            text-align: center; /* Center text within this container */
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        /* Specific input styling for better visibility and aesthetics */
         .quiz-page-container input[type="radio"] {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            width: 1.25rem; /* 20px */
-            height: 1.25rem; /* 20px */
+            width: 1.25rem;
+            height: 1.25rem;
             border-radius: 50%;
-            border: 2px solid #6D28D9; /* Purple border */
-            background-color: #1A0033; /* Dark background for unselected */
+            border: 2px solid var(--quiz-radio-border);
+            background-color: var(--quiz-radio-bg);
             transition: all 0.2s ease-in-out;
             cursor: pointer;
             position: relative;
-            flex-shrink: 0; /* Prevent shrinking in flex container */
+            flex-shrink: 0;
         }
-
         .quiz-page-container input[type="radio"]:checked {
-            background-color: #8B5CF6; /* Lighter purple when checked */
-            border-color: #8B5CF6; /* Border matches fill */
+            background-color: var(--quiz-radio-checked);
+            border-color: var(--quiz-radio-checked);
         }
-
         .quiz-page-container input[type="radio"]:checked::after {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 0.5rem; /* 8px */
-            height: 0.5rem; /* 8px */
+            width: 0.5rem;
+            height: 0.5rem;
             border-radius: 50%;
-            background-color: #FFFFFF; /* White dot inside */
+            background-color: var(--quiz-radio-dot);
         }
-
         .quiz-page-container input[type="radio"]:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.5); /* Focus ring */
+            box-shadow: 0 0 0 3px var(--quiz-radio-focus-shadow);
         }
-
-        /* Style for options label to align text with radio button */
         .quiz-page-container label {
             display: flex;
             align-items: center;
-            gap: 10px; /* Space between radio button and text */
+            gap: 10px;
             cursor: pointer;
-            text-align: left; /* Align label text to left */
+            text-align: left;
         }
-
         .question-card {
-            background-color: rgba(30, 0, 60, 0.8); /* Slightly lighter purple tint for cards */
-            backdrop-filter: blur(5px); /* Subtle blur effect */
-            width: 100%; /* Ensure question card fills its container */
-            text-align: left; /* Align question text to left within its card */
+            background-color: var(--quiz-card-bg);
+            backdrop-filter: blur(5px);
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--quiz-card-border);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-
         .question-card .options {
-            text-align: left; /* Ensure options remain left-aligned */
+            text-align: left;
         }
-
         .submit-button {
-            background: linear-gradient(to right, #8B5CF6, #B088FF); /* Gradient button */
+            background: linear-gradient(to right, var(--quiz-radio-checked), var(--accent-purple));
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            color: var(--text-light);
         }
         .submit-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 4px 15px var(--shadow-color);
         }
+
+        /* Quiz Results Styling */
+        #results-container {
+            background-color: var(--quiz-score-bg);
+            border: 1px solid var(--quiz-card-border);
+        }
+        #score-display {
+            color: var(--quiz-score-text);
+        }
+        #score-display span {
+            color: var(--quiz-score-highlight);
+        }
+        #feedback-details .bg-green-900 { /* Tailwind class, mapped to variable */
+            background-color: var(--success-bg);
+            border-color: var(--success-border);
+        }
+        #feedback-details .text-green-300 { /* Tailwind class, mapped to variable */
+            color: var(--success-text);
+        }
+        #feedback-details .bg-red-900 { /* Tailwind class, mapped to variable */
+            background-color: var(--error-bg);
+            border-color: var(--error-border);
+        }
+        #feedback-details .text-red-300 { /* Tailwind class, mapped to variable */
+            color: var(--error-text);
+        }
+        #feedback-details .text-green-400 { /* Tailwind class, mapped to variable */
+            color: var(--success-text);
+        }
+
 
         /* Custom scrollbar for better aesthetics within modal if needed */
         .quiz-page-container::-webkit-scrollbar {
             width: 8px;
         }
         .quiz-page-container::-webkit-scrollbar-track {
-            background: #1A0033;
+            background: var(--bg-dark);
             border-radius: 10px;
         }
         .quiz-page-container::-webkit-scrollbar-thumb {
-            background: #6D28D9;
+            background: var(--quiz-radio-border);
             border-radius: 10px;
         }
         .quiz-page-container::-webkit-scrollbar-thumb:hover {
-            background: #8B5CF6;
+            background: var(--quiz-radio-checked);
         }
 
         /* Announcement Banner Styles */
         .announcement-banner {
-            background-color: #eab308; /* Yellow-500 from Tailwind */
-            color: #1a202c; /* Dark text for contrast */
+            background-color: #eab308;
+            color: #1a202c;
             padding: 1rem 1.5rem;
             display: flex;
             justify-content: center;
@@ -337,22 +528,41 @@
             font-weight: bold;
             font-size: 1.1rem;
             text-align: center;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 60; /* Higher than nav bar */
+            left: 0;
+            width: 100%;
+            z-index: 100;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            flex-wrap: wrap; /* Allow wrapping on small screens */
+            flex-wrap: wrap;
+            height: auto;
+            min-height: 60px;
         }
         .announcement-banner button {
-            background-color: #1a202c; /* Dark button */
-            color: #eab308; /* Yellow text */
+            background-color: #1a202c;
+            color: #eab308;
             padding: 0.5rem 1.25rem;
-            border-radius: 9999px; /* Fully rounded */
+            border-radius: 9999px;
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
         .announcement-banner button:hover {
-            background-color: #4a5568; /* Darker hover */
+            background-color: #4a5568;
+        }
+
+        /* Navigation Bar - fixed and positioned dynamically */
+        nav {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            z-index: 90;
+        }
+
+        /* Media query for smaller screens to adjust padding-top if needed */
+        @media (max-width: 767px) {
+            .announcement-banner {
+                padding: 0.75rem 1rem;
+            }
         }
     </style>
 </head>
@@ -374,44 +584,61 @@
     <canvas id="threeJsCanvas" class="threejs-canvas"></canvas>
 
     <!-- Navigation Bar -->
-    <nav class="bg-gray-900 shadow-lg py-4 px-6 rounded-b-lg sticky top-0 z-50">
+    <nav class="shadow-lg py-4 px-6 rounded-b-lg" style="background-color: var(--navbar-bg);">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <!-- Logo/Site Title with Marquee Effect -->
-            <a href="#home" class="text-2xl font-bold text-accent-purple mb-4 md:mb-0 marquee-container nav-link">
-                <span class="marquee-content">My Cosmic Website &bull; Explore &bull; Create &bull; Innovate &bull;</span>
+            <!-- Logo - Clickable to Home -->
+            <a href="#home" class="flex items-center space-x-2 text-2xl font-bold text-accent-purple mb-4 md:mb-0 nav-link">
+                <img src="https://previews.dropbox.com/p/thumb/ACofJhwdazgSsMObcigTR8TrQa5B35rbFO1eNGWXccLGUoUivslIL8LlaT6f0WSZ8wP1D4Bze2o24qli-Q3RGlq2UP1ycohfvEP_DctSK3mNVsjaUEg4_tZnwA-sUh408vvanuD7gH2oimxlCP8rPiXlymj-5xboeu5brXr_4g90ZKnKbyd10CvYZYlpXuX3huViN8nyS8H2c6GcVxUqPGyFsp2iTKwvNR3mP-_cCKvo_z6n0ZIBee5YfQdfHpx95FDaHbeqrAkHeb8j9U6RToy2wgdJoOoMJ2gHPUS6d0L8TgN61vDcqCCaiJygw8l56lo/p.png" alt="Gemini Voyages Logo" class="h-10 w-auto rounded-full">
+                <!-- Gemini Voyages Marquee -->
+                <div class="logo-text-marquee-container hidden md:block">
+                    <span class="logo-marquee-content">Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; </span>
+                </div>
             </a>
 
-            <!-- Navigation Links -->
-            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
+            <!-- Navigation Links, Dropdown, and Theme Toggle -->
+            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center flex-grow justify-end">
                 <a href="#home" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Home</a>
                 <a href="#about" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">About Us</a>
 
                 <!-- Planets Dropdown -->
-                <div class="dropdown">
-                    <a href="#" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">
+                <div class="dropdown text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">
+                    <a href="#" id="planetsDropdownToggle" class="flex items-center">
                         Planets
-                        <svg class="inline-block w-4 h-4 ml-1 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="inline-block w-4 h-4 ml-1 -mt-1 dropdown-arrow" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </a>
                     <div class="dropdown-content">
-                        <a href="#mercury-section" class="nav-link">Mercury</a>
-                        <a href="#venus-section" class="nav-link">Venus</a>
-                        <a href="#earth-section" class="nav-link">Earth</a>
-                        <a href="#mars-section" class="nav-link">Mars</a>
-                        <a href="#jupiter-section" class="nav-link">Jupiter</a>
-                        <a href="#saturn-section" class="nav-link">Saturn</a>
-                        <a href="#uranus-section" class="nav-link">Uranus</a>
-                        <a href="#neptune-section" class="nav-link">Neptune</a>
+                        <a href="#mercury-section" class="nav-link" title="Explore the scorching hot Mercury!">Mercury</a>
+                        <a href="#venus-section" class="nav-link" title="Journey to Earth's cloud-veiled sister, Venus!">Venus</a>
+                        <a href="#earth-section" class="nav-link" title="Return to our vibrant home, Earth!">Earth</a>
+                        <a href="#mars-section" class="nav-link" title="Discover the mysteries of the Red Planet, Mars!">Mars</a>
+                        <a href="#jupiter-section" class="nav-link" title="Witness the giant, stormy Jupiter!">Jupiter</a>
+                        <a href="#saturn-section" class="nav-link" title="Behold the magnificent rings of Saturn!">Saturn</a>
+                        <a href="#uranus-section" class="nav-link" title="Visit the tilted ice giant, Uranus!">Uranus</a>
+                        <a href="#neptune-section" class="nav-link" title="Experience the distant, windy world of Neptune!">Neptune</a>
                     </div>
                 </div>
-                <a href="#contact" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Contact</a>
-            </div>
 
-            <!-- Call to Action Button (optional) -->
-            <button id="signUpBtn" class="bg-accent-purple hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out mt-4 md:mt-0 button-glow">
-                Sign Up
-            </button>
+                <!-- Theme Toggle Button -->
+                <button id="themeToggleBtn" class="text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out flex items-center justify-center">
+                    <svg id="moonIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <svg id="sunIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="6"/>
+                        <rect x="11" y="2" width="2" height="4"/>
+                        <rect x="11" y="18" width="2" height="4"/>
+                        <rect x="2" y="11" width="4" height="2"/>
+                        <rect x="18" y="11" width="4" height="2"/>
+                        <rect x="11" y="2" width="2" height="4" transform="rotate(45 12 12)"/>
+                        <rect x="11" y="2" width="2" height="4" transform="rotate(135 12 12)"/>
+                        <rect x="11" y="2" width="2" height="4" transform="rotate(225 12 12)"/>
+                        <rect x="11" y="2" width="2" height="4" transform="rotate(315 12 12)"/>
+                    </svg>
+                </button>
+
+            </div>
         </div>
     </nav>
 
@@ -438,7 +665,12 @@
                 </div>
             </header>
 
-            <!-- Features Section (now integrated into Home/About, but keeping ID for compatibility) -->
+            <!-- News & Updates Marquee - On the homepage, just above the feature boxes -->
+            <div id="homeMarqueeContainer" class="home-marquee-container">
+                <span class="home-marquee-content">NEWS & UPDATES: New routes to Kepler-186f coming soon! &bull; Book your deep-space adventure today! &bull; Early bird discounts for first-time voyagers! &bull; Explore the digital cosmos with Gemini Voyages! &bull; NEWS & UPDATES: New routes to Kepler-186f coming soon! &bull; Book your deep-space adventure today! &bull; Early bird discounts for first-time voyagers! &bull; Explore the digital cosmos with Gemini Voyages! &bull; </span>
+            </div>
+
+            <!-- Features Section (the "boxes" section) -->
             <section id="features-section-inner" class="py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
                 <div class="container mx-auto text-center">
                     <h2 class="text-3xl md:text-4xl font-bold mb-12 text-accent-purple">Cosmic Capabilities Await</h2>
@@ -486,7 +718,7 @@
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">About Our Constellation</h2>
                 <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
-                    **Who we are:** We are Gemini Voyages, a luxury intergalactic airline which is your 1# go-to shuttle for venturing through the vast expanse of cosmos which is our Solar System. We provide flights to a wide variety of destinations, including to/from Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.
+                    We are Gemini Voyages, a luxury intergalactic airline which is your 1# go-to shuttle for venturing through the vast expanse of cosmos which is our Solar System. We provide flights to a wide variety of destinations, including to/from Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.
                 </p>
                 <p class="text-star-medium max-w-3xl mx-auto">
                     We are offering this service after our successful mission last year; in which our crew developed a database of safe planets; based on distance from earth, gravitational strength, surface pressure, and chemical makeup of the atmosphere.
@@ -581,7 +813,7 @@
         </section>
 
         <!-- Quiz Page Section -->
-        <section id="quiz-page-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8 flex justify-center items-center">
+        <section id="quiz-page-section" class="content-section py-8 px-6 my-8 flex justify-center items-center">
             <div class="quiz-page-container w-full">
                 <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-lg animate-pulse">
                     Planet Trivia Quiz!
@@ -616,52 +848,30 @@
             </div>
         </section>
 
-
-        <!-- Contact Section -->
-        <section id="contact" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
+        <!-- New Connect With Us Section for QR Code -->
+        <section id="connect-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Contact Our Command Center</h2>
-                <p class="text-lg text-star-medium mb-8 max-w-2xl mx-auto">
-                    Have a query or wish to send a transmission? Our cosmic communications are open!
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Connect with Us</h2>
+                <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
+                    Scan the QR code below or visit our links to stay updated on our latest voyages and offers!
                 </p>
-                <form class="max-w-md mx-auto text-left space-y-6">
-                    <div>
-                        <label for="name" class="block text-star-medium text-sm font-bold mb-2">Name:</label>
-                        <input type="text" id="name" name="name" class="shadow-sm appearance-none border border-gray-700 bg-gray-900 rounded-lg w-full py-3 px-4 text-star-light leading-tight focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="Your Interstellar Name">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-star-medium text-sm font-bold mb-2">Email:</label>
-                        <input type="email" id="email" name="email" class="shadow-sm appearance-none border border-gray-700 bg-gray-900 rounded-lg w-full py-3 px-4 text-star-light leading-tight focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="your@cosmic-address.com">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-star-medium text-sm font-bold mb-2">Message:</label>
-                        <textarea id="message" name="message" rows="5" class="shadow-sm appearance-none border border-gray-700 bg-gray-900 rounded-lg w-full py-3 px-4 text-star-light leading-tight focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent resize-y" placeholder="Your Message to the Stars"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-accent-purple hover:bg-opacity-90 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out button-glow">
-                        Send Transmission
-                    </button>
-                </form>
-                <div class="mt-10 text-star-medium">
-                    <p>Or find us orbiting on social media:</p>
-                    <div class="flex justify-center space-x-6 mt-4">
-                        <a href="#" class="text-accent-blue hover:text-accent-purple transition duration-300 ease-in-out">Facebook</a>
-                        <a href="#" class="text-accent-blue hover:text-accent-purple transition duration-300 ease-in-out">Twitter</a>
-                        <a href="#" class="text-accent-blue hover:text-accent-purple transition duration-300 ease-in-out">LinkedIn</a>
+                <div class="flex flex-col items-center justify-center space-y-6">
+                    <img src="https://raw.githubusercontent.com/google-gemini/cookbook/main/examples/community-examples/next.jpg" alt="Connect with Us QR Code" class="max-w-xs md:max-w-sm rounded-lg shadow-xl border-4 border-accent-blue">
+                    <div class="flex flex-col space-y-2 text-star-medium text-lg">
+                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
+                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
+                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-star-medium py-10 px-6 rounded-t-lg mt-8">
+    <footer class="text-star-medium py-10 px-6 rounded-t-lg mt-8" style="background-color: var(--footer-bg);">
         <div class="container mx-auto text-center">
-            <p class="text-lg mb-4">&copy; 2025 My Cosmic Website. All rights reserved.</p>
-            <div class="flex justify-center space-x-6">
-                <a href="#" class="text-star-medium hover:text-star-light transition duration-300 ease-in-out">Privacy Protocols</a>
-                <a href="#" class="text-star-medium hover:text-star-light transition duration-300 ease-in-out">Terms of Engagement</a>
-                <a href="#" class="text-star-medium hover:text-star-light transition duration-300 ease-in-out">Starmap</a>
-            </div>
+            <p class="text-lg mb-4">&copy; 2025 Gemini Voyages. All rights reserved.</p>
         </div>
     </footer>
 
@@ -681,11 +891,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Get all interactive elements
-            const signUpBtn = document.getElementById('signUpBtn');
             const getStartedBtn = document.getElementById('getStartedBtn');
             const learnMoreBtn = document.getElementById('learnMoreBtn');
             const navLinks = document.querySelectorAll('.nav-link');
             const allContentSections = document.querySelectorAll('.content-section');
+            const logoLink = document.querySelector('nav .nav-link img').closest('a'); // Get the anchor tag wrapping the logo
+
 
             // Main site general modal elements
             const actionModal = document.getElementById('actionModal');
@@ -694,16 +905,27 @@
             const modalTitle = document.getElementById('modalTitle');
             const modalMessage = document.getElementById('modalMessage');
 
-            // Quiz elements (now targeting elements within the quiz-page-section)
+            // Quiz elements
             const quizAnnouncementBanner = document.getElementById('quizAnnouncementBanner');
             const openQuizBtn = document.getElementById('openQuizBtn');
-            const quizPageSection = document.getElementById('quiz-page-section'); // The new full-page quiz section
-            const quizContainer = quizPageSection.querySelector('#quiz-container'); // Scope to quizPageSection
-            const submitQuizButton = quizPageSection.querySelector('#submit-quiz-btn'); // Use specific ID
-            const resultsContainer = quizPageSection.querySelector('#results-container'); // Scope to quizPageSection
-            const scoreDisplay = resultsContainer.querySelector('#score-display span'); // Scope to resultsContainer
-            const feedbackDetails = resultsContainer.querySelector('#feedback-details'); // Scope to resultsContainer
-            const retakeQuizButton = resultsContainer.querySelector('#retake-quiz-btn'); // Use specific ID
+            const quizPageSection = document.getElementById('quiz-page-section');
+            const quizContainer = quizPageSection.querySelector('#quiz-container');
+            const submitQuizButton = quizPageSection.querySelector('#submit-quiz-btn');
+            const resultsContainer = quizPageSection.querySelector('#results-container');
+            const scoreDisplay = resultsContainer.querySelector('#score-display span');
+            const feedbackDetails = resultsContainer.querySelector('#feedback-details');
+            const retakeQuizButton = resultsContainer.querySelector('#retake-quiz-btn');
+
+            // Special elements for the "Planets" dropdown
+            const planetsDropdownToggle = document.getElementById('planetsDropdownToggle');
+            const planetsDropdownContainer = planetsDropdownToggle.closest('.dropdown'); // Get parent .dropdown
+            const dropdownArrow = planetsDropdownToggle.querySelector('.dropdown-arrow');
+            const dropdownContent = planetsDropdownContainer.querySelector('.dropdown-content');
+
+            // Theme Toggle elements
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const moonIcon = document.getElementById('moonIcon');
+            const sunIcon = document.getElementById('sunIcon');
 
             // Audio element
             const backgroundMusic = document.getElementById('backgroundMusic');
@@ -817,13 +1039,42 @@
             const showActionModal = (title, message) => {
                 modalTitle.textContent = title;
                 modalMessage.textContent = message;
-                actionModal.classList.remove('hidden'); // Show the modal
+                actionModal.style.display = 'flex'; // Make sure it's flex for centering
             };
 
             // Function to hide the general action modal
             const hideActionModal = () => {
-                actionModal.classList.add('hidden'); // Hide the modal
+                actionModal.style.display = 'none'; // Hide it
             };
+
+            // Function to dynamically update header positions and body padding
+            const updateHeaderPositions = () => {
+                const banner = document.getElementById('quizAnnouncementBanner');
+                const navElement = document.querySelector('nav');
+
+                if (!banner || !navElement) {
+                    console.error("Banner or Navigation element not found. Cannot update header positions.");
+                    return;
+                }
+
+                requestAnimationFrame(() => {
+                    const bannerHeight = banner.offsetHeight;
+                    const navHeight = navElement.offsetHeight;
+                    // The marquee is now within the main content flow, not part of the fixed header height calculation
+                    const totalHeaderHeight = bannerHeight + navHeight;
+
+                    navElement.style.top = `${bannerHeight}px`;
+                    // Use scroll-padding-top for smooth and accurate scrolling to anchored sections
+                    document.documentElement.style.scrollPaddingTop = `${totalHeaderHeight}px`;
+                    // Also adjust body padding-top for initial content display
+                    document.body.style.paddingTop = `${totalHeaderHeight}px`;
+
+                    console.log(`[Header Update] Banner Height: ${bannerHeight}px`);
+                    console.log(`[Header Update] Nav Height: ${navHeight}px`);
+                    console.log(`[Header Update] Scroll Padding Top: ${totalHeaderHeight}px`);
+                });
+            };
+
 
             // Function to show a specific content section and hide others
             const showSection = (sectionId) => {
@@ -833,31 +1084,26 @@
                 const targetSection = document.getElementById(sectionId);
                 if (targetSection) {
                     targetSection.classList.add('active');
-                    // Scroll to the top of the section for better UX
-                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    requestAnimationFrame(() => {
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
                 }
             };
 
             // Initial section display
-            showSection('home-section'); // Show home by default
+            showSection('home-section');
 
-            // Event Listeners for main site Buttons
-            if (signUpBtn) {
-                signUpBtn.addEventListener('click', () => {
-                    showActionModal('Initiate Singularity Drive', 'Prepare for launch! This would lead to your cosmic registration.');
-                });
-            }
-
+            // Event Listeners for main site Buttons (with modals reinstated)
             if (getStartedBtn) {
                 getStartedBtn.addEventListener('click', () => {
-                    showSection('features-section-inner'); // "Commence Mission" can scroll to features
+                    showSection('features-section-inner');
                     showActionModal('Mission Briefing', 'Your journey begins! Navigating to the cosmic capabilities section.');
                 });
             }
 
             if (learnMoreBtn) {
                 learnMoreBtn.addEventListener('click', () => {
-                    showSection('about'); // "Learn More" can go to the about section
+                    showSection('about');
                     showActionModal('About the Cosmos', 'Unveiling our origin story. Proceeding to the About Us page.');
                 });
             }
@@ -866,12 +1112,43 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
                     event.preventDefault(); // Prevent default link behavior
-                    const targetId = event.target.getAttribute('href').substring(1); // Get section ID from href
-                    // Special handling for 'home' to map to 'home-section'
-                    const actualTargetId = targetId === 'home' ? 'home-section' : targetId;
-                    showSection(actualTargetId);
+
+                    const clickedLinkElement = event.currentTarget;
+                    const href = clickedLinkElement.getAttribute('href');
+
+                    if (href === null) {
+                        console.error("Error: Clicked navigation link is missing its href attribute.", clickedLinkElement);
+                        return;
+                    }
+
+                    const targetId = href.substring(1);
+                    showSection(targetId);
+
+                    // Close dropdown if it's open and a planet link was clicked
+                    if (planetsDropdownContainer.classList.contains('open')) {
+                        planetsDropdownContainer.classList.remove('open');
+                    }
                 });
             });
+
+            // Event listener for the "Planets" dropdown toggle (click-based)
+            if (planetsDropdownToggle) {
+                planetsDropdownToggle.addEventListener('click', (event) => {
+                    event.preventDefault(); // Stop default hash link behavior
+                    planetsDropdownContainer.classList.toggle('open'); // Toggle 'open' class
+                });
+
+                // Close dropdown when clicking anywhere outside of it
+                document.addEventListener('click', (event) => {
+                    // Check if the click occurred outside the dropdown container AND outside the toggle button itself
+                    if (planetsDropdownContainer.classList.contains('open') &&
+                        !planetsDropdownContainer.contains(event.target) &&
+                        !planetsDropdownToggle.contains(event.target)) {
+                        planetsDropdownContainer.classList.remove('open');
+                    }
+                });
+            }
+
 
             // Event Listeners for General Modal Close Buttons
             if (closeModalBtn) {
@@ -895,8 +1172,8 @@
             // Open Quiz button listener
             if (openQuizBtn) {
                 openQuizBtn.addEventListener('click', () => {
-                    showSection('quiz-page-section'); // Show the dedicated quiz page
-                    renderQuiz(); // Render quiz questions when showing the page
+                    showSection('quiz-page-section');
+                    renderQuiz();
                 });
             }
 
@@ -909,10 +1186,10 @@
                     const questionDiv = document.createElement('div');
                     questionDiv.classList.add('question-card', 'p-6', 'rounded-xl', 'shadow-md', 'mb-6', 'border', 'border-indigo-800', 'hover:border-indigo-600', 'transition-all');
                     questionDiv.innerHTML = `
-                        <p class="text-xl md:text-2xl font-medium mb-4 text-purple-300">${q.question}</p>
+                        <p class="text-xl md:text-2xl font-medium mb-4" style="color: var(--quiz-text);">${q.question}</p>
                         <div class="options space-y-3">
                             ${q.options.map((option, optIndex) => `
-                                <label class="block text-gray-200 hover:text-white transition-colors duration-200 text-lg">
+                                <label class="block text-lg" style="color: var(--quiz-text); transition: color 0.2s ease;">
                                     <input type="radio" name="question${index}" value="${option}" class="mr-3">
                                     ${option}
                                 </label>
@@ -921,7 +1198,6 @@
                     `;
                     quizContainer.appendChild(questionDiv);
                 });
-                // Ensure the quiz container is visible and results are hidden when rendering a new quiz
                 quizContainer.classList.remove('hidden');
                 submitQuizButton.classList.remove('hidden');
                 resultsContainer.classList.add('hidden');
@@ -932,10 +1208,9 @@
              */
             function showResults() {
                 let score = 0;
-                feedbackDetails.innerHTML = ''; // Clear previous feedback
+                feedbackDetails.innerHTML = '';
 
                 quizQuestions.forEach((q, index) => {
-                    // Correctly scope the query selector to the quizContainer for its radio buttons
                     const selectedInput = quizContainer.querySelector(`input[name="question${index}"]:checked`);
                     const userAnswer = selectedInput ? selectedInput.value : null;
 
@@ -944,15 +1219,15 @@
 
                     if (userAnswer === q.answer) {
                         score++;
-                        feedbackDiv.classList.add('bg-green-900', 'bg-opacity-50', 'border-green-700');
-                        feedbackDiv.innerHTML = `<p class="font-bold text-green-300">✅ Correct! </p><p class="text-sm text-gray-300">${q.question} <br> Your Answer: ${userAnswer}</p>`;
+                        feedbackDiv.classList.add('bg-green-900');
+                        feedbackDiv.innerHTML = `<p class="font-bold text-green-300">✅ Correct! </p><p class="text-sm" style="color: var(--quiz-text);">${q.question} <br> Your Answer: ${userAnswer}</p>`;
                     } else {
-                        feedbackDiv.classList.add('bg-red-900', 'bg-opacity-50', 'border-red-700');
+                        feedbackDiv.classList.add('bg-red-900');
                         feedbackDiv.innerHTML = `
                             <p class="font-bold text-red-300">❌ Incorrect!</p>
-                            <p class="text-sm text-gray-300">${q.question}</p>
-                            <p class="text-sm text-gray-300">Your Answer: <span class="font-semibold">${userAnswer || 'No Answer'}</span></p>
-                            <p class="text-sm text-gray-300">Correct Answer: <span class="font-semibold text-green-400">${q.answer}</span></p>
+                            <p class="text-sm" style="color: var(--quiz-text);">${q.question}</p>
+                            <p class="text-sm" style="color: var(--quiz-text);">Your Answer: <span class="font-semibold">${userAnswer || 'No Answer'}</span></p>
+                            <p class="text-sm" style="color: var(--quiz-text);">Correct Answer: <span class="font-semibold text-green-400">✅ ${q.answer}</span></p>
                         `;
                     }
                     feedbackDetails.appendChild(feedbackDiv);
@@ -960,26 +1235,25 @@
 
                 scoreDisplay.textContent = `${score} out of ${quizQuestions.length}`;
                 resultsContainer.classList.remove('hidden');
-                quizContainer.classList.add('hidden'); // Hide quiz after submission
-                submitQuizButton.classList.add('hidden'); // Hide submit button
-                resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to results
+                quizContainer.classList.add('hidden');
+                submitQuizButton.classList.add('hidden');
+                resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
             /**
              * Resets the quiz for a new attempt.
              */
             function retakeQuiz() {
-                // Correctly scope the query selector to the quizContainer for its radio buttons
                 quizContainer.querySelectorAll('input[type="radio"]').forEach(radio => {
                     radio.checked = false;
                 });
 
-                resultsContainer.classList.add('hidden'); // Hide results
-                quizContainer.classList.remove('hidden'); // Show quiz
-                submitQuizButton.classList.remove('hidden'); // Show submit button
-                feedbackDetails.innerHTML = ''; // Clear feedback
-                quizPageSection.scrollTop = 0; // Scroll the quiz page section content to top
-                quizPageSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll parent section to top
+                resultsContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+                submitQuizButton.classList.remove('hidden');
+                feedbackDetails.innerHTML = '';
+                quizPageSection.scrollTop = 0;
+                quizPageSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
             // Event Listeners for Quiz buttons
@@ -991,13 +1265,10 @@
             const playAudioWithFallback = () => {
                 backgroundMusic.play().then(() => {
                     console.log("Audio started playing successfully.");
-                    // Remove listeners once audio is playing
                     document.body.removeEventListener('click', playAudioWithFallback);
                     document.body.removeEventListener('scroll', playAudioWithFallback);
                 }).catch(error => {
                     console.warn("Audio autoplay blocked, waiting for user interaction:", error);
-                    // Add listeners for interaction if autoplay failed
-                    // Ensure listeners are added only once if they failed initially
                     if (!document.body.hasAttribute('data-audio-listener-added')) {
                         document.body.addEventListener('click', playAudioWithFallback, { once: true });
                         document.body.addEventListener('scroll', playAudioWithFallback, { once: true });
@@ -1006,21 +1277,47 @@
                 });
             };
 
-            // Attempt to play audio immediately when the script loads
             playAudioWithFallback();
+
+
+            // --- Theme Toggle Logic ---
+            const applyTheme = (isLightMode) => {
+                if (isLightMode) {
+                    document.body.classList.add('light-mode');
+                    moonIcon.style.display = 'none';
+                    sunIcon.style.display = 'block';
+                } else {
+                    document.body.classList.remove('light-mode');
+                    moonIcon.style.display = 'block';
+                    sunIcon.style.display = 'none';
+                }
+            };
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                applyTheme(true);
+            } else {
+                applyTheme(false);
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                const isLightMode = document.body.classList.contains('light-mode');
+                applyTheme(!isLightMode);
+                localStorage.setItem('theme', !isLightMode ? 'light' : 'dark');
+            });
 
 
             // --- Three.js Rippling Stars Effect ---
             let scene, camera, renderer, points, material;
-            let mouseX = 0, mouseY = 0; // Mouse position for camera control
+            let mouseX = 0, mouseY = 0;
             let isDragging = false;
             let previousMouseX = 0;
             let previousMouseY = 0;
 
             const canvas = document.getElementById('threeJsCanvas');
-            let animationFrameId; // To store the requestAnimationFrame ID
+            let animationFrameId;
 
-            const boxSize = 30; // Spread stars within a larger box to fill viewport
+            const boxSize = 30;
 
 
             const initThreeJs = () => {
@@ -1043,11 +1340,11 @@
                 const colors = new Float32Array(numStars * 3);
 
                 const starColors = [
-                    new THREE.Color(0xffffff), // White
-                    new THREE.Color(0xadd8e6), // Light blue
-                    new THREE.Color(0xffe4b5), // Moccasin (pale yellow)
-                    new THREE.Color(0xd8bfd8), // Thistle (pale purple)
-                    new THREE.Color(0xffa07a)  // Light salmon (orange-pink)
+                    new THREE.Color(0xffffff),
+                    new THREE.Color(0xadd8e6),
+                    new THREE.Color(0xffe4b5),
+                    new THREE.Color(0xd8bfd8),
+                    new THREE.Color(0xffa07a)
                 ];
 
                 for (let i = 0; i < numStars; i++) {
@@ -1161,7 +1458,7 @@
                         const deltaX = event.clientX - previousMouseX;
                         const deltaY = event.clientY - previousMouseY;
 
-                        const rotationSpeed = 0.005;
+                        const rotationSpeed = 0.01;
                         const angleY = deltaX * rotationSpeed;
                         const angleX = deltaY * rotationSpeed;
 
@@ -1189,8 +1486,8 @@
                 }
 
                 if (camera && !isDragging) {
-                     camera.position.x += (mouseX * 2 - camera.position.x) * 0.005;
-                     camera.position.y += (mouseY * 2 - camera.position.y) * 0.005;
+                     camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+                     camera.position.y += (mouseY * 2 - camera.position.y) * 0.05;
                      camera.lookAt(new THREE.Vector3(0,0,0));
                 }
 
@@ -1210,6 +1507,7 @@
                         material.uniforms.resolution.value.set(width, height);
                     }
                 }
+                updateHeaderPositions();
             };
 
             window.onload = function () {
@@ -1230,6 +1528,8 @@
                     scene.clear();
                 }
             });
+
+            updateHeaderPositions();
         });
     </script>
 </body>
