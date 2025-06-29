@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cosmic Website</title>
+    <!-- DM Sans Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* Custom CSS for DM Sans font and global styles */
+        body {
+            font-family: 'DM Sans', sans-serif; /* Apply DM Sans */
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+            background-color: #1a082b; /* Dark space background for the entire body */
+            position: relative; /* Needed for fixed canvas positioning */
+        }
+
+        /* Marquee Effect */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            width: 100%;
+            display: inline-block; /* Essential for animation */
+        }
+
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%; /* Start off-screen */
+            animation: marquee 15s linear infinite; /* Adjust duration for speed */
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* Full-page Three.js canvas */
+        .threejs-canvas {
+            position: fixed; /* Fixed to cover the entire viewport */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Viewport width */
+            height: 100vh; /* Viewport height */
+            display: block;
+            z-index: -1; /* Place it behind all content */
+        }
+
+        /* Hero section content container */
+        .hero-content-wrapper {
+            position: relative; /* Stacks above the canvas */
+            z-index: 10; /* Ensure content is on top */
+            min-height: 500px; /* Ensures enough space for hero content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            max-width: 90%;
+            margin: 0 auto; /* Center the hero content */
+        }
+
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 10000; /* High z-index to appear on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7); /* Darker overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #2d1a42; /* Space-themed modal background */
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            color: #e0e0e0; /* Light text for modal */
+            transform: translateY(-50px); /* Initial offset for animation */
+            opacity: 0; /* Start invisible */
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes modalFadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-button {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Section transition effect */
+        .content-section {
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            position: relative; /* Ensure content sections stack above canvas */
+            z-index: 10; /* Higher than canvas */
+        }
+
+        .content-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Space-ey Color Palette */
+        /* Increased contrast for main text colors */
+        .bg-space-dark { background-color: #1a082b; } /* Very dark purple-blue */
+        .bg-space-medium { background-color: #2d1a42; } /* Slightly lighter purple-blue */
+        .bg-space-light { background-color: #402c58; } /* Even lighter purple-blue */
+        .text-star-light { color: #f0f0f0; } /* Brighter off-white for general text */
+        .text-star-medium { color: #d0d0d0; } /* Slightly darker off-white for secondary text */
+        .text-accent-purple { color: #bb86fc; } /* Bright purple accent */
+        .text-accent-blue { color: #82aaff; } /* Bright blue accent */
+        .border-accent-purple { border-color: #bb86fc; }
+        .hover\:bg-accent-purple:hover { background-color: #bb86fc; }
+        .hover\:text-accent-purple:hover { color: #bb86fc; }
+        .hover\:bg-accent-blue:hover { background-color: #82aaff; }
+        .hover\:text-accent-blue:hover { color: #82aaff; }
+
+        /* Custom button styling for glowing effect */
+        .button-glow {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: none; /* Remove default button border */
+            cursor: pointer; /* Indicate interactivity */
+        }
+        .button-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            transition: all 0.5s ease-out;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            z-index: -1;
+        }
+        .button-glow:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Additional enhancements */
+        .h1-glow {
+            text-shadow: 0 0 8px rgba(187, 134, 252, 0.7), 0 0 15px rgba(130, 170, 255, 0.5); /* Subtle glow for H1 */
+        }
+    </style>
+</head>
+<body class="bg-space-dark text-star-light">
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://dl.dropboxusercontent.com/scl/fi/dkrs0oc0jvtg9xghqye8l/inspiring-cinematic-ambient-255033.mp3?rlkey=42pu1bucaixq9ncgfq5wdo2qp&e=1&st=qf8fyjbk" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Full-page Three.js Canvas for stars -->
+    <canvas id="threeJsCanvas" class="threejs-canvas"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-900 shadow-lg py-4 px-6 rounded-b-lg sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <!-- Logo/Site Title with Marquee Effect -->
+            <a href="#home" class="text-2xl font-bold text-accent-purple mb-4 md:mb-0 marquee-container nav-link">
+                <span class="marquee-content">My Cosmic Website &bull; Explore &bull; Create &bull; Innovate &bull;</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
+                <a href="#home" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Home</a>
+                <a href="#features" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Features</a>
+                <a href="#about" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">About</a>
+                <a href="#contact" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Contact</a>
+            </div>
+
+            <!-- Call to Action Button (optional) -->
+            <button id="signUpBtn" class="bg-accent-purple hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out mt-4 md:mt-0 button-glow">
+                Sign Up
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area - Contains all sections -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Home Section (Includes Hero and Features for initial view) -->
+        <section id="home-section" class="content-section active">
+            <!-- Hero Section content - now outside the canvas container -->
+            <header class="text-star-light rounded-lg m-4 shadow-xl hero-content-wrapper">
+                <div class="max-w-4xl mx-auto"> <!-- Added a max-width wrapper for content centering -->
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 h1-glow">
+                        Explore the Digital Cosmos.
+                    </h1>
+                    <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-star-medium">
+                        Journey through a universe of innovation, where your ideas shine like a billion stars.
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <!-- Fixed text color for "Commence Mission" -->
+                        <button id="getStartedBtn" class="bg-white text-gray-900 hover:bg-gray-200 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out button-glow">
+                            Commence Mission
+                        </button>
+                        <button id="learnMoreBtn" class="border border-accent-blue text-white hover:bg-accent-blue hover:text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out button-glow">
+                            Learn About Nebulas
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Features Section (part of home-section initially) -->
+            <section id="features-section-inner" class="py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
+                <div class="container mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-accent-purple">Cosmic Capabilities Await</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Feature 1 -->
+                        <div class="bg-space-light rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 ease-in-out">
+                            <div class="text-accent-blue mb-4">
+                                <svg class="h-10 w-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-1.75-3M13.5 10H15a1 1 0 011 1v6h-4v-6a1 1 0 011-1zm-3 0V7a1 1 0 011-1h2a1 1 0 011 1v3"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-4 text-star-light text-center">Stellar Design</h3>
+                            <p class="text-star-medium text-center">
+                                Our platform is meticulously crafted to offer an out-of-this-world user experience.
+                            </p>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="bg-space-light rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 ease-in-out">
+                            <div class="text-accent-purple mb-4">
+                                <svg class="h-10 w-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-4 text-star-light text-center">Warp Speed Performance</h3>
+                            <p class="text-star-medium text-center">
+                                Experience incredible speeds and seamless interactions across the digital galaxy.
+                            </p>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="bg-space-light rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 ease-in-out">
+                            <div class="text-red-400 mb-4">
+                                <svg class="h-10 w-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-2 4h4m-4-7h4M3 12h18M6 4h12a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2zm0 0V4m0 0H6"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-4 text-star-light text-center">Galactic Support</h3>
+                            <p class="text-star-medium text-center">
+                                Our dedicated crew is ready to assist you on your interstellar journey, day or night.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Separate Features Section (for navigation direct to features) -->
+        <section id="features" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-accent-purple">Unleash Your Potential with Our Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-space-light rounded-xl shadow-md p-8 transform hover:scale-105 transition duration-300 ease-in-out border-t-4 border-accent-purple">
+                        <div class="text-accent-blue mb-4">
+                            <svg class="h-12 w-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3 text-center text-star-light">Nebula Integration</h3>
+                        <p class="text-star-medium text-center">
+                            Connect effortlessly with all your cosmic tools and applications across the digital nebula.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-space-light rounded-xl shadow-md p-8 transform hover:scale-105 transition duration-300 ease-in-out border-t-4 border-accent-blue">
+                        <div class="text-accent-purple mb-4">
+                            <svg class="h-12 w-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19C7.79 19 6.75 18.04 6.75 16.83S7.79 14.67 9 14.67S11.25 15.62 11.25 16.83 10.21 19 9 19zm12-3v-3.26L11.25 10V6.74C11.25 5.53 10.21 4.5 9 4.5S6.75 5.53 6.75 6.74V13.26l12 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3 text-center text-star-light">Quantum Analytics</h3>
+                        <p class="text-star-medium text-center">
+                            Gain profound insights into your data with our next-generation analytical capabilities.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-space-light rounded-xl shadow-md p-8 transform hover:scale-105 transition duration-300 ease-in-out border-t-4 border-red-400">
+                        <div class="text-red-400 mb-4">
+                            <svg class="h-12 w-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2-3-.895-3-2 1.343-2 3-2zM12 10a2 2 0 100-4 2 2 0 000 4z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3 text-center text-star-light">Universal Customization</h3>
+                        <p class="text-star-medium text-center">
+                            Tailor your experience to infinity and beyond with our vast array of options.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-accent-purple">About Our Constellation</h2>
+                <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
+                    **Who we are:** We are Gemini Voyages, a luxury intergalactic airline which is your 1# go-to shuttle for venturing through the vast expanse of cosmos which is our Solar System. We provide flights to a wide variety of destinations, including to/from Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.
+                </p>
+                <p class="text-star-medium max-w-3xl mx-auto">
+                    We are offering this service after our successful mission last year; in which our crew developed a database of safe planets; based on distance from earth, gravitational strength, surface pressure, and chemical makeup of the atmosphere.
+                </p>
+                <h3 class="text-2xl font-bold text-center mt-10 mb-4 text-accent-purple">Cost</h3>
+                <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
+                    The cost of the trip depends on the accommodation, food, planet to travel to, etc, as shown by the spreadsheet below:
+                </p>
+                <!-- Placeholder for spreadsheet, which would be dynamically loaded or an image -->
+                <div class="bg-space-light p-6 rounded-lg shadow-inner text-star-medium max-w-md mx-auto">
+                    <p class="font-bold mb-2">Spreadsheet Placeholder:</p>
+                    <p>*(Imagine a detailed spreadsheet of costs here, varying by destination and amenities.)*</p>
+                    <p>For detailed pricing, please contact our booking specialists!</p>
+                </div>
+
+                <div class="mt-10 flex flex-wrap justify-center gap-6">
+                    <div class="p-6 bg-space-light rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-l-4 border-accent-blue">
+                        <h4 class="text-xl font-semibold text-accent-blue mb-2">Our Galactic Vision</h4>
+                        <p class="text-star-medium">To be the guiding star for creativity and innovation in the digital universe.</p>
+                    </div>
+                    <div class="p-6 bg-space-light rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-l-4 border-accent-purple">
+                        <h4 class="text-xl font-semibold text-accent-purple mb-2">Our Core Elements</h4>
+                        <p class="text-star-medium">Integrity, Innovation, User-Centricity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-accent-purple">Contact Our Command Center</h2>
+                <p class="text-lg text-star-medium mb-8 max-w-2xl mx-auto">
+                    Have a query or wish to send a transmission? Our cosmic communications are open!
+                </p>
+                <form class="max-w-md mx-auto text-left space-y-6">
+                    <div>
+                        <label for="name" class="block text-star-medium text-sm font-bold mb-2">Name:</label>
+                        <input type="text" id="name" name="name" class="shadow-sm appearance-none border border-gray-700 bg-gray-900 rounded-lg w-full py-3 px-4 text-star-light leading-tight focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="Your Interstellar Name">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-star-medium text-sm font-bold mb-2">Email:</label>
+                        <input type="email" id="email" name="email" class="shadow-sm appearance-none border border-gray-700 bg-gray-900 rounded-lg w-full py-3 px-4 text-star-light leading-tight focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="your@cosmic-address.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-star-medium text-sm font-bold mb-2">Message:</label>
+                        <textarea id="message" name="message" rows="5" class="shadow-sm appearance-none border border-gray-700 bg-gray-900 rounded-lg w-full py-3 px-4 text-star-light leading-tight focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent resize-y" placeholder="Your Message to the Stars"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-accent-purple hover:bg-opacity-90 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out button-glow">
+                        Send Transmission
+                    </button>
+                </form>
+                <div class="mt-10 text-star-medium">
+                    <p>Or find us orbiting on social media:</p>
+                    <div class="flex justify-center space-x-6 mt-4">
+                        <a href="#" class="text-accent-blue hover:text-accent-purple transition duration-300 ease-in-out">Facebook</a>
+                        <a href="#" class="text-accent-blue hover:text-accent-purple transition duration-300 ease-in-out">Twitter</a>
+                        <a href="#" class="text-accent-blue hover:text-accent-purple transition duration-300 ease-in-out">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-star-medium py-10 px-6 rounded-t-lg mt-8">
+        <div class="container mx-auto text-center">
+            <p class="text-lg mb-4">&copy; 2025 My Cosmic Website. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-star-medium hover:text-star-light transition duration-300 ease-in-out">Privacy Protocols</a>
+                <a href="#" class="text-star-medium hover:text-star-light transition duration-300 ease-in-out">Terms of Engagement</a>
+                <a href="#" class="text-star-medium hover:text-star-light transition duration-300 ease-in-out">Starmap</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Modal for Button Clicks -->
+    <div id="actionModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" id="closeModalBtn">&times;</span>
+            <h3 class="text-2xl font-bold mb-4 text-star-light" id="modalTitle"></h3>
+            <p class="text-star-medium mb-6" id="modalMessage"></p>
+            <button class="bg-accent-purple hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out button-glow" id="modalOkBtn">
+                Proceed
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get all interactive elements
+            const signUpBtn = document.getElementById('signUpBtn');
+            const getStartedBtn = document.getElementById('getStartedBtn');
+            const learnMoreBtn = document.getElementById('learnMoreBtn');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const allContentSections = document.querySelectorAll('.content-section');
+
+            // Modal elements
+            const actionModal = document.getElementById('actionModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalOkBtn = document.getElementById('modalOkBtn');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+
+            // Audio elements
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            // Removed audioControlBtn, playIcon, pauseIcon as they are no longer needed
+
+            // Function to show the custom modal
+            const showModal = (title, message) => {
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+                actionModal.classList.remove('hidden'); // Show the modal
+            };
+
+            // Function to hide the custom modal
+            const hideModal = () => {
+                actionModal.classList.add('hidden'); // Hide the modal
+            };
+
+            // Function to show a specific content section and hide others
+            const showSection = (sectionId) => {
+                allContentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    // Scroll to the top of the section for better UX
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
+
+            // Initial section display
+            showSection('home-section'); // Show home by default
+
+            // Event Listeners for Buttons
+            if (signUpBtn) {
+                signUpBtn.addEventListener('click', () => {
+                    showModal('Initiate Singularity Drive', 'Prepare for launch! This would lead to your cosmic registration.');
+                });
+            }
+
+            if (getStartedBtn) {
+                getStartedBtn.addEventListener('click', () => {
+                    showSection('features'); // "Commence Mission" can scroll to features
+                    showModal('Mission Briefing', 'Your journey begins! Navigating to the cosmic capabilities section.');
+                });
+            }
+
+            if (learnMoreBtn) {
+                learnMoreBtn.addEventListener('click', () => {
+                    showSection('about'); // "Learn More" can go to the about section
+                    showModal('About the Cosmos', 'Unveiling our origin story. Proceeding to the About Us page.');
+                });
+            }
+
+            // Event Listeners for Navigation Links (SPA behavior)
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                    const targetId = event.target.getAttribute('href').substring(1); // Get section ID from href
+                    // Special handling for 'home' to map to 'home-section'
+                    const actualTargetId = targetId === 'home' ? 'home-section' : targetId;
+                    showSection(actualTargetId);
+                });
+            });
+
+            // Event Listeners for Modal Close Buttons
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', hideModal);
+            }
+            if (modalOkBtn) {
+                modalOkBtn.addEventListener('click', hideModal);
+            }
+
+            // Close modal if clicking outside the content
+            if (actionModal) {
+                actionModal.addEventListener('click', (event) => {
+                    if (event.target === actionModal) {
+                        hideModal();
+                    }
+                });
+            }
+
+            // Audio control logic (removed play/pause button)
+            let hasInteracted = false; // Flag to ensure music plays only once on interaction
+
+            const playMusicOnInteraction = () => {
+                if (!hasInteracted && backgroundMusic.paused) {
+                    backgroundMusic.play().then(() => {
+                        hasInteracted = true;
+                        // Remove listeners once music starts playing successfully
+                        document.body.removeEventListener('click', playMusicOnInteraction);
+                        document.body.removeEventListener('scroll', playMusicOnInteraction);
+                        console.log('Music started due to user interaction.');
+                    }).catch(error => {
+                        console.log('Music playback failed after interaction (still blocked?):', error);
+                        // No need to reset hasInteracted here if the intention is to try again on next interaction
+                    });
+                }
+            };
+
+            // Attempt to play music on initial DOM content loaded (autoplay attribute handles this initially)
+            // If autoplay is blocked, these listeners will pick up subsequent user interaction (click or scroll).
+            document.body.addEventListener('click', playMusicOnInteraction, { once: true });
+            document.body.addEventListener('scroll', playMusicOnInteraction, { once: true });
+
+            // --- Three.js Rippling Stars Effect ---
+            let scene, camera, renderer, points, material;
+            let mouseX = 0, mouseY = 0; // Mouse position for camera control
+            let isDragging = false;
+            let previousMouseX = 0;
+            let previousMouseY = 0;
+
+            const canvas = document.getElementById('threeJsCanvas');
+            let animationFrameId; // To store the requestAnimationFrame ID
+
+            const boxSize = 30; // Spread stars within a larger box to fill viewport
+
+
+            const initThreeJs = () => {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+
+                scene = new THREE.Scene();
+
+                camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
+                camera.position.z = 10;
+
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+                renderer.setSize(width, height);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setClearAlpha(0);
+
+                const numStars = 15000;
+                const positions = new Float32Array(numStars * 3);
+                const sizes = new Float32Array(numStars);
+                const colors = new Float32Array(numStars * 3);
+
+                const starColors = [
+                    new THREE.Color(0xffffff), // White
+                    new THREE.Color(0xadd8e6), // Light blue
+                    new THREE.Color(0xffe4b5), // Moccasin (pale yellow)
+                    new THREE.Color(0xd8bfd8), // Thistle (pale purple)
+                    new THREE.Color(0xffa07a)  // Light salmon (orange-pink)
+                ];
+
+                for (let i = 0; i < numStars; i++) {
+                    positions[i * 3] = (Math.random() * 2 - 1) * boxSize;
+                    positions[i * 3 + 1] = (Math.random() * 2 - 1) * boxSize;
+                    positions[i * 3 + 2] = (Math.random() * 2 - 1) * boxSize;
+
+                    sizes[i] = Math.random() * 0.8 + 0.2;
+
+                    const color = starColors[Math.floor(Math.random() * starColors.length)];
+                    colors[i * 3] = color.r;
+                    colors[i * 3 + 1] = color.g;
+                    colors[i * 3 + 2] = color.b;
+                }
+
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+                geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+                material = new THREE.ShaderMaterial({
+                    uniforms: {
+                        time: { value: 0.0 },
+                        resolution: { value: new THREE.Vector2(width, height) },
+                        baseColor: { value: new THREE.Color(0xbb86fc) },
+                        waveColor: { value: new THREE.Color(0x82aaff) },
+                        boxSize: { value: boxSize }
+                    },
+                    vertexShader: `
+                        uniform float time;
+                        uniform float boxSize;
+                        attribute float size;
+                        attribute vec3 color;
+                        varying vec3 vColor;
+                        varying float vOpacity;
+
+                        void main() {
+                            vColor = color;
+
+                            vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+
+                            float rippleStrength = 1.5;
+                            float rippleSpeed = 0.5;
+                            float rippleFreqX = 0.7;
+                            float rippleFreqY = 0.9;
+
+                            float displacementZ = 0.0;
+                            displacementZ += sin(position.x * rippleFreqX + time * rippleSpeed) * rippleStrength * 0.5;
+                            displacementZ += cos(position.y * rippleFreqY + time * rippleSpeed * 0.7) * rippleStrength * 0.4;
+                            displacementZ += sin((position.x + position.y) * 0.5 + time * rippleSpeed * 1.2) * rippleStrength * 0.3;
+
+                            mvPosition.z += displacementZ;
+
+                            gl_PointSize = size * (300.0 / -mvPosition.z);
+
+                            vOpacity = 1.0;
+                            if (mvPosition.z > -1.0) vOpacity *= smoothstep(0.0, 1.0, (-mvPosition.z - 0.5) * 2.0);
+                            if (mvPosition.z < -boxSize + 5.0) vOpacity *= smoothstep(0.0, 1.0, (mvPosition.z + boxSize - 5.0) / 5.0);
+
+
+                            gl_Position = projectionMatrix * mvPosition;
+                        }
+                    `,
+                    fragmentShader: `
+                        uniform sampler2D pointTexture;
+                        uniform vec3 baseColor;
+                        uniform vec3 waveColor;
+                        uniform float time;
+                        varying vec3 vColor;
+                        varying float vOpacity;
+
+                        void main() {
+                            float r = distance(gl_PointCoord, vec2(0.5, 0.5));
+                            if (r > 0.5) discard;
+
+                            float strength = 1.0 - r * 2.0;
+                            strength = pow(strength, 2.0);
+
+                            vec3 finalStarColor = vColor * strength;
+                            float sparkle = sin(vColor.r * 10.0 + time * 5.0) * 0.2 + 0.8;
+                            finalStarColor *= sparkle;
+
+                            gl_FragColor = vec4(finalStarColor, strength * vOpacity * 0.2);
+                        }
+                    `,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                points = new THREE.Points(geometry, material);
+                scene.add(points);
+
+                document.addEventListener('mousemove', (event) => {
+                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                canvas.addEventListener('mousedown', (event) => {
+                    isDragging = true;
+                    previousMouseX = event.clientX;
+                    previousMouseY = event.clientY;
+                });
+
+                canvas.addEventListener('mouseup', () => {
+                    isDragging = false;
+                });
+
+                canvas.addEventListener('mousemove', (event) => {
+                    if (isDragging) {
+                        const deltaX = event.clientX - previousMouseX;
+                        const deltaY = event.clientY - previousMouseY;
+
+                        const rotationSpeed = 0.005;
+                        const angleY = deltaX * rotationSpeed;
+                        const angleX = deltaY * rotationSpeed;
+
+                        const spherical = new THREE.Spherical().setFromVector3(camera.position);
+
+                        spherical.theta -= angleY;
+                        spherical.phi -= angleX;
+
+                        spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi));
+
+                        camera.position.setFromSpherical(spherical);
+                        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+                        previousMouseX = event.clientX;
+                        previousMouseY = event.clientY;
+                    }
+                });
+            };
+
+            const animate = () => {
+                animationFrameId = requestAnimationFrame(animate);
+
+                if (material) {
+                    material.uniforms.time.value += 0.005;
+                }
+
+                if (camera && !isDragging) {
+                     camera.position.x += (mouseX * 2 - camera.position.x) * 0.005;
+                     camera.position.y += (mouseY * 2 - camera.position.y) * 0.005;
+                     camera.lookAt(new THREE.Vector3(0,0,0));
+                }
+
+                if (renderer && scene && camera) {
+                    renderer.render(scene, camera);
+                }
+            };
+
+            const onWindowResize = () => {
+                if (camera && renderer) {
+                    const width = window.innerWidth;
+                    const height = window.innerHeight;
+                    camera.aspect = width / height;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(width, height);
+                    if (material && material.uniforms.resolution) {
+                        material.uniforms.resolution.value.set(width, height);
+                    }
+                }
+            };
+
+            window.onload = function () {
+                initThreeJs();
+                animate();
+            };
+
+            window.addEventListener('resize', onWindowResize);
+
+            window.addEventListener('beforeunload', () => {
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+                if (renderer) {
+                    renderer.dispose();
+                }
+                if (scene) {
+                    scene.clear();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
