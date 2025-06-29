@@ -68,8 +68,7 @@
             margin: 0 auto; /* Center the hero content */
         }
 
-
-        /* Modal Styles */
+        /* Modal Styles (kept for general action modal) */
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
@@ -224,6 +223,137 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        /* Quiz Page Specific Styles (integrated into main flow) */
+        .quiz-page-container {
+            background: linear-gradient(to bottom right, #0F0022, #2A0050, #001040); /* Deep space gradient */
+            color: #E0E7FF; /* Light blue-ish white for text */
+            padding: 20px;
+            border-radius: 20px; /* More rounded */
+            border: 2px solid #6D28D9;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5); /* Glow effect */
+            overflow-y: auto; /* Enable scrolling for long quizzes */
+            margin-top: 2rem; /* Add some space from surrounding content */
+            margin-bottom: 2rem;
+            max-width: 800px; /* Wider for quiz content */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content horizontally within the flex container */
+            text-align: center; /* Center text within this container */
+        }
+
+        /* Specific input styling for better visibility and aesthetics */
+        .quiz-page-container input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 1.25rem; /* 20px */
+            height: 1.25rem; /* 20px */
+            border-radius: 50%;
+            border: 2px solid #6D28D9; /* Purple border */
+            background-color: #1A0033; /* Dark background for unselected */
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0; /* Prevent shrinking in flex container */
+        }
+
+        .quiz-page-container input[type="radio"]:checked {
+            background-color: #8B5CF6; /* Lighter purple when checked */
+            border-color: #8B5CF6; /* Border matches fill */
+        }
+
+        .quiz-page-container input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0.5rem; /* 8px */
+            height: 0.5rem; /* 8px */
+            border-radius: 50%;
+            background-color: #FFFFFF; /* White dot inside */
+        }
+
+        .quiz-page-container input[type="radio"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.5); /* Focus ring */
+        }
+
+        /* Style for options label to align text with radio button */
+        .quiz-page-container label {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between radio button and text */
+            cursor: pointer;
+            text-align: left; /* Align label text to left */
+        }
+
+        .question-card {
+            background-color: rgba(30, 0, 60, 0.8); /* Slightly lighter purple tint for cards */
+            backdrop-filter: blur(5px); /* Subtle blur effect */
+            width: 100%; /* Ensure question card fills its container */
+            text-align: left; /* Align question text to left within its card */
+        }
+
+        .question-card .options {
+            text-align: left; /* Ensure options remain left-aligned */
+        }
+
+        .submit-button {
+            background: linear-gradient(to right, #8B5CF6, #B088FF); /* Gradient button */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Custom scrollbar for better aesthetics within modal if needed */
+        .quiz-page-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .quiz-page-container::-webkit-scrollbar-track {
+            background: #1A0033;
+            border-radius: 10px;
+        }
+        .quiz-page-container::-webkit-scrollbar-thumb {
+            background: #6D28D9;
+            border-radius: 10px;
+        }
+        .quiz-page-container::-webkit-scrollbar-thumb:hover {
+            background: #8B5CF6;
+        }
+
+        /* Announcement Banner Styles */
+        .announcement-banner {
+            background-color: #eab308; /* Yellow-500 from Tailwind */
+            color: #1a202c; /* Dark text for contrast */
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 60; /* Higher than nav bar */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        .announcement-banner button {
+            background-color: #1a202c; /* Dark button */
+            color: #eab308; /* Yellow text */
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px; /* Fully rounded */
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .announcement-banner button:hover {
+            background-color: #4a5568; /* Darker hover */
+        }
     </style>
 </head>
 <body class="bg-space-dark text-star-light">
@@ -233,6 +363,12 @@
         <source src="https://dl.dropboxusercontent.com/scl/fi/dkrs0oc0jvtg9xghqye8l/inspiring-cinematic-ambient-255033.mp3?rlkey=42pu1bucaixq9ncgfq5wdo2qp&e=1&st=qf8fyjbk" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+    <!-- Announcement Banner -->
+    <div class="announcement-banner" id="quizAnnouncementBanner">
+        <span>Blast Off With This Planet Trivia Quiz!!!</span>
+        <button id="openQuizBtn">Are you ready?</button>
+    </div>
 
     <!-- Full-page Three.js Canvas for stars -->
     <canvas id="threeJsCanvas" class="threejs-canvas"></canvas>
@@ -444,6 +580,42 @@
             </div>
         </section>
 
+        <!-- Quiz Page Section -->
+        <section id="quiz-page-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8 flex justify-center items-center">
+            <div class="quiz-page-container w-full">
+                <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-lg animate-pulse">
+                    Planet Trivia Quiz!
+                </h1>
+
+                <div id="quiz-container" class="space-y-6 w-full max-w-xl mx-auto">
+                    <!-- Questions will be loaded here by JavaScript -->
+                </div>
+
+                <div class="flex justify-center mt-8">
+                    <button id="submit-quiz-btn" class="submit-button text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transform active:scale-95 transition-all duration-200 ease-in-out">
+                        Submit Quiz
+                    </button>
+                </div>
+
+                <div id="results-container" class="mt-10 p-6 bg-purple-900 bg-opacity-70 rounded-2xl shadow-xl hidden border border-purple-700 w-full max-w-xl mx-auto">
+                    <h2 class="text-3xl font-semibold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-cyan-300">
+                        Your Results
+                    </h2>
+                    <p id="score-display" class="text-xl text-center mb-6 text-gray-200">
+                        You scored: <span class="font-bold text-yellow-300"></span>
+                    </p>
+                    <div id="feedback-details" class="space-y-4">
+                        <!-- Detailed feedback will go here -->
+                    </div>
+                    <div class="flex justify-center mt-6">
+                        <button id="retake-quiz-btn" class="submit-button text-white font-bold py-2 px-6 rounded-full text-md shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transform active:scale-95 transition-all duration-200 ease-in-out">
+                            Retake Quiz
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Contact Section -->
         <section id="contact" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
@@ -493,7 +665,7 @@
         </div>
     </footer>
 
-    <!-- Custom Modal for Button Clicks -->
+    <!-- Main site general modal for button clicks -->
     <div id="actionModal" class="modal hidden">
         <div class="modal-content">
             <span class="close-button" id="closeModalBtn">&times;</span>
@@ -505,6 +677,7 @@
         </div>
     </div>
 
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Get all interactive elements
@@ -514,25 +687,141 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const allContentSections = document.querySelectorAll('.content-section');
 
-            // Modal elements
+            // Main site general modal elements
             const actionModal = document.getElementById('actionModal');
             const closeModalBtn = document.getElementById('closeModalBtn');
-            const modalOkBtn = document.getElementById('modalOkBtn');
+            const modalOkBtn = actionModal.querySelector('button'); // Get the 'Proceed' button
             const modalTitle = document.getElementById('modalTitle');
             const modalMessage = document.getElementById('modalMessage');
+
+            // Quiz elements (now targeting elements within the quiz-page-section)
+            const quizAnnouncementBanner = document.getElementById('quizAnnouncementBanner');
+            const openQuizBtn = document.getElementById('openQuizBtn');
+            const quizPageSection = document.getElementById('quiz-page-section'); // The new full-page quiz section
+            const quizContainer = quizPageSection.querySelector('#quiz-container'); // Scope to quizPageSection
+            const submitQuizButton = quizPageSection.querySelector('#submit-quiz-btn'); // Use specific ID
+            const resultsContainer = quizPageSection.querySelector('#results-container'); // Scope to quizPageSection
+            const scoreDisplay = resultsContainer.querySelector('#score-display span'); // Scope to resultsContainer
+            const feedbackDetails = resultsContainer.querySelector('#feedback-details'); // Scope to resultsContainer
+            const retakeQuizButton = resultsContainer.querySelector('#retake-quiz-btn'); // Use specific ID
 
             // Audio element
             const backgroundMusic = document.getElementById('backgroundMusic');
 
-            // Function to show the custom modal
-            const showModal = (title, message) => {
+            // Quiz Questions Data
+            const quizQuestions = [
+                {
+                    question: "1. Which planet is known as the 'Red Planet'?",
+                    options: ["a) Venus", "b) Mars", "c) Jupiter", "d) Saturn"],
+                    answer: "b) Mars"
+                },
+                {
+                    question: "2. What is the largest planet in our solar system?",
+                    options: ["a) Earth", "b) Neptune", "c) Jupiter", "d) Uranus"],
+                    answer: "c) Jupiter"
+                },
+                {
+                    question: "3. Which planet is closest to the Sun?",
+                    options: ["a) Earth", "b) Venus", "c) Mercury", "d) Mars"],
+                    answer: "c) Mercury"
+                },
+                {
+                    question: "4. Which planet is famous for its prominent ring system?",
+                    options: ["a) Jupiter", "b) Uranus", "c) Neptune", "d) Saturn"],
+                    answer: "d) Saturn"
+                },
+                {
+                    question: "5. How many moons does Earth have?",
+                    options: ["a) Zero", "b) One", "c) Two", "d) Five"],
+                    answer: "b) One"
+                },
+                {
+                    question: "6. Which planet is known as Earth's 'sister planet' due to its similar size and composition?",
+                    options: ["a) Mars", "b) Venus", "c) Mercury", "d) Jupiter"],
+                    answer: "b) Venus"
+                },
+                {
+                    question: "7. What is the coldest planet in our solar system?",
+                    options: ["a) Mars", "b) Uranus", "c) Neptune", "d) Pluto (though no longer classified as a planet, it's often associated with this title)"],
+                    answer: "c) Neptune"
+                },
+                {
+                    question: "8. Which planet has the 'Great Red Spot,' a giant storm larger than Earth?",
+                    options: ["a) Mars", "b) Saturn", "c) Jupiter", "d) Neptune"],
+                    answer: "c) Jupiter"
+                },
+                {
+                    question: "9. Which is the only planet in our solar system not named after a god or goddess?",
+                    options: ["a) Mars", "b) Earth", "c) Venus", "d) Jupiter"],
+                    answer: "b) Earth"
+                },
+                {
+                    question: "10. Which planet rotates on its side, almost at a 90-degree angle to its orbit?",
+                    options: ["a) Mars", "b) Saturn", "c) Uranus", "d) Neptune"],
+                    answer: "c) Uranus"
+                },
+                {
+                    question: "11. Which planet is known for having the most extreme temperature swings between day and night?",
+                    options: ["a) Venus", "b) Mars", "c) Mercury", "d) Earth"],
+                    answer: "c) Mercury"
+                },
+                {
+                    question: "12. What is the most volcanically active body in our solar system (besides the Sun)?",
+                    options: ["a) Earth", "b) Mars", "c) Io (moon of Jupiter)", "d) Venus"],
+                    answer: "c) Io (moon of Jupiter)"
+                },
+                {
+                    question: "13. Which gas makes up the majority of Jupiter's atmosphere?",
+                    options: ["a) Oxygen", "b) Nitrogen", "c) Hydrogen", "d) Carbon Dioxide"],
+                    answer: "c) Hydrogen"
+                },
+                {
+                    question: "14. Which planet has a day that is longer than its year?",
+                    options: ["a) Earth", "b) Mars", "c) Venus", "d) Mercury"],
+                    answer: "c) Venus"
+                },
+                {
+                    question: "15. Besides Earth, which planet is considered the most likely to harbor life due to the potential presence of liquid water?",
+                    options: ["a) Venus", "b) Jupiter", "c) Mars", "d) Saturn"],
+                    answer: "c) Mars"
+                },
+                {
+                    question: "16. Which of the following is an inner, rocky planet?",
+                    options: ["a) Jupiter", "b) Saturn", "c) Neptune", "d) Mars"],
+                    answer: "d) Mars"
+                },
+                {
+                    question: "17. Which planet has the most extensive system of rings, composed of countless ice particles?",
+                    options: ["a) Jupiter", "b) Uranus", "c) Saturn", "d) Neptune"],
+                    answer: "c) Saturn"
+                },
+                {
+                    question: "18. What phenomenon causes Venus to be the hottest planet, despite not being the closest to the Sun?",
+                    options: ["a) Its rapid rotation", "b) Its strong magnetic field", "c) A runaway greenhouse effect", "d) Its proximity to a black hole"],
+                    answer: "c) A runaway greenhouse effect"
+                },
+                {
+                    question: "19. Which of these planets is an ice giant?",
+                    options: ["a) Jupiter", "b) Saturn", "c) Uranus", "d) Mars"],
+                    answer: "c) Uranus"
+                },
+                {
+                    question: "20. What is the name of the largest moon of Saturn, known for having a dense atmosphere and lakes of liquid methane?",
+                    options: ["a) Europa", "b) Ganymede", "c) Titan", "d) Triton"],
+                    answer: "c) Titan"
+                }
+            ];
+
+
+            // Function to show the general action modal
+            const showActionModal = (title, message) => {
                 modalTitle.textContent = title;
                 modalMessage.textContent = message;
                 actionModal.classList.remove('hidden'); // Show the modal
             };
 
-            // Function to hide the custom modal
-            const hideModal = () => {
+            // Function to hide the general action modal
+            const hideActionModal = () => {
                 actionModal.classList.add('hidden'); // Hide the modal
             };
 
@@ -552,24 +841,24 @@
             // Initial section display
             showSection('home-section'); // Show home by default
 
-            // Event Listeners for Buttons
+            // Event Listeners for main site Buttons
             if (signUpBtn) {
                 signUpBtn.addEventListener('click', () => {
-                    showModal('Initiate Singularity Drive', 'Prepare for launch! This would lead to your cosmic registration.');
+                    showActionModal('Initiate Singularity Drive', 'Prepare for launch! This would lead to your cosmic registration.');
                 });
             }
 
             if (getStartedBtn) {
                 getStartedBtn.addEventListener('click', () => {
                     showSection('features-section-inner'); // "Commence Mission" can scroll to features
-                    showModal('Mission Briefing', 'Your journey begins! Navigating to the cosmic capabilities section.');
+                    showActionModal('Mission Briefing', 'Your journey begins! Navigating to the cosmic capabilities section.');
                 });
             }
 
             if (learnMoreBtn) {
                 learnMoreBtn.addEventListener('click', () => {
                     showSection('about'); // "Learn More" can go to the about section
-                    showModal('About the Cosmos', 'Unveiling our origin story. Proceeding to the About Us page.');
+                    showActionModal('About the Cosmos', 'Unveiling our origin story. Proceeding to the About Us page.');
                 });
             }
 
@@ -584,22 +873,119 @@
                 });
             });
 
-            // Event Listeners for Modal Close Buttons
+            // Event Listeners for General Modal Close Buttons
             if (closeModalBtn) {
-                closeModalBtn.addEventListener('click', hideModal);
+                closeModalBtn.addEventListener('click', hideActionModal);
             }
             if (modalOkBtn) {
-                modalOkBtn.addEventListener('click', hideModal);
+                modalOkBtn.addEventListener('click', hideActionModal);
             }
 
-            // Close modal if clicking outside the content
+            // Close general modal if clicking outside the content
             if (actionModal) {
                 actionModal.addEventListener('click', (event) => {
                     if (event.target === actionModal) {
-                        hideModal();
+                        hideActionModal();
                     }
                 });
             }
+
+            // --- Quiz Page Logic ---
+
+            // Open Quiz button listener
+            if (openQuizBtn) {
+                openQuizBtn.addEventListener('click', () => {
+                    showSection('quiz-page-section'); // Show the dedicated quiz page
+                    renderQuiz(); // Render quiz questions when showing the page
+                });
+            }
+
+            /**
+             * Renders the quiz questions and options into the HTML.
+             */
+            function renderQuiz() {
+                quizContainer.innerHTML = ''; // Clear previous questions
+                quizQuestions.forEach((q, index) => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.classList.add('question-card', 'p-6', 'rounded-xl', 'shadow-md', 'mb-6', 'border', 'border-indigo-800', 'hover:border-indigo-600', 'transition-all');
+                    questionDiv.innerHTML = `
+                        <p class="text-xl md:text-2xl font-medium mb-4 text-purple-300">${q.question}</p>
+                        <div class="options space-y-3">
+                            ${q.options.map((option, optIndex) => `
+                                <label class="block text-gray-200 hover:text-white transition-colors duration-200 text-lg">
+                                    <input type="radio" name="question${index}" value="${option}" class="mr-3">
+                                    ${option}
+                                </label>
+                            `).join('')}
+                        </div>
+                    `;
+                    quizContainer.appendChild(questionDiv);
+                });
+                // Ensure the quiz container is visible and results are hidden when rendering a new quiz
+                quizContainer.classList.remove('hidden');
+                submitQuizButton.classList.remove('hidden');
+                resultsContainer.classList.add('hidden');
+            }
+
+            /**
+             * Calculates the score and displays results.
+             */
+            function showResults() {
+                let score = 0;
+                feedbackDetails.innerHTML = ''; // Clear previous feedback
+
+                quizQuestions.forEach((q, index) => {
+                    // Correctly scope the query selector to the quizContainer for its radio buttons
+                    const selectedInput = quizContainer.querySelector(`input[name="question${index}"]:checked`);
+                    const userAnswer = selectedInput ? selectedInput.value : null;
+
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.classList.add('p-3', 'rounded-lg', 'border', 'mb-2');
+
+                    if (userAnswer === q.answer) {
+                        score++;
+                        feedbackDiv.classList.add('bg-green-900', 'bg-opacity-50', 'border-green-700');
+                        feedbackDiv.innerHTML = `<p class="font-bold text-green-300">✅ Correct! </p><p class="text-sm text-gray-300">${q.question} <br> Your Answer: ${userAnswer}</p>`;
+                    } else {
+                        feedbackDiv.classList.add('bg-red-900', 'bg-opacity-50', 'border-red-700');
+                        feedbackDiv.innerHTML = `
+                            <p class="font-bold text-red-300">❌ Incorrect!</p>
+                            <p class="text-sm text-gray-300">${q.question}</p>
+                            <p class="text-sm text-gray-300">Your Answer: <span class="font-semibold">${userAnswer || 'No Answer'}</span></p>
+                            <p class="text-sm text-gray-300">Correct Answer: <span class="font-semibold text-green-400">${q.answer}</span></p>
+                        `;
+                    }
+                    feedbackDetails.appendChild(feedbackDiv);
+                });
+
+                scoreDisplay.textContent = `${score} out of ${quizQuestions.length}`;
+                resultsContainer.classList.remove('hidden');
+                quizContainer.classList.add('hidden'); // Hide quiz after submission
+                submitQuizButton.classList.add('hidden'); // Hide submit button
+                resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to results
+            }
+
+            /**
+             * Resets the quiz for a new attempt.
+             */
+            function retakeQuiz() {
+                // Correctly scope the query selector to the quizContainer for its radio buttons
+                quizContainer.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.checked = false;
+                });
+
+                resultsContainer.classList.add('hidden'); // Hide results
+                quizContainer.classList.remove('hidden'); // Show quiz
+                submitQuizButton.classList.remove('hidden'); // Show submit button
+                feedbackDetails.innerHTML = ''; // Clear feedback
+                quizPageSection.scrollTop = 0; // Scroll the quiz page section content to top
+                quizPageSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll parent section to top
+            }
+
+            // Event Listeners for Quiz buttons
+            submitQuizButton.addEventListener('click', showResults);
+            retakeQuizButton.addEventListener('click', retakeQuiz);
+
 
             // Audio control logic: Autoplay with fallback for user interaction
             const playAudioWithFallback = () => {
@@ -611,8 +997,12 @@
                 }).catch(error => {
                     console.warn("Audio autoplay blocked, waiting for user interaction:", error);
                     // Add listeners for interaction if autoplay failed
-                    document.body.addEventListener('click', playAudioWithFallback, { once: true });
-                    document.body.addEventListener('scroll', playAudioWithFallback, { once: true });
+                    // Ensure listeners are added only once if they failed initially
+                    if (!document.body.hasAttribute('data-audio-listener-added')) {
+                        document.body.addEventListener('click', playAudioWithFallback, { once: true });
+                        document.body.addEventListener('scroll', playAudioWithFallback, { once: true });
+                        document.body.setAttribute('data-audio-listener-added', 'true');
+                    }
                 });
             };
 
