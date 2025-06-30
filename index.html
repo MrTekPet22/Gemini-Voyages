@@ -1697,28 +1697,7 @@
             // Event Listeners for Quiz buttons
             submitQuizButton.addEventListener('click', showResults);
             retakeQuizButton.addEventListener('click', retakeQuiz);
-
-
-            // Audio control logic: Autoplay with fallback for user interaction
-            const playAudioWithFallback = () => {
-                backgroundMusic.play().then(() => {
-                    console.log("Audio started playing successfully.");
-                    document.body.removeEventListener('click', playAudioWithFallback);
-                    document.body.removeEventListener('scroll', playAudioWithFallback);
-                }).catch(error => {
-                    console.warn("Audio autoplay blocked, waiting for user interaction:", error);
-                    // FIX: Changed .has to .hasAttribute
-                    if (!document.body.hasAttribute('data-audio-listener-added')) {
-                        document.body.addEventListener('click', playAudioWithFallback, { once: true });
-                        document.body.addEventListener('scroll', playAudioWithFallback, { once: true });
-                        document.body.setAttribute('data-audio-listener-added', 'true');
-                    }
-                });
-            };
-
-            playAudioWithFallback();
-
-
+            
             // --- Theme Toggle Logic ---
             const applyTheme = (isLightMode) => {
                 if (isLightMode) {
