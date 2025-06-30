@@ -82,7 +82,7 @@
             --success-text: #28a745; /* Standard green */
             --error-bg: rgba(153, 27, 27, 0.5); /* Red-900 with opacity */
             --error-border: #991B1B; /* Red-700 */
-            --error-text: #dc3545; /* Standard red */
+            --error-text: #F87171; /* Red-300 */
             --button-primary-bg: #82aaff;
             --button-primary-text: #1a082b;
             --button-secondary-bg: #bb86fc;
@@ -156,8 +156,7 @@
 
         /* Nav Logo Marquee */
         .logo-text-marquee-container {
-            /* flex-grow: 1; Not needed, we want specific width */
-            flex-shrink: 0; /* Prevent it from shrinking */
+            flex-shrink: 0;
             overflow: hidden;
             white-space: nowrap;
             width: 200px; /* Or a more responsive width like w-1/4, w-1/3 depending on desired responsiveness */
@@ -168,9 +167,8 @@
         }
 
         .logo-marquee-content {
-            display: inline-block;
-            padding-left: 100%; /* Start off-screen */
-            animation: logoMarquee 20s linear infinite; /* Adjust speed as needed */
+            display: inline-block; /* Essential for content width calculation */
+            animation: logoMarquee 20s linear infinite;
         }
 
         .logo-text-marquee-container:hover .logo-marquee-content {
@@ -178,8 +176,8 @@
         }
 
         @keyframes logoMarquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Move half the total content width for seamless loop */
         }
 
 
@@ -204,16 +202,15 @@
             justify-content: center;
         }
         .home-marquee-content {
-            display: inline-block;
-            padding-left: 100%;
+            display: inline-block; /* Essential for content width calculation */
             animation: marquee 40s linear infinite;
         }
         .home-marquee-container:hover .home-marquee-content {
             animation-play-state: paused;
         }
         @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Move half the total content width for seamless loop */
         }
 
         /* Full-page Three.js canvas */
@@ -582,12 +579,12 @@
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
             <!-- Logo - Clickable to Home -->
             <a href="#home-section" class="flex items-center space-x-2 text-2xl font-bold text-accent-purple mb-4 md:mb-0 nav-link">
-                <!-- Changed logo size from h-10 to h-16 and w-auto to w-16 -->
-                <img src="https://raw.githubusercontent.com/google-gemini/cookbook/main/examples/community-examples/Gemini_Voyage_Orbiting_Possibilities__Landing_Dreams__2_-removebg-preview%20(1).png" alt="Gemini Voyages Logo" class="h-16 w-16 rounded-full">
+                <!-- Using the provided Dropbox link for the logo -->
+                <img src="https://previews.dropbox.com/p/thumb/ACofJhwdazgSsMObcigTR8TrQa5B35rbFO1eNGWXccLGUoUivslIL8LlaT6f0WSZ8wP1D4Bze2o24qli-Q3RGlq2UP1ycohfvEP_DctSK3mNVsjaUEg4_tZnwA-sUh408vvanuD7gH2oimxlCP8rPiXlymj-5xboeu5brXr_4g90ZKnKbyd10CvYZYlpXuX3huViN8nyS8H2c6GcVxUqPGyFsp2iTKwvNR3mP-_cCKvo_z6n0ZIBee5YfQdfHpx95FDaHbeqrAkHeb8j9U6RToy2wgdJoOoMJ2gHPUS6d0L8TgN61vDcqCCaiJygw8l56lo/p.png" alt="Gemini Voyages Logo" class="h-16 w-16 rounded-full">
                 <!-- Gemini Voyages Marquee -->
                 <div class="logo-text-marquee-container hidden md:block">
                     <!-- Duplicated content for seamless loop -->
-                    <span class="logo-marquee-content">Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; </span>
+                    <span class="logo-marquee-content">Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; </span>
                 </div>
             </a>
 
@@ -615,6 +612,7 @@
                         <a href="#neptune-section" class="nav-link" title="Experience the distant, windy world of Neptune!">Neptune</a>
                     </div>
                 </div>
+                <a href="#connect-section" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Contact Us</a>
 
                 <!-- Theme Toggle Button -->
                 <button id="themeToggleBtn" class="text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out flex items-center justify-center">
@@ -713,7 +711,7 @@
         <!-- About Us Section -->
         <section id="about" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">About Our Constellation</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">About Us</h2>
                 <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
                     We are Gemini Voyages, a luxury intergalactic airline which is your 1# go-to shuttle for venturing through the vast expanse of cosmos which is our Solar System. We provide flights to a wide variety of destinations, including to/from Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.
                 </p>
@@ -724,11 +722,9 @@
                 <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
                     The cost of the trip depends on the accommodation, food, planet to travel to, etc, as shown by the spreadsheet below:
                 </p>
-                <!-- Placeholder for spreadsheet, which would be dynamically loaded or an image -->
-                <div class="bg-space-light p-6 rounded-lg shadow-inner text-star-medium max-w-md mx-auto">
-                    <p class="font-bold mb-2">Spreadsheet Placeholder:</p>
-                    <p>*(Imagine a detailed spreadsheet of costs here, varying by destination and amenities.)*</p>
-                    <p>For detailed pricing, please contact our booking specialists!</p>
+                <!-- Embedded Google Sheet -->
+                <div class="relative w-full overflow-hidden" style="padding-top: 56.25%;">
+                    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZEz8457xJFf18X-cKLR6zoWQ0NwP2J60MBB-5h597GA5vmMj5iD24B8BEHggrWQ-S2f3siVRAMgJU/pubhtml?widget=true&amp;headers=false" class="absolute top-0 left-0 w-full h-full border-0 rounded-lg shadow-md" allowfullscreen></iframe>
                 </div>
 
                 <div class="mt-10 flex flex-wrap justify-center gap-6">
@@ -744,11 +740,266 @@
             </div>
         </section>
 
+        <!-- New Connect With Us Section for QR Code - Moved here as per request -->
+        <section id="connect-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Contact Us</h2>
+                <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
+                    Scan the QR code below or visit our links to stay updated on our latest offers and destinations!
+                </p>
+                <div class="flex flex-col items-center justify-center space-y-6">
+                    <!-- Using the provided Dropbox link for the QR code image -->
+                    <img src="https://previews.dropbox.com/p/thumb/ACp-GqUscVmTJaAcoTT7LWdhO5tJk2is9TqRXTKbte_Esebz1x-Z-6FTz_BqAAB3ZBk4hkCvG3IUv6m9I4UGtmjrSp7D5tezTgB-EKoL_3zkSLyKUBXTKhcFtBPIIf18_U1yDcGcvFUedWX4-R2nLo9oUge36z0qZHcJKTb5aXc_aEGYsznVuE0a9cjAv1euON_jrzZzcZJdEKcf83GoQAxdRviXq6rPfa0GgcRjRay2Fa1uWjviDTa4-jNnLbX1GfqPY4D7zdaIHpHyOp1Mh-rf7-IJzR8XLJo2gD3MqmZnzvvWgPak7xUK7VN6Lmx3A6AjfpUZAaYuJYZtn8b_EEZ-/p.png" alt="Connect with Us QR Code" class="max-w-xs md:max-w-sm rounded-lg shadow-xl border-4 border-accent-blue" onerror="this.onerror=null;this.src='https://placehold.co/250x250/2d1a42/f0f0f0?text=QR+Code+Not+Found';">
+                    <div class="flex flex-col space-y-2 text-star-medium text-lg">
+                        <a href="https://bit.ly/geminivoyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">https://bit.ly/geminivoyages</a>
+                        <a href="https://mrtekpet22.github.io/Gemini-Voyages/" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">https://mrtekpet22.github.io/Gemini-Voyages/</a>
+                       <style>
+    /* CSS Variables for Theme - Mirroring the main website's palette */
+    :root {
+        /* Dark Mode Defaults */
+        --bg-dark: #1a082b;
+        --bg-medium: #2d1a42;
+        --bg-light: #402c58;
+        --text-light: #f0f0f0;
+        --text-medium: #d0d0d0;
+        --accent-purple: #bb86fc;
+        --accent-blue: #82aaff;
+        --border-color: rgba(109, 40, 217, 0.5);
+        --shadow-color: rgba(139, 92, 246, 0.3);
+        --button-primary-bg: #bb86fc;
+        --button-primary-text: #ffffff;
+        --input-bg: rgba(64, 44, 88, 0.7); /* Slightly lighter than bg-medium for inputs */
+        --input-border: rgba(109, 40, 217, 0.5);
+        --input-text: #f0f0f0;
+        --form-container-bg: rgba(45, 26, 66, 0.9); /* Opaque bg-medium for form */
+        --form-text: #f0f0f0;
+        --message-success-bg: rgba(21, 128, 61, 0.5);
+        --message-success-text: #86EFAC;
+        --message-error-bg: rgba(153, 27, 27, 0.5);
+        --message-error-text: #F87171;
+    }
+
+    /* Light Mode Overrides */
+    body.light-mode { /* Assumes the embedding document's body can have this class */
+        --bg-dark: #fbfbfb; /* Main background */
+        --bg-medium: #f2f2f2; /* Form container background */
+        --bg-light: #e6e6e6; /* Input background */
+        --text-light: #1a082b; /* Dark text for contrast */
+        --text-medium: #2d1a42;
+        --accent-purple: #6c42a2;
+        --accent-blue: #3d7ee0;
+        --border-color: rgba(90, 130, 200, 0.5);
+        --shadow-color: rgba(90, 130, 200, 0.3);
+        --button-primary-bg: #82aaff;
+        --button-primary-text: #1a082b;
+        --input-bg: rgba(230, 230, 230, 0.7);
+        --input-border: rgba(90, 130, 200, 0.5);
+        --input-text: #1a082b;
+        --form-container-bg: rgba(242, 242, 242, 0.9);
+        --form-text: #1a082b;
+        --message-success-bg: rgba(200, 250, 200, 0.8);
+        --message-success-text: #28a745;
+        --message-error-bg: rgba(153, 27, 27, 0.5);
+        --message-error-text: #F87171;
+    }
+
+    /* General Body Styles (adjust if embedding in a non-body context) */
+    /* These styles might need to be adjusted based on where you embed this snippet. */
+    /* For direct embedding into a <div>, you might apply these to the .form-container */
+    .contact-form-wrapper { /* New wrapper class for the embeddable content */
+        font-family: 'DM Sans', sans-serif;
+        /* Removed background-color to make it transparent */
+        color: var(--text-light);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Adjust if you don't want it to take full viewport height */
+        padding: 2rem;
+        overflow-x: hidden;
+        box-sizing: border-box; /* Ensure padding is included in element's total width and height */
+    }
+
+    /* Form Container Styling */
+    .form-container {
+        background-color: var(--form-container-bg);
+        backdrop-filter: blur(5px);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 0 20px var(--shadow-color);
+        color: var(--form-text);
+        padding: 2.5rem;
+        border-radius: 1.5rem;
+        max-width: 600px;
+        width: 100%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        box-sizing: border-box;
+    }
+
+    /* Input and Textarea Styling */
+    .form-input, .form-textarea {
+        background-color: var(--input-bg);
+        border: 1px solid var(--input-border);
+        color: var(--input-text);
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        width: 100%;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+        outline: none;
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(130, 170, 255, 0.5);
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder {
+        color: var(--text-medium);
+        opacity: 0.7;
+    }
+
+    /* Button Styling */
+    .submit-button {
+        background-color: var(--button-primary-bg);
+        color: var(--button-primary-text);
+        font-weight: bold;
+        padding: 0.75rem 2rem;
+        border-radius: 9999px; /* Full rounded */
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .submit-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px var(--shadow-color);
+        opacity: 0.9;
+    }
+
+    .submit-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Message Box Styling */
+    .message-box {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        margin-top: 1.5rem;
+        font-weight: 500;
+        text-align: center;
+        display: none; /* Hidden by default, shown by JS */
+    }
+
+    .message-box.success {
+        background-color: var(--message-success-bg);
+        color: var(--message-success-text);
+        border: 1px solid var(--success-border);
+    }
+
+    .message-box.error {
+        background-color: var(--message-error-bg);
+        color: var(--message-error-text);
+        border: 1px solid var(--error-border);
+    }
+</style>
+
+<!-- Tailwind CSS CDN - Keep this if the embedding page doesn't already use Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- EmailJS CDN -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<div class="contact-form-wrapper">
+    <div class="form-container">
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-accent-purple">Contact Us</h1>
+        <p class="text-center text-lg mb-8 text-text-medium">We'd love to hear from you! Send us a message.</p>
+
+        <form id="contactForm" class="space-y-6">
+            <div>
+                <label for="name" class="block text-lg font-medium mb-2 text-form-text">Your Name</label>
+                <input type="text" id="name" name="from_name" class="form-input" placeholder="Forename Surname" required>
+            </div>
+            <div>
+                <label for="email" class="block text-lg font-medium mb-2 text-form-text">Your Email</label>
+                <input type="email" id="email" name="from_email" class="form-input" placeholder="name@email.com" required>
+            </div>
+            <div>
+                <label for="subject" class="block text-lg font-medium mb-2 text-form-text">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="Inquiry about voyages" required>
+            </div>
+            <div>
+                <label for="message" class="block text-lg font-medium mb-2 text-form-text">Your Message</label>
+                <textarea id="message" name="message" rows="6" class="form-textarea" placeholder="Type your message here..." required></textarea>
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="submit-button">Send Message</button>
+            </div>
+        </form>
+
+        <!-- Message Box for feedback -->
+        <div id="messageBox" class="message-box"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const contactForm = document.getElementById('contactForm');
+        const messageBox = document.getElementById('messageBox');
+
+        // Initialize EmailJS with your Public Key
+        // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
+        (function() {
+            emailjs.init("h4n6S2RHz_TFSZf8K");
+        })();
+
+        // --- Form Submission Logic ---
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                // Clear previous messages
+                messageBox.textContent = '';
+                messageBox.classList.remove('success', 'error');
+                messageBox.style.display = 'none';
+
+                // IMPORTANT: Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID'
+                // These come from your EmailJS dashboard setup.
+                const serviceID = 'service_91znt2n';
+                const templateID = 'template_rglc9rw';
+
+                try {
+                    // Send the form using EmailJS
+                    const response = await emailjs.sendForm(serviceID, templateID, contactForm);
+
+                    console.log('EmailJS Success:', response);
+                    messageBox.classList.add('success');
+                    messageBox.textContent = 'Thank you for your message! We will get back to you soon.';
+                    contactForm.reset(); // Clear form fields on success
+
+                } catch (error) {
+                    console.error('EmailJS Error:', error);
+                    messageBox.classList.add('error');
+                    messageBox.textContent = `Failed to send message: ${error.text || error}. Please try again.`;
+                } finally {
+                    messageBox.style.display = 'block'; // Show the message box
+                }
+            });
+        } else {
+            console.error("Contact form element not found. Form submission logic will not work.");
+        }
+    });
+</script>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Planet Sections -->
         <section id="mercury-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Mercury</h2>
-                <img src="https://placehold.co/400x300/2d1a42/f0f0f0?text=Mercury" alt="Mercury" class="mx-auto mt-8 rounded-lg shadow-md mb-8">
+                <img src="https://science.nasa.gov/wp-content/uploads/2023/02/mercury-scaled.jpg" alt="Mercury" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Mercury, the smallest planet in our solar system and the closest to the Sun, is a world of extremes. Its lack of a substantial atmosphere means it cannot trap heat effectively, leading to scorching daytime temperatures reaching up to 430°C (800°F) and frigid nighttime lows plummeting to -180°C (-290°F).
@@ -777,7 +1028,7 @@
         <section id="venus-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Venus</h2>
-                <img src="https://placehold.co/400x300/2d1a42/f0f0f0?text=Venus" alt="Venus" class="mx-auto mt-8 rounded-lg shadow-md mb-8">
+                <img src="https://photojournal.jpl.nasa.gov/jpeg/PIA00158.jpg" alt="Venus" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Often dubbed Earth's "sister planet" due to its similar size, mass, and bulk composition, Venus is a world of stark and unwelcoming contrasts. It is perpetually shrouded by a dense, suffocating atmosphere primarily composed of carbon dioxide (about 96.5%) with clouds of sulfuric acid. This thick atmospheric blanket traps heat in a runaway greenhouse effect, making Venus the hottest planet in our solar system.
@@ -806,7 +1057,7 @@
         <section id="earth-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Earth</h2>
-                <img src="https://placehold.co/400x300/2d1a42/f0f0f0?text=Earth" alt="Earth" class="mx-auto mt-8 rounded-lg shadow-md mb-8">
+                <img src="https://visibleearth.nasa.gov/images/57730/the-blue-marble-2012/57730_full.jpg" alt="Earth" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Our home planet, Earth, is a vibrant oasis in the cosmos, a "Blue Marble" teeming with diverse life and characterized by vast liquid water oceans, dynamic continents, and a complex, life-sustaining atmosphere. It is the only known celestial body to harbor significant amounts of liquid water on its surface, an absolute prerequisite for all known forms of life.
@@ -836,13 +1087,13 @@
         <section id="mars-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Mars</h2>
-                <img src="https://placehold.co/400x300/2d1a42/f0f0f0?text=Mars" alt="Mars" class="mx-auto mt-8 rounded-lg shadow-md mb-8">
+                <img src="https://mars.nasa.gov/system/resources/detail_files/24785_PIA24785-web.jpg" alt="Mars" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Known as the "Red Planet" due to the iron oxide prevalent on its surface, Mars has captivated humanity's imagination for centuries as a potential second home and a site for extraterrestrial life. Its landscape features striking resemblances to Earth, including polar ice caps (made of water ice and frozen carbon dioxide), vast canyons, and ancient riverbeds and deltas, which strongly suggest the presence of abundant liquid water in its distant past.
                     </p>
                     <p>
-                        Mars is home to the solar system's largest volcano, Olympus Mons, a massive shield volcano that stands nearly 25 km (15.5 miles) high, almost three times the height of Mount Everest. It also boasts Valles Marineris, an enormous canyon system stretching over 4,000 km (2,500 miles) across the planet. The Martian atmosphere is very thin, composed primarily of carbon dioxide (95%), making it too thin for liquid water to persist on the surface for long. Despite this, the planet experiences dynamic weather phenomena, including planet-encircling dust storms and smaller dust devils.
+                        Mars is home to the solar system's largest volcano, Olympus Mons, a massive shield volcano that stands nearly 25 km (15.5 miles) high, almost three three times the height of Mount Everest. It also boasts Valles Marineris, an enormous canyon system stretching over 4,000 km (2,500 miles) across the planet. The Martian atmosphere is very thin, composed primarily of carbon dioxide (95%), making it too thin for liquid water to persist on the surface for long. Despite this, the planet experiences dynamic weather phenomena, including planet-encircling dust storms and smaller dust devils.
                     </p>
                     <p>
                         Numerous robotic missions, including rovers like Curiosity and Perseverance, have extensively explored the Martian surface, providing invaluable data in the ongoing search for biosignatures (signs of past or present life) and assessing its potential for future human colonization. These missions have confirmed the presence of ancient water and organic molecules, fueling excitement about Mars's habitability potential.
@@ -866,7 +1117,7 @@
         <section id="jupiter-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Jupiter</h2>
-                <img src="https://placehold.co/400x300/2d1a42/f0f0f0?text=Jupiter" alt="Jupiter" class="mx-auto mt-8 rounded-lg shadow-md mb-8">
+                <img src="https://www.missionjuno.swri.edu/media-gallery/jupiter/PIA07783_full.jpg" alt="Jupiter" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Jupiter, the colossal king of our solar system, is a gas giant of unparalleled scale, dwarfing all other planets combined. Its swirling, colorful atmosphere is a dynamic tapestry of hydrogen (about 90%) and helium, laced with trace amounts of methane, ammonia, and water. These elements form distinct cloud bands and zones, driven by incredibly fast winds.
@@ -896,7 +1147,7 @@
         <section id="saturn-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Saturn</h2>
-                <img src="https://placehold.co/400x300/2d1a42/f0f0f0?text=Saturn" alt="Saturn" class="mx-auto mt-8 rounded-lg shadow-md mb-8">
+                <img src="https://www.nasa.gov/sites/default/files/thumbnails/image/saturn_with_rings_from_cassini_full.jpg" alt="Saturn" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Saturn is arguably the most recognizable and visually stunning planet in our solar system, famed for its breathtaking and intricate system of icy rings. These magnificent rings are not solid, but rather composed of billions of small particles, ranging in size from tiny dust grains to house-sized boulders, all orbiting the planet like countless tiny moons. They are predominantly made of water ice, with traces of rocky material.
@@ -926,7 +1177,7 @@
         <section id="uranus-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Uranus</h2>
-                <img src="https://placehold.co/400x300/2d1a42/f0f0f0?text=Uranus" alt="Uranus" class="mx-auto mt-8 rounded-lg shadow-md mb-8">
+                <img src="https://esawebb.org/media/images/weic2310a/Uranus_NIRCam_zoomed_in.jpg" alt="Uranus" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Uranus, the seventh planet from the Sun, is an enigmatic ice giant distinguished by its unique axial tilt, causing it to effectively orbit the Sun on its side. This extreme tilt (97.77 degrees) results in highly unusual seasonal variations, with each pole experiencing decades of continuous sunlight followed by decades of continuous darkness.
@@ -956,7 +1207,7 @@
         <section id="neptune-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Neptune</h2>
-                <img src="https://placehold.co/400x300/2d1a42/f0f0f0?text=Neptune" alt="Neptune" class="mx-auto mt-8 rounded-lg shadow-md mb-8">
+                <img src="https://science.nasa.gov/wp-content/uploads/2023/02/neptune-scaled.jpg" alt="Neptune" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Neptune, the outermost known major planet in our solar system, is a deep blue ice giant, known for its fierce, supersonic winds and dynamic, rapidly changing storm systems. Its striking azure color is attributed to the presence of methane in its atmosphere, which absorbs red light.
@@ -1019,30 +1270,14 @@
             </div>
         </section>
 
-        <!-- New Connect With Us Section for QR Code -->
-        <section id="connect-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
-            <div class="container mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Connect with Us</h2>
-                <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
-                    Scan the QR code below or visit our links to stay updated on our latest voyages and offers!
-                </p>
-                <div class="flex flex-col items-center justify-center space-y-6">
-                    <img src="https://raw.githubusercontent.com/google-gemini/cookbook/main/examples/community-examples/next.jpg" alt="Connect with Us QR Code" class="max-w-xs md:max-w-sm rounded-lg shadow-xl border-4 border-accent-blue">
-                    <div class="flex flex-col space-y-2 text-star-medium text-lg">
-                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
-                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
-                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <!-- Footer -->
     <footer class="text-star-medium py-10 px-6 rounded-t-lg mt-8" style="background-color: var(--footer-bg);">
         <div class="container mx-auto text-center">
             <p class="text-lg mb-4">&copy; 2025 Gemini Voyages. All rights reserved.</p>
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.en" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">This website is copyrighted under  CC BY-NC-ND 4.0.</a>
+            
         </div>
     </footer>
 
