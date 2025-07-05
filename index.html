@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gemini Voyages</title>
-    <!-- DM Sans Font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Three.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        /* CSS Variables for Theme */
         :root {
-            /* Dark Mode Defaults */
             --bg-dark: #1a082b;
             --bg-medium: #2d1a42;
             --bg-light: #402c58;
@@ -23,8 +18,8 @@
             --text-medium: #d0d0d0;
             --accent-purple: #bb86fc;
             --accent-blue: #82aaff;
-            --border-color: rgba(109, 40, 217, 0.5); /* For quiz container */
-            --shadow-color: rgba(139, 92, 246, 0.3); /* For quiz container */
+            --border-color: rgba(109, 40, 217, 0.5);
+            --shadow-color: rgba(139, 92, 246, 0.3);
             --quiz-bg: rgba(30, 0, 60, 0.8);
             --quiz-text: #E0E7FF;
             --quiz-radio-border: #6D28D9;
@@ -34,14 +29,14 @@
             --quiz-radio-focus-shadow: rgba(139, 92, 246, 0.5);
             --quiz-card-bg: rgba(30, 0, 60, 0.8);
             --quiz-card-border: rgba(109, 40, 217, 0.5);
-            --quiz-score-bg: rgba(75, 0, 130, 0.7); /* Darker purple for results */
+            --quiz-score-bg: rgba(75, 0, 130, 0.7);
             --quiz-score-text: #E0E7FF;
-            --quiz-score-highlight: #FCD34D; /* Yellow */
-            --success-bg: rgba(21, 128, 61, 0.5); /* Green-900 with opacity */
-            --success-border: #166534; /* Green-700 */
-            --success-text: #86EFAC; /* Green-300 */
-            --error-bg: rgba(153, 27, 27, 0.5); /* Red-900 with opacity */
-            --error-border: #991B1B; /* Red-700 */
+            --quiz-score-highlight: #FCD34D;
+            --success-bg: rgba(21, 128, 61, 0.5);
+            --success-border: #166534;
+            --success-text: #86EFAC;
+            --error-bg: rgba(153, 27, 27, 0.5);
+            --error-border: #991B1B;
             --error-text: #F87171; /* Red-300 */
             --button-primary-bg: #bb86fc;
             --button-primary-text: #ffffff;
@@ -50,7 +45,6 @@
             --navbar-bg: #2d1a42; /* Darker grey-purple for navbar */
             --footer-bg: #2d1a42; /* Darker grey-purple for footer */
             --text-default: #f0f0f0; /* Default text colour */
-            /* New variable for dropdown background to ensure contrast */
             --dropdown-bg-dark: #3a2b53; /* Slightly lighter than navbar for dark mode */
         }
 
@@ -115,7 +109,6 @@
         .hover\:bg-accent-blue:hover { background-color: var(--accent-blue); }
         .hover\:text-accent-blue:hover { color: var(--accent-blue); }
 
-        /* Specific element background/text color overrides for theme */
         nav { background-color: var(--navbar-bg); }
         footer { background-color: var(--footer-bg); }
         #aboutUsBtn { /* Updated ID */
@@ -749,8 +742,7 @@
                             </div>
                             <h3 class="text-xl font-semibold mb-4 text-star-light">Cutting-Edge Technology</h3>
                             <p class="text-star-medium">
-                                We utilise the latest advancements in space travel to ensure your journey is safe and efficient.
-                            </p>
+        All the spacecraft in our fleet come with the latest and most powerful technology as standard; making sure that your trip is efficient.                           </p>
                         </div>
                         <div class="bg-space-light rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 ease-in-out">
                             <div class="text-accent-purple mb-4">
@@ -760,7 +752,7 @@
                             </div>
                             <h3 class="text-xl font-semibold mb-4 text-star-light">Unmatched Reliability</h3>
                             <p class="text-star-medium">
-                                Our fleet boasts an impeccable safety record and consistent on-time performance.
+                                We have a flawless safety record and consistent high performance.
                             </p>
                         </div>
                         <div class="bg-space-light rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 ease-in-out">
@@ -771,11 +763,15 @@
                             </div>
                             <h3 class="text-xl font-semibold mb-4 text-star-light">Dedicated Support Team</h3>
                             <p class="text-star-medium">
-                                Our experienced crew is available 24/7 to ensure a smooth and enjoyable journey.
+                                Our knowledgeable crew is available 24/7 to ensure an enjoyable journey.
                             </p>
                         </div>
                     </div>
                 </div>
+                <br>
+                <br>
+
+                <img src="https://previews.dropbox.com/p/thumb/ACudSIGSg21Kn0HnwNFdOL31En61oZQHeSBuVitKKt04r_BlASPyuXNQ80ODYFhn_KJUxrJ8y2OePAhG5wYaEIqSQBEG8WBFlGKNxWydYe2LTqNkNJpdRXlJZSSGuhbKwAnJ5olcar_4RdX16QyfouyGw_2PaIlLz4127NMotyYXlX-L5CxGu5lQ5AKCHWx3yxUSzlLftWe9z3yJS1E0p4Lva_Ey9sQj2rTwVbLuZnGoJFIVCwJzZfvL3Etpgob4omxJLuThHZGnQTB6f-bWX8Dp1CYSOkYKLRXGf273dMt_vX9QCqGZGfl0reIXjv79hSk/p.png" alt="Our Poster" class="mx-auto my-8 rounded-lg shadow-md w-full max-w-lg h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x300/402c58/f0f0f0?text=Image+Not+Found';">
             </section>
         </section>
 
@@ -805,9 +801,9 @@
         <!-- New: Your Stay Section -->
         <section id="your-stay-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Your Stay: What to Expect</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Your Stay</h2>
                 <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
-                    Your space adventure includes amazing food, fun activities, and different flight plans to choose from. The cost changes based on what you pick!
+                    Your space adventure includes delicious food, fun activities, and different flight plans to choose from. The cost is based on these 3 factors.
                 </p>
 
                 <h3 class="text-2xl font-bold mt-10 mb-6 text-accent-blue">Finances Spreadsheet (Cost & Prices)</h3>
@@ -858,14 +854,14 @@
                     </div>
                     <!-- Activity 4: Rover Driving -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/300x200/2d1a42/d0d0d0?text=Rover+Driving" alt="Rover Driving on Alien Surface" class="w-full h-36 object-cover rounded-md mb-4">
+                        <img src="https://previews.dropbox.com/p/thumb/ACsCM3hNkE72YFxMbi_jWUwJxYUJvGPkil8pePHbEDy_vhk1_-ka9OdoigLvGTKhBAT_6Rf-Fg5e8Kg1KjFpGgJZyjPWKAKfL34fpPDaxR8DQDNMQ3wagpx4tBUlONTA5DcgT2lwyBkSXMUZSwIdRwKDBakOYbeAm686Koo37b3kCjhHHs2KxfHdSkil6Gd095XP8hJroJwbUTYG3mpPc9LUAe0SbI-4h20xxnZY6ZSkaVVkZRw3WJYmKuUyxNcUG0lI8arbMpX4aOZL9JsLDpmmkQsdp5aotwWyTZbxQNozJ8UtOMMVk0tSM8EjSoRMpTI/p.png" alt="Rover Driving on Alien Surface" class="w-full h-36 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Rover Driving</h4>
                         <p class="text-star-medium">Drive a real space rover on pretend alien lands. See if you can steer in low gravity!
 </p>
                     </div>
                     <!-- Activity 5: Sandboarding -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/300x200/1a082b/f0f0f0?text=Sandboarding" alt="Sandboarding on Dunes" class="w-full h-36 object-cover rounded-md mb-4">
+                        <img src="https://previews.dropbox.com/p/thumb/ACsoe84a1BIwRRiENYiZQN29Mi3-CK1cxRKRIAd3InHtUAAKX68QV9JmyLqvqOAvZEaVKcTZT-LpOvMJ2BDKWSCZGHQrIUa58VAYka8zfsxD_LMqByoK3IuUFDubOEjBvsrS-7OeJH-cgCxS6RApStSaN7IFWxWG9RBwu2EHtTpitmqnYAufeExuOTN_1Fgn3yCX3g5S_mDW5-iDhAgzRoD1poPNYSqCfxRRTSk_fbk0raWOTqz5l1T8to4K6dEFy8qyGpaneLMQx3MZkY54fi0a7BhakN-KdazMRgM9_GAHCVGlendF2KKKtjDD-iyv8eo/p.png" alt="Sandboarding on Dunes" class="w-full h-36 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Sandboarding</h4>
                         <p class="text-star-medium">Strap in and glide down the epic dunes of Mars and other desert planets. It's like snowboarding, but on a whole new world!</p>
                     </div>
@@ -875,20 +871,20 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Flight Plan 1 -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x250/82aaff/1a082b?text=Economy+Flight" alt="Economy Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
-                        <h4 class="text-xl font-semibold mb-2 text-star-light">Economy Voyager</h4>
+                        <img src="https://previews.dropbox.com/p/thumb/ACsDevdqhKnKfIqZUp6IUqm9__iuIR6Rn6UVuLdo5fhFe0CR4wdlQeG6mzR9nBLrzLpAS9Z9qu56xoZqOaL6aprD_O3yZNZ1WeN6_a4geBwQyojbOjomJZko3VM6lq5_rJ_h17i3JRmEfODtFe3XQlZIzETYpprKI160OQV1j2QilxUHm8yTQIPSKZ_mOcuzYyaOm0if6CLMTZB6ogzqljXeZEsxm4KF35_2PQO8PNaUYEsz3uyKebDMPc2DJRc7jW1N-bB_J602xdphyYt2ujY5QAgVTLL6aSLrgQpmydJxIZKdoPPzt_a6wuatRSo9ig8/p.png" alt="Economy Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
+                        <h4 class="text-xl font-semibold mb-2 text-star-light">Silver</h4>
                         <p class="text-star-medium">A comfortable and affordable trip to your chosen planet. Basic amenities included.</p>
                     </div>
                     <!-- Flight Plan 2 -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x250/bb86fc/1a082b?text=Business+Flight" alt="Business Class Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
-                        <h4 class="text-xl font-semibold mb-2 text-star-light">Business Class Explorer</h4>
+                        <img src="https://previews.dropbox.com/p/thumb/ACuOuq_KT8n41yYQ1QJQgiOSVIhE2Je5eNtodzrcXzIRqza0u7abCsx0G93Ha7IfIr73NP4a04WZWarqixtB2GFeSlJzTOulraksWO8IXjgba0gCrkYf9LlW9qvufUYSFsBigZNm8adNgKpFhbeJ_6w7-RSa9N6f7cKRJYGk_65DF-e7OpG3bJCOP-MYbSmLzc1dLNfR08yn42FzJTaymB852o3WfbH7At_MYDuaP8-fsfpmPQGPtxenZRZmntOML_8sdqnrX5qOSBKHJwyuNnbGRtmJVZO85qX-zGWh-VTY-T3tB2uUKYZ2rXh0wrWRjGA/p.png" alt="Business Class Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
+                        <h4 class="text-xl font-semibold mb-2 text-star-light">Gold</h4>
                         <p class="text-star-medium">More space, better food, and extra comfort for a relaxed journey.</p>
                     </div>
                     <!-- Flight Plan 3 -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x250/402c58/f0f0f0?text=First+Class+Flight" alt="First Class Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
-                        <h4 class="text-xl font-semibold mb-2 text-star-light">First Class Cosmic Traveller</h4>
+                        <img src="https://previews.dropbox.com/p/thumb/ACvziqXNSKg3PVFz4rBMMBEVWMRksYxzIvApoYV0KPnPx58Eexcg7tsYR73Ww1k7DCrJ6MdjRh5IIJicUS13hBWcO98zgNZbcNbhKnN9yvniYdjuU0DaaQZ8UWmG_fNqMhH8K0DmpZAOkwuYzG2LEVz4hLvAVVlAhYnBOJPzo3Zz9nAOsl0BhrfT7pdx-7GaFYeYJxjC14Lz_8pLEBGfwf0syrkpywbdxDN4e3Uu0HV6VLmvXIzTbdpmVxoFsCoUiulS4Yp5uOwRRX3uBE8RR0o8h75BWutDNmaLqmuRO7Vhn_XJrPTEQSPIXDat1WXEGQM/p.png" alt="First Class Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
+                        <h4 class="text-xl font-semibold mb-2 text-star-light">Platinum</h4>
                         <p class="text-star-medium">The ultimate luxury space experience with private suites and personalised service.</p>
                     </div>
                 </div>
@@ -899,64 +895,47 @@
         <section id="gallery-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Our Galactic Gallery</h2>
-                <p class="text-lg text-star-medium mb-12 max-w-3xl mx-auto">
-                    A glimpse into the wonders you'll experience on your Gemini Voyage.
-                </p>
-
+                <br>
+               
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                
                     <!-- Gallery Image Item 1 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/600x400/82aaff/1a082b?text=Voyage+View+1" alt="Space Voyage View 1" class="w-full h-auto object-cover">
+                        <img src="https://previews.dropbox.com/p/thumb/ACveB4kQRE3BEuQjWF-tmZe8tMeFKOGeLMzHF-3D94upRT_W9dZW3-HBHr2rOSd-kvuSTAFvVo6wZEdkja6b9nm7HVnCbszSzHZZcr3YqWRif1fA7Eono8C48qq7GwXtqpU2s4nuH5ddnZRbPVm0tSFH52C6AONFhS_cpXexIblg1g0QiP23VlV4A4ihVDsUCgTRBzXkFnQeiXJnCLigAcW0UfXYZNMM62vYdS8ByanEVQT9HU_9_0rzqyBkl-B3qlGe5qaYOnxnZ5U_qj2lj7HpwDuZVA2yJUsRjaS-_2soORKnSe8TRZMRcKDC9uHTkC0/p.png" alt="Rocket" class="w-full h-auto object-cover">
                         <div class="p-4 bg-space-light text-star-medium">
-                            <p class="font-semibold">Stunning Nebula</p>
-                            <p class="text-sm">Captured during a deep space transit.</p>
+                            <p class="font-semibold">A glimpse of our new spaceship.</p>
+          
                         </div>
                     </div>
-
+                    
                     <!-- Gallery Image Item 2 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/600x400/bb86fc/1a082b?text=Planet+Landing+2" alt="Planet Landing 2" class="w-full h-auto object-cover">
+                        <img src="https://previews.dropbox.com/p/thumb/ACsC_X9IireNQ6ss8Fl1PokAhFVxi9O09ENxBx1avuvgFFRZkcMIxibIQHidaKP2B1gIYAGCb0ISVLmkbEDTSTj5Z7gGKDREAurtGYvcMyb-5vPodUfoZS9NNzsxecGwVTDcmY3hPwM44guTs2oNGzqTROZldKaBqA1AdwlMVnrGtJab9WaiVxb7kIycps0-vsOaA9vGMFzaNQooaYvSwoEKlXblewxBAJbKx3j6jJZv6KtQyuZAZvFe-o25ikZG2f_fPowe-JneT5hczNkWedVC5TmaLGolUbJdtm-9QvP0zOJabu4uaCpmpdg1PGy9ohA/p.png" alt="Silver" class="w-full h-auto object-cover">
                         <div class="p-4 bg-space-light text-star-medium">
-                            <p class="font-semibold">Mars Outpost</p>
-                            <p class="text-sm">Our advanced habitat on the Red Planet.</p>
+                            <p class="font-semibold">The Silver Tier</p>
+          
+                        </div>
+                    </div>
+                    
+<!-- Gallery Image Item 4 -->
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACtJBnGdk1YYx60jnvJ9-1IXm-VrmMoqUqyabvRQpvb4-jByu41MsadNoQP1y50-nlReKfsi4fd6X6u2iCFszj2jQICHjugPC4UxHmq4dgzXRQQslo4tYOSMYR1APLxTl-n5bh1xPLJiuw0XbXTRSf9fioNMoSI_NDsNzlVDYgOvUkI9kGIP0QXqU6RR4niq_9o3yz0NLdAkUSRF0fhaNRSlWQyjwrWbT5nLAFIySqaDSWA25ps2UV7W8VMxHneXRdqOB5lhcx8VTDAngADx2sZxZ1yurLsYwKbQzCx6N7enziU__xOodc3OLWIqoOT0TKA/p.png" alt="Gold" class="w-full h-auto object-cover">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">The Gold Tier</p>
+          
+                        </div>
+                    </div> 
+                            
+                            <!-- Gallery Image Item 4 -->
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACvziqXNSKg3PVFz4rBMMBEVWMRksYxzIvApoYV0KPnPx58Eexcg7tsYR73Ww1k7DCrJ6MdjRh5IIJicUS13hBWcO98zgNZbcNbhKnN9yvniYdjuU0DaaQZ8UWmG_fNqMhH8K0DmpZAOkwuYzG2LEVz4hLvAVVlAhYnBOJPzo3Zz9nAOsl0BhrfT7pdx-7GaFYeYJxjC14Lz_8pLEBGfwf0syrkpywbdxDN4e3Uu0HV6VLmvXIzTbdpmVxoFsCoUiulS4Yp5uOwRRX3uBE8RR0o8h75BWutDNmaLqmuRO7Vhn_XJrPTEQSPIXDat1WXEGQM/p.png" alt="Platinum" class="w-full h-auto object-cover">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">The Platinum Tier</p>
+          
                         </div>
                     </div>
 
-                    <!-- Gallery Image Item 3 -->
-                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/600x400/402c58/f0f0f0?text=Astronaut+View+3" alt="Astronaut View 3" class="w-full h-auto object-cover">
-                        <div class="p-4 bg-space-light text-star-medium">
-                            <p class="font-semibold">Earth from Orbit</p>
-                            <p class="text-sm">A breathtaking perspective of our home.</p>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Image Item 4 -->
-                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/600x400/2d1a42/d0d0d0?text=Galactic+View+4" alt="Galactic View 4" class="w-full h-auto object-cover">
-                        <div class="p-4 bg-space-light text-star-medium">
-                            <p class="font-semibold">Distant Galaxy</p>
-                            <p class="text-sm">Exploring the edges of the known universe.</p>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Image Item 5 -->
-                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/600x400/bb86fc/ffffff?text=Spacecraft+Interior+5" alt="Spacecraft Interior 5" class="w-full h-auto object-cover">
-                        <div class="p-4 bg-space-light text-star-medium">
-                            <p class="font-semibold">Luxury Cabin</p>
-                            <p class="text-sm">Experience comfort in zero-gravity.</p>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Image Item 6 -->
-                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/600x400/82aaff/ffffff?text=Alien+Landscape+6" alt="Alien Landscape 6" class="w-full h-auto object-cover">
-                        <div class="p-4 bg-space-light text-star-medium">
-                            <p class="font-semibold">Exotic Flora</p>
-                            <p class="text-sm">A rare find on a newly discovered exoplanet.</p>
-                        </div>
-                    </div>
 
                     <!--
                         HOW TO ADD/REPLACE IMAGES:
@@ -976,15 +955,13 @@
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Connect with Us</h2>
                 <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
-                    Scan the QR code below or visit our links to stay updated on our latest voyages and offers!
+                    Scan the QR code below or visit our website to stay updated on our latest voyages and offers!
                 </p>
                 <div class="flex flex-col items-center justify-center space-y-6">
                     <!-- Using the provided Dropbox link for the QR code image -->
-                    <img src="https://previews.dropbox.com/p/thumb/ACp-GqUscVmTJaAcoTT7LWdhO5tJk2is9TqRXTKbte_Esebz1x-Z-6FTz_BqAAB3ZBk4hkCvG3IUv6m9I4UGtmjrSp7D5tezTgB-EKoL_3zkSLyKUBXTKhcFtBPIIf18_U1yDcGcvFUedWX4-R2nLo9oUge36z0qZHcJKTb5aXc_aEGYsznVuE0a9cjAv1euON_jrzZzcZJdEKcf83GoU_AxdRviXq6rPfa0GgcRjRay2Fa1uWjviDTa4-jNnLbX1GfqPY4D7zdaIHpHyMh-rf7-IJxR8XLJo2gD3MqmZnzvvWgPak7xUK7VN6Lmx3A6AjfpUZAaYuJYZtn8b_EEZ-/p.png?is_prewarmed=true" alt="Connect with Us QR Code" class="max-w-xs md:max-w-sm rounded-lg shadow-xl border-4 border-accent-blue" onerror="this.onerror=null;this.src='https://placehold.co/250x250/2d1a42/f0f0f0?text=QR+Code+Not+Found';">
+                    <img src="https://previews.dropbox.com/p/thumb/ACtXPIU6IbbiQPLOONTq3vKEJm-CpRSQV9naARq16rBRr93eqH5g7c8sqQ_co3OjEqe1ou7Og203qLI5Pvc-qjTJBMPfP6doK9_nuWHoQbkrEUF97LAUn1XgLMx0uYx4Gw1RmBvrHgZqN6gsa7-c9MTiptlt6aoMe4SO0CMJ9udePV_Ic4QBRfScpyzAN57NiMlecxdVtrr7dOfL7GeCZpOqJMFzEpRk5_AMwD9Y3NI4VDgjhjEagDcFZqnP0w5HZpsPULCWkTvHs2mJDqWw1z1r-FWqaZQvydJUL6nzLLAa_DaZsxLL6ZWBNy2dT6qcvXVV_jDMLfv9vrducufsWgFJ/p.png" alt="Connect with Us QR Code" class="max-w-xs md:max-w-sm rounded-lg shadow-xl border-4 border-accent-blue" onerror="this.onerror=null;this.src='https://placehold.co/250x250/2d1a42/f0f0f0?text=QR+Code+Not+Found';">
                     <div class="flex flex-col space-y-2 text-star-medium text-lg">
-                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
-                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
-                        <a href="https://bit.ly/gemini-voyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">HTTPS://BIT.LY/GEMINI-VOYAGES</a>
+                        <a href="https://bit.ly/geminivoyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">https://bit.ly/geminivoyages</a>
                     </div>
                 </div>
             </div>
