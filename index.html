@@ -902,7 +902,7 @@
                 
                     <!-- Gallery Image Item 1 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://previews.dropbox.com/p/thumb/ACveB4kQRE3BEuQjWF-tmZe8tMeFKOGeLMzHF-3D94upRT_W9dZW3-HBHr2rOSd-kvuSTAFvVo6wZEdkja6b9nm7HVnCbszSzHZZcr3YqWRif1fA7Eono8C48qq7GwXtqpU2s4nuH5ddnZRbPVm0tSFH52C6AONFhS_cpXexIblg1g0QiP23VlV4A4ihVDsUCgTRBzXkFnQeiXJnCLigAcW0UfXYZNMM62vYdS8ByanEVQT9HU_9_0rzqyBkl-B3qlGe5qaYOnxnZ5U_qj2lj7HpwDuZVA2yJUsRjaS-_2soORKnSe8TRZMRcKDC9uHTkC0/p.png" alt="Rocket" class="w-full h-auto object-cover">
+                        <img src="https://previews.dropbox.com/p/thumb/ACuzo5Mvh9JAZkZ3sXSdTJfcAov7dgQ7FlMVR6B3Cl-h0DwPA0LX50bsohC20sx6McwTgtF2yiTAqZd1BBI4zX2TS2VuTN6fXrwfi9MnfpMeNr4bvOJQxh5iIlxrGJE4Wpv-7vqhsWd5TEY-uGWyVECjMqIoVqMrO44UzYsCp_YMx9vmL0sT0jvQDkzHRW-H2LVK4b65DWFLwOhV5OlLf2inVKD-XZjRWuJkxwOP-s4K3KMS5YckXlbmnLCyjMZLs1qbcR_Hk9CmA7ELmBSBULlsb1p3VwsVv6Fn5NcNBmG6hRloY7b2QefbTuv6iUEBlkc/p.png" alt="Rocket" class="w-full h-auto object-cover">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">A glimpse of our new spaceship.</p>
           
@@ -953,12 +953,247 @@
         <!-- Connect With Us Section for QR Code -->
         <section id="connect-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Connect with Us</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Contact Us</h2>
                 <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
-                    Scan the QR code below or visit our website to stay updated on our latest voyages and offers!
+                    Scan the QR code or visit our website to stay updated on our latest voyages and offers! Alternatively, use the form below to send any inquiries regarding the services we offer.
                 </p>
                 <div class="flex flex-col items-center justify-center space-y-6">
                     <!-- Using the provided Dropbox link for the QR code image -->
+                    
+                               <style>
+    /* CSS Variables for Theme - Mirroring the main website's palette */
+    :root {
+        /* Dark Mode Defaults */
+        --bg-dark: #1a082b;
+        --bg-medium: #2d1a42;
+        --bg-light: #402c58;
+        --text-light: #f0f0f0;
+        --text-medium: #d0d0d0;
+        --accent-purple: #bb86fc;
+        --accent-blue: #82aaff;
+        --border-color: rgba(109, 40, 217, 0.5);
+        --shadow-color: rgba(139, 92, 246, 0.3);
+        --button-primary-bg: #bb86fc;
+        --button-primary-text: #ffffff;
+        --input-bg: rgba(64, 44, 88, 0.7); /* Slightly lighter than bg-medium for inputs */
+        --input-border: rgba(109, 40, 217, 0.5);
+        --input-text: #f0f0f0;
+        --form-container-bg: rgba(45, 26, 66, 0.9); /* Opaque bg-medium for form */
+        --form-text: #f0f0f0;
+        --message-success-bg: rgba(21, 128, 61, 0.5);
+        --message-success-text: #86EFAC;
+        --message-error-bg: rgba(153, 27, 27, 0.5);
+        --message-error-text: #F87171;
+    }
+
+    /* Light Mode Overrides */
+    body.light-mode { /* Assumes the embedding document's body can have this class */
+        --bg-dark: #fbfbfb; /* Main background */
+        --bg-medium: #f2f2f2; /* Form container background */
+        --bg-light: #e6e6e6; /* Input background */
+        --text-light: #1a082b; /* Dark text for contrast */
+        --text-medium: #2d1a42;
+        --accent-purple: #6c42a2;
+        --accent-blue: #3d7ee0;
+        --border-color: rgba(90, 130, 200, 0.5);
+        --shadow-color: rgba(90, 130, 200, 0.3);
+        --button-primary-bg: #82aaff;
+        --button-primary-text: #1a082b;
+        --input-bg: rgba(230, 230, 230, 0.7);
+        --input-border: rgba(90, 130, 200, 0.5);
+        --input-text: #1a082b;
+        --form-container-bg: rgba(242, 242, 242, 0.9);
+        --form-text: #1a082b;
+        --message-success-bg: rgba(200, 250, 200, 0.8);
+        --message-success-text: #28a745;
+        --message-error-bg: rgba(153, 27, 27, 0.5);
+        --message-error-text: #F87171;
+    }
+
+    /* General Body Styles (adjust if embedding in a non-body context) */
+    /* These styles might need to be adjusted based on where you embed this snippet. */
+    /* For direct embedding into a <div>, you might apply these to the .form-container */
+    .contact-form-wrapper { /* New wrapper class for the embeddable content */
+        font-family: 'DM Sans', sans-serif;
+        /* Removed background-color to make it transparent */
+        color: var(--text-light);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Adjust if you don't want it to take full viewport height */
+        padding: 2rem;
+        overflow-x: hidden;
+        box-sizing: border-box; /* Ensure padding is included in element's total width and height */
+    }
+
+    /* Form Container Styling */
+    .form-container {
+        background-color: var(--form-container-bg);
+        backdrop-filter: blur(5px);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 0 20px var(--shadow-color);
+        color: var(--form-text);
+        padding: 2.5rem;
+        border-radius: 1.5rem;
+        max-width: 600px;
+        width: 100%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        box-sizing: border-box;
+    }
+
+    /* Input and Textarea Styling */
+    .form-input, .form-textarea {
+        background-color: var(--input-bg);
+        border: 1px solid var(--input-border);
+        color: var(--input-text);
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        width: 100%;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+        outline: none;
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(130, 170, 255, 0.5);
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder {
+        color: var(--text-medium);
+        opacity: 0.7;
+    }
+
+    /* Button Styling */
+    .submit-button {
+        background-color: var(--button-primary-bg);
+        color: var(--button-primary-text);
+        font-weight: bold;
+        padding: 0.75rem 2rem;
+        border-radius: 9999px; /* Full rounded */
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .submit-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px var(--shadow-color);
+        opacity: 0.9;
+    }
+
+    .submit-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Message Box Styling */
+    .message-box {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        margin-top: 1.5rem;
+        font-weight: 500;
+        text-align: center;
+        display: none; /* Hidden by default, shown by JS */
+    }
+
+    .message-box.success {
+        background-color: var(--message-success-bg);
+        color: var(--message-success-text);
+        border: 1px solid var(--success-border);
+    }
+
+    .message-box.error {
+        background-color: var(--message-error-bg);
+        color: var(--message-error-text);
+        border: 1px solid var(--error-border);
+    }
+</style>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<div class="contact-form-wrapper">
+    <div class="form-container">
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-accent-purple">Contact Us</h1>
+        <p class="text-center text-lg mb-8 text-text-medium">We'd love to hear from you! Send us a message.</p>
+
+        <form id="contactForm" class="space-y-6">
+            <div>
+                <label for="name" class="block text-lg font-medium mb-2 text-form-text">Your Name</label>
+                <input type="text" id="name" name="from_name" class="form-input" placeholder="Forename Surname" required>
+            </div>
+            <div>
+                <label for="email" class="block text-lg font-medium mb-2 text-form-text">Your Email</label>
+                <input type="email" id="email" name="from_email" class="form-input" placeholder="name@email.com" required>
+            </div>
+            <div>
+                <label for="subject" class="block text-lg font-medium mb-2 text-form-text">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="Inquiry about voyages" required>
+            </div>
+            <div>
+                <label for="message" class="block text-lg font-medium mb-2 text-form-text">Your Message</label>
+                <textarea id="message" name="message" rows="6" class="form-textarea" placeholder="Type your message here..." required></textarea>
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="submit-button">Send Message</button>
+            </div>
+        </form>
+
+        <!-- Message Box for feedback -->
+        <div id="messageBox" class="message-box"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const contactForm = document.getElementById('contactForm');
+        const messageBox = document.getElementById('messageBox');
+
+        // Initialize EmailJS with your Public Key        // Initialize EmailJS with your Public Key
+        // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key        // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
+        (function() {
+            emailjs.init("h4n6S2RHz_TFSZf8K");
+        })();
+
+        // --- Form Submission Logic ---
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                // Clear previous messages
+                messageBox.textContent = '';
+                messageBox.classList.remove('success', 'error');
+                messageBox.style.display = 'none';
+
+                // IMPORTANT: Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID'
+                // These come from your EmailJS dashboard setup.
+                const serviceID = 'service_91znt2n';
+                const templateID = 'template_rglc9rw';
+
+                try {
+                    // Send the form using EmailJS
+                    const response = await emailjs.sendForm(serviceID, templateID, contactForm);
+
+                    console.log('EmailJS Success:', response);
+                    messageBox.classList.add('success');
+                    messageBox.textContent = 'Thank you for your message! We will get back to you soon.';
+                    contactForm.reset(); // Clear form fields on success
+
+                } catch (error) {
+                    console.error('EmailJS Error:', error);
+                    messageBox.classList.add('error');
+                    messageBox.textContent = `Failed to send message: ${error.text || error}. Please try again.`;
+                } finally {
+                    messageBox.style.display = 'block'; // Show the message box
+                }
+            });
+        } else {
+            console.error("Contact form element not found. Form submission logic will not work.");
+        }
+    });
+</script>
+                    
+                    
                     <img src="https://previews.dropbox.com/p/thumb/ACtXPIU6IbbiQPLOONTq3vKEJm-CpRSQV9naARq16rBRr93eqH5g7c8sqQ_co3OjEqe1ou7Og203qLI5Pvc-qjTJBMPfP6doK9_nuWHoQbkrEUF97LAUn1XgLMx0uYx4Gw1RmBvrHgZqN6gsa7-c9MTiptlt6aoMe4SO0CMJ9udePV_Ic4QBRfScpyzAN57NiMlecxdVtrr7dOfL7GeCZpOqJMFzEpRk5_AMwD9Y3NI4VDgjhjEagDcFZqnP0w5HZpsPULCWkTvHs2mJDqWw1z1r-FWqaZQvydJUL6nzLLAa_DaZsxLL6ZWBNy2dT6qcvXVV_jDMLfv9vrducufsWgFJ/p.png" alt="Connect with Us QR Code" class="max-w-xs md:max-w-sm rounded-lg shadow-xl border-4 border-accent-blue" onerror="this.onerror=null;this.src='https://placehold.co/250x250/2d1a42/f0f0f0?text=QR+Code+Not+Found';">
                     <div class="flex flex-col space-y-2 text-star-medium text-lg">
                         <a href="https://bit.ly/geminivoyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">https://bit.ly/geminivoyages</a>
@@ -1259,6 +1494,9 @@
     <footer class="text-star-medium py-10 px-6 rounded-t-lg mt-8" style="background-color: var(--footer-bg);">
         <div class="container mx-auto text-center">
             <p class="text-lg mb-4">&copy; 2025 Gemini Voyages. All rights reserved.</p>
+            <br>
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">This website is licensed under CC BY-NC-ND.</a>
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.en" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">View the full legal code here.</a>
         </div>
     </footer>
 
