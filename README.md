@@ -2,10 +2,8 @@ We are **Gemini Voyages**, a luxury intergalactic airline which is your _**1#**_
 
 This is our Github repository, which powers our Github Pages website.
 
-Check "_Deployments_" for our website and its previous versions.
-
 Click "_index.html_" to see the code which was used.
 
-This is licensed under **CC BY-NC-ND**.
+This _whole_ repository is licensed under **CC BY-NC-ND**.
 
 **Have fun exploring our universe!**
