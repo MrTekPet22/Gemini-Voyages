@@ -47,7 +47,6 @@
             --text-default: #f0f0f0; /* Default text colour */
             --dropdown-bg-dark: #3a2b53; /* Slightly lighter than navbar for dark mode */
         }
-
         /* Light Mode Overrides */
         body.light-mode {
             --bg-dark: #fbfbfb; /* Very light background */
@@ -86,8 +85,6 @@
             --text-default: #1a082b; /* Default text colour in light mode */
             --dropdown-bg-light: #d0d0d0; /* Slightly darker than navbar for light mode */
         }
-
-
         /* Apply CSS variables to global elements and Tailwind overrides */
         body {
             background-color: var(--bg-dark);
@@ -108,7 +105,6 @@
         .hover\:text-accent-purple:hover { color: var(--accent-purple); }
         .hover\:bg-accent-blue:hover { background-color: var(--accent-blue); }
         .hover\:text-accent-blue:hover { color: var(--accent-blue); }
-
         nav { background-color: var(--navbar-bg); }
         footer { background-color: var(--footer-bg); }
         #aboutUsBtn { /* Updated ID */
@@ -130,8 +126,6 @@
         body.light-mode .h1-glow {
             text-shadow: none; /* No glow in light mode */
         }
-
-
         /* General styles from previous versions */
         html, body {
             margin: 0;
@@ -146,7 +140,6 @@
             scroll-behavior: smooth;
             position: relative;
         }
-
         /* Nav Logo Marquee */
         .logo-text-marquee-container {
             flex-shrink: 0;
@@ -158,22 +151,17 @@
             align-items: center;
             margin-left: 0.5rem; /* Space between logo image and text */
         }
-
         .logo-marquee-content {
             display: inline-block; /* Essential for content width calculation */
             animation: logoMarquee 20s linear infinite;
         }
-
         .logo-text-marquee-container:hover .logo-marquee-content {
             animation-play-state: paused;
         }
-
         @keyframes logoMarquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); } /* Move half the total content width for seamless loop */
         }
-
-
         /* Home Page Marquee Container Styles (for News & Updates) */
         .home-marquee-container {
             background-color: var(--bg-light);
@@ -205,7 +193,6 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); } /* Move half the total content width for seamless loop */
         }
-
         /* Full-page Three.js canvas */
         .threejs-canvas {
             position: fixed;
@@ -216,7 +203,6 @@
             display: block;
             z-index: -1;
         }
-
         /* Hero section content container */
         .hero-content-wrapper {
             position: relative;
@@ -230,7 +216,6 @@
             max-width: 90%;
             margin: 0 auto;
         }
-
         /* Modal Styles */
         .modal {
             display: none; /* Controlled by JS, but default to hidden */
@@ -259,7 +244,6 @@
             box-shadow: 0 4px 15px var(--shadow-color);
         }
         /* Removed .modal .close-button from here */
-
         /* Section transition effect */
         .content-section {
             display: none;
@@ -275,7 +259,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
         /* Dropdown menu specific styles */
         .dropdown {
             position: relative;
@@ -301,7 +284,6 @@
             align-items: center;
             gap: 0.25rem;
         }
-
         /* Adjusted arrow rotation */
         .dropdown-arrow {
             transition: transform 0.3s ease-in-out;
@@ -310,7 +292,6 @@
         .dropdown.open .dropdown-arrow {
             transform: rotate(0deg); /* When open: points down */
         }
-
         /* Adjusted dropdown content positioning and background for contrast */
         .dropdown-content {
             display: none; /* Hidden by default */
@@ -335,11 +316,9 @@
         body.light-mode .dropdown-content {
             background-color: var(--dropdown-bg-light);
         }
-
         .dropdown.open .dropdown-content {
             display: flex; /* Show as flex when open */
         }
-
         @media (max-width: 768px) {
             .dropdown-content {
                 left: 0; /* Reset to left for small screens if right causes overflow */
@@ -349,7 +328,6 @@
                 justify-content: flex-start;
             }
         }
-
         .dropdown-content a {
             color: var(--text-medium);
             padding: 8px 12px;
@@ -361,13 +339,10 @@
             border-radius: 6px;
             white-space: nowrap;
         }
-
         .dropdown-content a:hover {
             background-color: var(--bg-light);
             color: var(--text-light);
         }
-
-
         /* Quiz Page Specific Styles */
         .quiz-page-container {
             background-color: var(--quiz-bg);
@@ -476,8 +451,6 @@
         body.light-mode .submit-button:hover, body.light-mode #retake-quiz-btn:hover {
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 25px var(--accent-blue);
         }
-
-
         /* Quiz Results Styling */
         #results-container {
             background-color: var(--quiz-score-bg);
@@ -506,8 +479,6 @@
         #feedback-details .text-green-400 { /* Tailwind class, mapped to variable */
             color: var(--success-text);
         }
-
-
         /* Custom scrollbar for better aesthetics within modal if needed */
         .quiz-page-container::-webkit-scrollbar {
             width: 8px;
@@ -523,7 +494,6 @@
         .quiz-page-container::-webkit-scrollbar-thumb:hover {
             background: var(--quiz-radio-checked);
         }
-
         /* Announcement Banner Styles */
         .announcement-banner {
             background-color: #eab308;
@@ -557,7 +527,6 @@
         .announcement-banner button:hover {
             background-color: #4a5568;
         }
-
         /* Navigation Bar - fixed and positioned dynamically */
         nav {
             position: fixed;
@@ -565,14 +534,12 @@
             width: 100%;
             z-index: 90;
         }
-
         /* Media query for smaller screens to adjust padding-top if needed */
         @media (max-width: 767px) {
             .announcement-banner {
                 padding: 0.75rem 1rem;
             }
         }
-
         /* New styles for the modal proceed button */
         #modalProceedBtn {
             background: linear-gradient(to right, var(--accent-purple), var(--accent-blue));
@@ -588,68 +555,47 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-
         #modalProceedBtn:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 25px var(--accent-purple);
         }
-
         #modalProceedBtn:active {
             transform: translateY(0) scale(0.98);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-
         /* Light mode specific styles for the modal proceed button */
         body.light-mode #modalProceedBtn {
             background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
             color: var(--text-light); /* Ensure text is visible on lighter background */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-
         body.light-mode #modalProceedBtn:hover {
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 25px var(--accent-blue);
         }
-
     </style>
 </head>
 <body class="bg-space-dark text-star-light">
-
-    <!-- Background Music -->
     <audio id="backgroundMusic" loop autoplay>
         <source src="https://dl.dropboxusercontent.com/scl/fi/dkrs0oc0jvtg9xghqye8l/inspiring-cinematic-ambient-255033.mp3?rlkey=42pu1bucaixq9ncgfq5wdo2qp&e=1&st=qf8fyjbk" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-
-    <!-- Announcement Banner -->
     <div class="announcement-banner" id="quizAnnouncementBanner">
         <span>Blast Off With This Planet Trivia Quiz!!!</span>
         <button id="openQuizBtn">Are you ready?</button>
     </div>
-
-    <!-- Full-page Three.js Canvas for stars -->
     <canvas id="threeJsCanvas" class="threejs-canvas"></canvas>
-
-    <!-- Navigation Bar -->
     <nav class="shadow-lg py-4 px-6 rounded-b-lg" style="background-color: var(--navbar-bg);">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <!-- Logo - Clickable to Home -->
             <a href="#home-section" class="flex items-center space-x-2 text-2xl font-bold text-accent-purple mb-4 md:mb-0 nav-link">
-                <!-- Using the provided Dropbox link for the logo -->
                 <img src="https://previews.dropbox.com/p/thumb/ACtvzyuk655HkUE4ofBuH77huIITGGbWIzJPXh38QtRlhK3ylUzpJyA8pe6u-y0of6hawT0aY6xEbdsGfVIuRhoyWX1zOqEMNq9YbiTJQL2SIMZwKAQnpSwE2J5m4A-2jJBzyZ8fRt_R_aVIdptB02RAjrv5XffoeDjh3UM6zYv_mbZLW1K7YHJzuXQILfp_FkXMoWR8sODQD6M7tVysKRzzYprwHgp6UH8pa-RKLaF6WeY0GvfFAa-9rrdiEdFYfDbtyeNX1-8_BZ9hTYsE3TEa8KmLfRGeScjhN3lpI0rAKbTOt1yTnRSWDldqPbHiDcE01dSpelUTZFiNUM5O2V9r/p.png?is_prewarmed=true" alt="Gemini Voyages Logo" class="h-16 w-16 rounded-full">
-                <!-- Gemini Voyages Marquee -->
                 <div class="logo-text-marquee-container hidden md:block">
-                    <!-- Duplicated content for seamless loop -->
                     <span class="logo-marquee-content">Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; Gemini Voyages &bull; Orbiting Possibilities &bull; Landing Dreams &bull; </span>
                 </div>
             </a>
-
-            <!-- Navigation Links, Dropdown, and Theme Toggle -->
             <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center flex-grow justify-end">
                 <a href="#home-section" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Home</a>
                 <a href="#about" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">About Us</a>
                 <a href="#your-stay-section" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Your Stay</a>
-
-                <!-- Planets Dropdown -->
                 <div class="dropdown text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">
                     <a href="#" id="planetsDropdownToggle" class="flex items-center">
                         Planets
@@ -670,8 +616,6 @@
                 </div>
                 <a href="#gallery-section" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Gallery</a>
                 <a href="#connect-section" class="nav-link text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out">Contact Us</a>
-
-                <!-- Theme Toggle Button -->
                 <button id="themeToggleBtn" class="text-star-medium hover:text-accent-blue font-medium rounded-md px-3 py-2 transition duration-300 ease-in-out flex items-center justify-center">
                     <svg id="moonIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
@@ -688,14 +632,10 @@
                         <rect x="11" y="2" width="2" height="4" transform="rotate(315 12 12)"/>
                     </svg>
                 </button>
-
             </div>
         </div>
     </nav>
-
-    <!-- Main Content Area - Contains all sections -->
     <main class="container mx-auto px-4 py-8">
-        <!-- Home Section -->
         <section id="home-section" class="content-section active">
             <header class="text-star-light rounded-lg m-4 shadow-xl hero-content-wrapper">
                 <div class="max-w-4xl mx-auto">
@@ -715,18 +655,12 @@
                     </div>
                 </div>
             </header>
-
-            <!-- News & Updates Marquee - On the homepage, just above the feature boxes -->
             <div id="homeMarqueeContainer" class="home-marquee-container">
-                <!-- Duplicated content for seamless loop -->
                 <span class="home-marquee-content">NEWS & UPDATES: New routes to Mercury now available! &bull; Book your deep-space adventure today! &bull; Early bird discounts for first-time voyagers! &bull; Explore the digital cosmos with Gemini Voyages! &bull; NEWS & UPDATES: New routes to Mercury now available! &bull; Book your deep-space adventure today! &bull; Early bird discounts for first-time voyagers! &bull; Explore the digital cosmos with Gemini Voyages! &bull; </span>
             </div>
-
-            <!-- Features Section (the "boxes" section) -->
             <section id="features-section-inner" class="py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
                 <div class="container mx-auto text-center">
                     <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Our Spaceship</h2>
-                    <!-- Updated Rocket Image -->
                     <img src="https://previews.dropbox.com/p/thumb/ACu3W03TiTFSXCqNWJpSHuiwP7UBFTd1OWXOqL1Hpcb-87cfS5DRSoTEHB7CD_qix01R-eEME-myriBQk0ABplHye1aQAZn6jKeGkYTKIsBa-MbLAk464AOCu-EfxSJ1i-3PDyHNWJazqbIH-TTZzzhuc3NJ113n9gljGNyZVnoQqJTXDK2kjrZKS84vZv2epCqs_FuXX9uTpV2IrP_31Z7Eh7i6EXV8w2aHwKfMG5-3Qche68mqt9nGKQRVit1JpYqy-jjxYr9WuDu2dKB4Z4k34WBYRpbxAf7ljLlDGxYhfuxx8r9-EPzXrkzqGeDm0qp2AT9dAnf8CcwFZYMOghHs/p.png?is_prewarmed=true" alt="Our Spaceship" class="mx-auto my-8 rounded-lg shadow-md w-full max-w-lg h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x300/402c58/f0f0f0?text=Rocket+Image+Not+Found';">
                     <p class="text-lg text-star-medium mb-12 max-w-3xl mx-auto">
                         Here's a glimpse of the advanced spacecraft that will take you on your incredible journey!
@@ -770,12 +704,9 @@
                 </div>
                 <br>
                 <br>
-
                 <img src="https://previews.dropbox.com/p/thumb/ACudSIGSg21Kn0HnwNFdOL31En61oZQHeSBuVitKKt04r_BlASPyuXNQ80ODYFhn_KJUxrJ8y2OePAhG5wYaEIqSQBEG8WBFlGKNxWydYe2LTqNkNJpdRXlJZSSGuhbKwAnJ5olcar_4RdX16QyfouyGw_2PaIlLz4127NMotyYXlX-L5CxGu5lQ5AKCHWx3yxUSzlLftWe9z3yJS1E0p4Lva_Ey9sQj2rTwVbLuZnGoJFIVCwJzZfvL3Etpgob4omxJLuThHZGnQTB6f-bWX8Dp1CYSOkYKLRXGf273dMt_vX9QCqGZGfl0reIXjv79hSk/p.png" alt="Our Poster" class="mx-auto my-8 rounded-lg shadow-md w-full max-w-lg h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x300/402c58/f0f0f0?text=Image+Not+Found';">
             </section>
         </section>
-
-        <!-- About Us Section -->
         <section id="about" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">About Us</h2>
@@ -797,30 +728,24 @@
                 </div>
             </div>
         </section>
-
-        <!-- New: Your Stay Section -->
         <section id="your-stay-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Your Stay</h2>
                 <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
                     Your space adventure includes delicious food, fun activities, and different flight plans to choose from. The cost is based on these 3 factors.
                 </p>
-
                 <h3 class="text-2xl font-bold mt-10 mb-6 text-accent-blue">Finances Spreadsheet (Cost & Prices)</h3>
                 <div class="relative w-full overflow-hidden mb-12" style="padding-top: 56.25%;">
                     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZEz8457xJFf18X-cKLR6zoWQ0NwP2J60MBB-5h597GA5vmMj5iD24B8BEHggrWQ-S2f3siVRAMgJU/pubhtml?widget=true&amp;headers=false" class="absolute top-0 left-0 w-full h-full border-0 rounded-lg shadow-md" allowfullscreen></iframe>
                 </div>
-
                 <h3 class="text-2xl font-bold mt-10 mb-6 text-accent-purple">Delicious Food Options</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <!-- Food Option 1 -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://coimages.sciencemuseumgroup.org.uk/334/324/medium_2018_0583__0001_.jpg" alt="Gourmet Space Meal" class="w-full h-48 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Chicken Curry</h4>
                         <p class="text-star-medium">Chicken curry, when made for space, offers key benefits for astronauts. It's calorie-dense, helping maintain strength in microgravity. Its bold flavours combat the dulled sense of taste astronauts often experience, boosting morale. Crucially, it's designed to be non-crumbly and easy to prepare, preventing messes and simplifying life in zero-G. Finally, its long shelf life makes it perfect for extended missions.
 </p>
                     </div>
-                    <!-- Food Option 2 -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://ids.si.edu/ids/deliveryService?id=NASM-86A0893244412_02&max=900" alt="Comfort Space Food" class="w-full h-48 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Granola and Raisin Fruit Bar</h4>
@@ -828,60 +753,50 @@
 </p>
                     </div>
                 </div>
-
                 <h3 class="text-2xl font-bold mt-10 mb-6 text-accent-blue">Fun Activities in Space</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    <!-- Activity 1: Space-Walking -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACs-jqyqTfe6h0AMRD5VgOpJPe3qZ-AdWDeUQYzxOCriukNOw22YSnVNaapCi56Z6efVc9Nt1frXSg7fzbrgV5iIZ9O7T0rlY38pPiSQeVBeYKMT7dGKbu2fzX1CMpFSyCfcoT4WCHRZpKzIhSFX5E7sNSvsRMt2VxFI-ZCQuK14ugszRUL6qj7GGl5WumASuYukRVSCL40bCej_l9_5l08Lskub0Awyzx5o9IQyO3CuPCnfXai6uOEQ9GzauLDVsA7ldELWoztwu23hCvSTMTplOsGLDN_Hgfi1YmlV0La7pXp4G-v-qX1BF0A8sa3E_BM/p.png" alt="Astronaut Space-Walking" class="w-full h-36 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Space-Walking</h4>
                         <p class="text-star-medium">Float outside your spaceship and see amazing views of Earth or other planets, safely tied on!
 </p>
                     </div>
-                    <!-- Activity 2: Martian Mud Mask Treatment -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://placehold.co/300x200/bb86fc/1a082b?text=Martian+Mud+Mask" alt="Martian Mud Mask Treatment" class="w-full h-36 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Martian Mud Mask Treatment</h4>
                         <p class="text-star-medium">Relax with a special face mask made from mud found on Mars. It's a truly unique spa experience!
 </p>
                     </div>
-                    <!-- Activity 3: Sight-Seeing (with tour guide) -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACsjeFrFNNVMpTj-coiPLzKuWFSFuVASAGLZJdBbUUy24wovIfDLKdX-yiEmh3FBjSTUc5DhQ3NEj6IoHdgmykXCs4dr6Dic-w5SR-SY7Q7bXRTp5lCWfjqJeTIJzE-pIa4bsWXX1sVKIFvW63qHKNQ3-WTcooFGoPidWU5khYMOWcVPtUZlLKFNeMGHwUuji2HOiOEcDGIvIMA_nlqd-5tz6xPtMfMeR9umfONIwy1iw7FeZAMjwGqCs1Sii2-VcIWDhQQvcPbetBrvC3pXfSGENSGY7Ar1FrpH7wcWZtKipzUIO3qkVrEZkjSRvk0Kop4/p.png" alt="Space Sight-Seeing Tour" class="w-full h-36 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Sight-Seeing (with tour guide)</h4>
                         <p class="text-star-medium">See incredible planets and stars up close with our expert guides. Learn cool facts as you fly by!
 </p>
                     </div>
-                    <!-- Activity 4: Rover Driving -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACsCM3hNkE72YFxMbi_jWUwJxYUJvGPkil8pePHbEDy_vhk1_-ka9OdoigLvGTKhBAT_6Rf-Fg5e8Kg1KjFpGgJZyjPWKAKfL34fpPDaxR8DQDNMQ3wagpx4tBUlONTA5DcgT2lwyBkSXMUZSwIdRwKDBakOYbeAm686Koo37b3kCjhHHs2KxfHdSkil6Gd095XP8hJroJwbUTYG3mpPc9LUAe0SbI-4h20xxnZY6ZSkaVVkZRw3WJYmKuUyxNcUG0lI8arbMpX4aOZL9JsLDpmmkQsdp5aotwWyTZbxQNozJ8UtOMMVk0tSM8EjSoRMpTI/p.png" alt="Rover Driving on Alien Surface" class="w-full h-36 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Rover Driving</h4>
                         <p class="text-star-medium">Drive a real space rover on pretend alien lands. See if you can steer in low gravity!
 </p>
                     </div>
-                    <!-- Activity 5: Sandboarding -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACsoe84a1BIwRRiENYiZQN29Mi3-CK1cxRKRIAd3InHtUAAKX68QV9JmyLqvqOAvZEaVKcTZT-LpOvMJ2BDKWSCZGHQrIUa58VAYka8zfsxD_LMqByoK3IuUFDubOEjBvsrS-7OeJH-cgCxS6RApStSaN7IFWxWG9RBwu2EHtTpitmqnYAufeExuOTN_1Fgn3yCX3g5S_mDW5-iDhAgzRoD1poPNYSqCfxRRTSk_fbk0raWOTqz5l1T8to4K6dEFy8qyGpaneLMQx3MZkY54fi0a7BhakN-KdazMRgM9_GAHCVGlendF2KKKtjDD-iyv8eo/p.png" alt="Sandboarding on Dunes" class="w-full h-36 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Sandboarding</h4>
                         <p class="text-star-medium">Strap in and glide down the epic dunes of Mars and other desert planets. It's like snowboarding, but on a whole new world!</p>
                     </div>
                 </div>
-
                 <h3 class="text-2xl font-bold mt-10 mb-6 text-accent-purple">Choose Your Flight Plan</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Flight Plan 1 -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACsDevdqhKnKfIqZUp6IUqm9__iuIR6Rn6UVuLdo5fhFe0CR4wdlQeG6mzR9nBLrzLpAS9Z9qu56xoZqOaL6aprD_O3yZNZ1WeN6_a4geBwQyojbOjomJZko3VM6lq5_rJ_h17i3JRmEfODtFe3XQlZIzETYpprKI160OQV1j2QilxUHm8yTQIPSKZ_mOcuzYyaOm0if6CLMTZB6ogzqljXeZEsxm4KF35_2PQO8PNaUYEsz3uyKebDMPc2DJRc7jW1N-bB_J602xdphyYt2ujY5QAgVTLL6aSLrgQpmydJxIZKdoPPzt_a6wuatRSo9ig8/p.png" alt="Economy Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Silver</h4>
                         <p class="text-star-medium">A comfortable and affordable trip to your chosen planet. Basic amenities included.</p>
                     </div>
-                    <!-- Flight Plan 2 -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACuOuq_KT8n41yYQ1QJQgiOSVIhE2Je5eNtodzrcXzIRqza0u7abCsx0G93Ha7IfIr73NP4a04WZWarqixtB2GFeSlJzTOulraksWO8IXjgba0gCrkYf9LlW9qvufUYSFsBigZNm8adNgKpFhbeJ_6w7-RSa9N6f7cKRJYGk_65DF-e7OpG3bJCOP-MYbSmLzc1dLNfR08yn42FzJTaymB852o3WfbH7At_MYDuaP8-fsfpmPQGPtxenZRZmntOML_8sdqnrX5qOSBKHJwyuNnbGRtmJVZO85qX-zGWh-VTY-T3tB2uUKYZ2rXh0wrWRjGA/p.png" alt="Business Class Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Gold</h4>
                         <p class="text-star-medium">More space, better food, and extra comfort for a relaxed journey.</p>
                     </div>
-                    <!-- Flight Plan 3 -->
                     <div class="bg-space-light rounded-xl shadow-lg p-6 transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACvziqXNSKg3PVFz4rBMMBEVWMRksYxzIvApoYV0KPnPx58Eexcg7tsYR73Ww1k7DCrJ6MdjRh5IIJicUS13hBWcO98zgNZbcNbhKnN9yvniYdjuU0DaaQZ8UWmG_fNqMhH8K0DmpZAOkwuYzG2LEVz4hLvAVVlAhYnBOJPzo3Zz9nAOsl0BhrfT7pdx-7GaFYeYJxjC14Lz_8pLEBGfwf0syrkpywbdxDN4e3Uu0HV6VLmvXIzTbdpmVxoFsCoUiulS4Yp5uOwRRX3uBE8RR0o8h75BWutDNmaLqmuRO7Vhn_XJrPTEQSPIXDat1WXEGQM/p.png" alt="First Class Flight Plan" class="w-full h-48 object-cover rounded-md mb-4">
                         <h4 class="text-xl font-semibold mb-2 text-star-light">Platinum</h4>
@@ -890,138 +805,161 @@
                 </div>
             </div>
         </section>
-
-        <!-- New: Gallery Section -->
         <section id="gallery-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Our Galactic Gallery</h2>
                 <br>
-               
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                
-                    <!-- Gallery Image Item 1 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://previews.dropbox.com/p/thumb/ACuzo5Mvh9JAZkZ3sXSdTJfcAov7dgQ7FlMVR6B3Cl-h0DwPA0LX50bsohC20sx6McwTgtF2yiTAqZd1BBI4zX2TS2VuTN6fXrwfi9MnfpMeNr4bvOJQxh5iIlxrGJE4Wpv-7vqhsWd5TEY-uGWyVECjMqIoVqMrO44UzYsCp_YMx9vmL0sT0jvQDkzHRW-H2LVK4b65DWFLwOhV5OlLf2inVKD-XZjRWuJkxwOP-s4K3KMS5YckXlbmnLCyjMZLs1qbcR_Hk9CmA7ELmBSBULlsb1p3VwsVv6Fn5NcNBmG6hRloY7b2QefbTuv6iUEBlkc/p.png" alt="Rocket" class="w-full h-auto object-cover">
+                        <img src="https://previews.dropbox.com/p/thumb/ACuzo5Mvh9JAZkZ3sXSdTJfcAov7dgQ7FlMVR6B3Cl-h0DwPA0LX50bsohC20sx6McwTgtF2yiTAqZd1BBI4zX2TS2VuTN6fXrwfi9MnfpMeNr4bvOJQxh5iIlxrGJE4Wpv-7vqhsWd5TEY-uGWyVECjMqIoVqMrO44UzYsCp_YMx9vmL0sT0jvQDkzHRW-H2LVK4b65DWFLwOhV5OlLf2inVKD-XZjRWuJkxwOP-s4K3KMS5YckXlbmnLCyjMZLs1qbcR_Hk9CmA7ELmBSBULlsb1p3VwsVv6Fn5NcNBmG6hRloY7b2QefbTuv6iUEBlkc/p.png">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">A glimpse of our new spaceship.</p>
-          
                         </div>
                     </div>
-                    
-                    <!-- Gallery Image Item 2 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACtBa8jUPox6hbM5NUqCPmCE6FFRQASXdLO3wPBprP2UD4Wfmqejv3-UFSyTZtgzte6g586tITrDxfJNNXR_MTk8jx-XGeTq2VQeyZZFblgLRiEH6ITFgzQvTWIvnw9xo-6lboOIcdIg9sNrNcOlgnZlsRzWLXpHrPC2SCGvr0wKICi95Qs59SNyFKKmQ2ZYQOFcL5TNEVgCt2op56XR5V4zNDI5NhY2BS1qFb_E23yNrtDHKrgfAM6v38kpUzFz4e5ftW-vofzCzluISW9Ux9scFiILZi-3B8ImmGUsHf9ehjVplKHFnNLpEyxKPXrvwmc/p.png">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">The Silver Tier</p>
-          
                         </div>
                     </div>
-                    
-<!-- Gallery Image Item 4 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://previews.dropbox.com/p/thumb/ACtJBnGdk1YYx60jnvJ9-1IXm-VrmMoqUqyabvRQpvb4-jByu41MsadNoQP1y50-nlReKfsi4fd6X6u2iCFszj2jQICHjugPC4UxHmq4dgzXRQQslo4tYOSMYR1APLxTl-n5bh1xPLJiuw0XbXTRSf9fioNMoSI_NDsNzlVDYgOvUkI9kGIP0QXqU6RR4niq_9o3yz0NLdAkUSRF0fhaNRSlWQyjwrWbT5nLAFIySqaDSWA25ps2UV7W8VMxHneXRdqOB5lhcx8VTDAngADx2sZxZ1yurLsYwKbQzCx6N7enziU__xOodc3OLWIqoOT0TKA/p.png" alt="Gold" class="w-full h-auto object-cover">
+                        <img src="https://previews.dropbox.com/p/thumb/ACtJBnGdk1YYx60jnvJ9-1IXm-VrmMoqUqyabvRQpvb4-jByu41MsadNoQP1y50-nlReKfsi4fd6X6u2iCFszj2jQICHjugPC4UxHmq4dgzXRQQslo4tYOSMYR1APLxTl-n5bh1xPLJiuw0XbXTRSf9fioNMoSI_NDsNzlVDYgOvUkI9kGIP0QXqU6RR4niq_9o3yz0NLdAkUSRF0fhaNRSlWQyjwrWbT5nLAFIySqaDSWA25ps2UV7W8VMxHneXRdqOB5lhcx8VTDAngADx2sZxZ1yurLsYwKbQzCx6N7enziU__xOodc3OLWIqoOT0TKA/p.png">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">The Gold Tier</p>
-          
                         </div>
                     </div> 
-                            
-                            <!-- Gallery Image Item 4 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://previews.dropbox.com/p/thumb/ACvziqXNSKg3PVFz4rBMMBEVWMRksYxzIvApoYV0KPnPx58Eexcg7tsYR73Ww1k7DCrJ6MdjRh5IIJicUS13hBWcO98zgNZbcNbhKnN9yvniYdjuU0DaaQZ8UWmG_fNqMhH8K0DmpZAOkwuYzG2LEVz4hLvAVVlAhYnBOJPzo3Zz9nAOsl0BhrfT7pdx-7GaFYeYJxjC14Lz_8pLEBGfwf0syrkpywbdxDN4e3Uu0HV6VLmvXIzTbdpmVxoFsCoUiulS4Yp5uOwRRX3uBE8RR0o8h75BWutDNmaLqmuRO7Vhn_XJrPTEQSPIXDat1WXEGQM/p.png" alt="Platinum" class="w-full h-auto object-cover">
+                        <img src="https://previews.dropbox.com/p/thumb/ACvziqXNSKg3PVFz4rBMMBEVWMRksYxzIvApoYV0KPnPx58Eexcg7tsYR73Ww1k7DCrJ6MdjRh5IIJicUS13hBWcO98zgNZbcNbhKnN9yvniYdjuU0DaaQZ8UWmG_fNqMhH8K0DmpZAOkwuYzG2LEVz4hLvAVVlAhYnBOJPzo3Zz9nAOsl0BhrfT7pdx-7GaFYeYJxjC14Lz_8pLEBGfwf0syrkpywbdxDN4e3Uu0HV6VLmvXIzTbdpmVxoFsCoUiulS4Yp5uOwRRX3uBE8RR0o8h75BWutDNmaLqmuRO7Vhn_XJrPTEQSPIXDat1WXEGQM/p.png">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">The Platinum Tier</p>
-          
                         </div>
                     </div>
-                    
-                    
-                    
-                      <!-- Gallery Image Item 4 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACvalW6INykPL513mPktHsuUY5w92nHb3PnGy1WE_bKpGOKU6YG3ftVKczRAHZZhHTlWa1GLlBO-mY06g05xwv-VEp3xiLOOLDwKshWaV2U19xgC-KiriTgvxIXuHHHJp_HP-sdqiykQ2Sk5raq0CpY6HC2qJObi_KOkLx9_EulocDDQKGhwqvpvOpqXjc0ELYZQNFw2KE3SYzSIKB_4Xj_BhtUrgoD65j-DBwfO5TNumd0ufudX6xOp_1DSPlyxgJaxK_BDGczkunw2RxM7rVLOSC2VMQnIPUf1VzyHYODCjRve8-4c5KxnPrWcR9V6T80/p.jpeg">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">Chicken Curry</p>
-          
                         </div>
                     </div>
-
-
- <!-- Gallery Image Item 4 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACvlnfMne6leA47dF-FTUUi_kII1fNAUeJyWdHmBDEUSCufatJ8OnmsuyJrw5QhUXWyeRPocQTNWcLRbxhR2W9BiNQ8NyHthPXSzU1r1ufbircgi8YXJDRbPlRyzf47curfl-vf6GuDzd6IWp7kA901A3_69XzHCXsd3Pk9oL6dkn97WY1xgbsmg9QqeF2cfK_D_YKM2ECup8kf9HBA1SLQpLJg_0nt7tiFna6UyPD5KDhZXen-S34xttobfDe-LGmEdVfw_cRSyAp8CqKdDPtIN2BqSkXry_zxII_YAm3PWGapiM4mPRItfI_N6bdvLEK0/p.jpeg">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">Granola and Raisin Fruit Bar</p>
-          
                         </div>
                     </div>
-                    
- <!-- Gallery Image Item 4 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACs-jqyqTfe6h0AMRD5VgOpJPe3qZ-AdWDeUQYzxOCriukNOw22YSnVNaapCi56Z6efVc9Nt1frXSg7fzbrgV5iIZ9O7T0rlY38pPiSQeVBeYKMT7dGKbu2fzX1CMpFSyCfcoT4WCHRZpKzIhSFX5E7sNSvsRMt2VxFI-ZCQuK14ugszRUL6qj7GGl5WumASuYukRVSCL40bCej_l9_5l08Lskub0Awyzx5o9IQyO3CuPCnfXai6uOEQ9GzauLDVsA7ldELWoztwu23hCvSTMTplOsGLDN_Hgfi1YmlV0La7pXp4G-v-qX1BF0A8sa3E_BM/p.png">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">Space-Walking</p>
-          
                         </div>
                     </div>
-                    
-  <!-- Gallery Image Item 4 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://previews.dropbox.com/p/thumb/ACvgH06akp_jH0e15y5a7rxPqjgZ3h0UJQzfYVaqF99zAhpOvCTdPZyoH5Vq6F_zWbfoRqa-oB8JrdAtQvsoB0-_V-6J4xuRly3CEnAMQyGAYB_ks4TvPWT9oqW5uzl6uvr0ninR2hsdvY4eevZZbXvrvLb86Kjj-A3FqRrlSKNu220tVcLvg1cv7ghR570fBO9UbcNg363o-HY3VtXOD0O2Ei1PNwmrFJWqMhKNYB-HNv3p4ibRTY50YhI2TEM3KZlK7j7w0vQSDHmhOi2ZBt6Xd88UUNipQTC6CCl1PWBEpptwbnvzljka06aymXW6Nqc/p.png">
+                        <img src="https://previews.dropbox.com/p/thumb/ACtGz0ogLWgqQahdx8HYwP8I6w6jTnuDP-ryTaERLqBw5DI5-dPu3CGQoizwvvacC_al_QnO6jqQoktUQ1Gfg9gBvrTK3QVqogjlm0G4Ubc3K0vs8LLwrYXAJbZvdBfBO6heQmbdd0Bdn1yZnnDlq42OHauw1B7KyzQXwj7yB1VUawto0zMudgvRMrNYu2CCbSRkpce72t6y4r1mNhOD5h_opE4UlcfCUCCNNrXjtqEx-SOGe3FOG2qooH2CHYeRaIyPaDn1LZzYB1wOD36aDsOy11jNyyG3c4CQSxp9nZAfZ_Ui_xmjbNH78mVNIvgvB-I/p.png">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">Martian Mud Mask Treatment
 </p>
-          
                         </div>
                     </div>
-
-<!-- Gallery Image Item 4 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="https://previews.dropbox.com/p/thumb/ACsjeFrFNNVMpTj-coiPLzKuWFSFuVASAGLZJdBbUUy24wovIfDLKdX-yiEmh3FBjSTUc5DhQ3NEj6IoHdgmykXCs4dr6Dic-w5SR-SY7Q7bXRTp5lCWfjqJeTIJzE-pIa4bsWXX1sVKIFvW63qHKNQ3-WTcooFGoPidWU5khYMOWcVPtUZlLKFNeMGHwUuji2HOiOEcDGIvIMA_nlqd-5tz6xPtMfMeR9umfONIwy1iw7FeZAMjwGqCs1Sii2-VcIWDhQQvcPbetBrvC3pXfSGENSGY7Ar1FrpH7wcWZtKipzUIO3qkVrEZkjSRvk0Kop4/p.png">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">Sight-Seeing (with tour guide)
 </p>
-          
                         </div>
                     </div>
-
-
-<!-- Gallery Image Item 4 -->
                     <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://previews.dropbox.com/p/thumb/ACsCM3hNkE72YFxMbi_jWUwJxYUJvGPkil8pePHbEDy_vhk1_-ka9OdoigLvGTKhBAT_6Rf-Fg5e8Kg1KjFpGgJZyjPWKAKfL34fpPDaxR8DQDNMQ3wagpx4tBUlONTA5DcgT2lwyBkSXMUZSwIdRwKDBakOYbeAm686Koo37b3kCjhHHs2KxfHdSkil6Gd095XP8hJroJwbUTYG3mpPc9LUAe0SbI-4h20xxnZY6ZSkaVVkZRw3WJYmKuUyxNcUG0lI8arbMpX4aOZL9JsLDpmmkQsdp5aotwWyTZbxQNozJ8UtOMMVk0tSM8EjSoRMpTI/p.png">
+                        <img src="https://previews.dropbox.com/p/thumb/ACtJvCQ0zgdCxA-vHsfYpfvhedSmt52DC6Zc1SKU-iQVh2oSrFTuaNRuDPv4h3jgbKMeqJ4FM1_9BRRjkAWzRB1z87H1AhYNEBMOwJi1BS39grHZfT0h9rVro5TV3gLp76BXUacy9cvH_lsiSFlusRscuvdX6d6G4OAD9zWytE8U8LyTuU65TNYmfpqi4Elq7FkuVJxXtIaDHiV64Pf6lDIIOzCQM2naNJsiCywwF0-B4Uds_HNPtZC9ZnMdHT8I7TzyS2EDNLTZpK8WMw8QkuujWZNBSOnlx32xGy8e7AmNh9l15tsEdPFmpBL1-yfypP4/p.png">
                         <div class="p-4 bg-space-light text-star-medium">
                             <p class="font-semibold">Rover Driving
 </p>
-          
                         </div>
                     </div>
-
-
-                    <!--
-                        HOW TO ADD/REPLACE IMAGES:
-                        1.  Replace 'src="https://placehold.co/..."' with the direct URL of your image.
-                            Example: src="https://your-image-host.com/your-actual-image.jpg"
-                        2.  Update the 'alt' attribute with a descriptive text for accessibility.
-                        3.  Modify the text within the <p> tags inside the <div class="p-4..."> to describe your image.
-                        4.  To add more images, copy and paste one of the `div` blocks above (starting with `<div class="rounded-lg overflow-hidden...")` and modify its content. The grid will automatically adjust.
-                        5.  Ensure your images are reasonably sized for web display to maintain performance.
-                    -->
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACslLU79PV5APKNP0esy1xWUIUlL4oFgJ63TbrVTsMgcx2TAex-b3KFEEiEtQ_4AJ6wDnme4AxRJjxrt9-RAdDLh3dRtxynWklC1pUYUjxYghWE62Opqd7W-8v8T-kv0jFoYUohuZMZHVFW3S-YNtwpNdMkWG501cnrlo1ofyJCl9TUgBqSZ-XDintNzhTcmR0_299e8wn1Xu7l6eE6fkK6bZm32EaNei8qZ2hO9Cy3o4vBdmWaoc3hM0kh_uColgY4_GbTSY_vr8xcKxI3y7u1SMvW_vSnWoRzmS_uEW448QyWJewGvTcyA-47qqrvT4v8/p.png">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Sandboarding
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACslLU79PV5APKNP0esy1xWUIUlL4oFgJ63TbrVTsMgcx2TAex-b3KFEEiEtQ_4AJ6wDnme4AxRJjxrt9-RAdDLh3dRtxynWklC1pUYUjxYghWE62Opqd7W-8v8T-kv0jFoYUohuZMZHVFW3S-YNtwpNdMkWG501cnrlo1ofyJCl9TUgBqSZ-XDintNzhTcmR0_299e8wn1Xu7l6eE6fkK6bZm32EaNei8qZ2hO9Cy3o4vBdmWaoc3hM0kh_uColgY4_GbTSY_vr8xcKxI3y7u1SMvW_vSnWoRzmS_uEW448QyWJewGvTcyA-47qqrvT4v8/p.png">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Mercury
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACvM0agD7Qt6rwjyM-Tei700qSv8-PmnNFREE7oMFq518Ebcy8I7Rwi51jR_vNzTGCnkb-N5S5Jrm6-4UwJULiN640nbsUKSO4Be57IYduQwlYiOyZ7aYoFNMdN1TF1YhXhxG79xOKlHrueZQvAFa1dk6uYrP8_kOWlEe7GvNInUH3gOFvquGJjzEdFR7ZQtHXZhukaIpSrA7hcWPewMuAhnRGUSr0ES6rKC8MbF-1se82B_YxnqFWY8BPygaVKQ0MKBIJQJDdJN3F3-tjFUjvhw5NtsB5MSYxQQZ6ugpUIT9sim6Tg1lLacYvP7z-E6sxE/p.jpeg">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Venus
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACuSkoWp-Ut9-_WdxfGsyNyiQypre54e2wryy0j32djdJk-IXdUVZbZhbUCuMnQjFjr7fTRODoaWpfH2CH1-Kzb3ENq3qR0zgUBz1kITJ99IyjWk7fUTP8yo_4Zl5Tt3pljN1llw987Mp3FNzPoKDcS9w8Q-OxfyPWJGbfR-WR02YPY6qAd-lqOaDTclz3KD0lWQ2X1D7Vn6YtyysAs_vCNE3wUJb1ZWgoxhDNEis7f7qzDRPAJimzJDfrMrqqgJ3KQBELUb31QmXHiMUDhNaTq3wfNo5VLpfA_BVcDHI5fnurYg3EePXIAE5zfllXcWl9I/p.jpeg">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Earth
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACvSUHKO94P65ApCBiq04QT7-TkyO_BcqQHbbZvo1lKLeD3wsXdWK_PKlx8JNRy-aTM5h2NR7P2O4TddemgdEotJqwBq28w_ukzOQAwrvnCNu7U6OfJwKWFo0pau9y4eVjPYRcNKxqjxvEF5jiLN8W3ZMB5cQ7is2r2Yjcxqn4qG3EQ0o17RtYdajRU_8VZ54QJbW8qC3DIaXece9YAS80p4HJMXiJGbr81KBblVtGWNAQFq526TdRQOJnXq93C4Q6YWqpGDNZ_Y-MZWIDvvOBVv5367_bDforokYUHU8P5F9VdYuAmhboa5e6HQ6c0-Jic/p.jpeg">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Mars
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACvYWTEIyYG2JxCTtw64kByWJW-YjmRVqSCkD5iFVV4Al--hpwCSDsElUU-z0QFK_Zmc9ekiNxL4jASSmSy05INNQ4ZngaH6XU3fq1OdJ9lhGKptqDy0FcKfshAtBM7WLA4KbSL4I2qoUwacPxOpT7-L6wl9qQG-mQwSFwQlOJqXdFBF_DoQrrAaqbUwhys_JfcF8mmCLeJThIvVdifEH6GKTtuby_nKarkP0h_ybA_98XSE_vpwxPRaiNfrsH4zL7TKntfGzpJk6NXYYM24momgK3AzjY7IBeyjXg-EGar8d5SuaKmyu9GrF_vqdH07tVY/p.jpeg">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Jupiter
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACslLU79PV5APKNP0esy1xWUIUlL4oFgJ63TbrVTsMgcx2TAex-b3KFEEiEtQ_4AJ6wDnme4AxRJjxrt9-RAdDLh3dRtxynWklC1pUYUjxYghWE62Opqd7W-8v8T-kv0jFoYUohuZMZHVFW3S-YNtwpNdMkWG501cnrlo1ofyJCl9TUgBqSZ-XDintNzhTcmR0_299e8wn1Xu7l6eE6fkK6bZm32EaNei8qZ2hO9Cy3o4vBdmWaoc3hM0kh_uColgY4_GbTSY_vr8xcKxI3y7u1SMvW_vSnWoRzmS_uEW448QyWJewGvTcyA-47qqrvT4v8/p.png">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Saturn
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACuF6fTiK5FabypZ2ysq7DA6164QIgk8TSVkjNiBGG6llY_MP61FOmCixB3gzHhaH6zzwZ0jgzpBdZJQOHzxhNbxjbN2f4u-7Gf4vaTPMWx_8pgVNGTuK-3UpfmrQbqKih0EL42LL3hwsT2CZnlNcad71ZgBaiuoUAMfDPbThTa3qTIhLOcyXk_fywAj_gukACnhpzjhjN9yAcih9W4-uzTQHKfhGtFeDIrMxFkNqrflfd8owc5KFru1K9Gf607F7Ayj2YBhqPRiZ0HhBe6DrI72pTdYFmajsNSPhoozNM-7ygoA4mb-YtOG81jDtTtCtpM/p.jpeg">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Uranus
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACuPAcHfcOg6N1SLjkhM-k7z8Y4RE_Vds58AJbIQ66Fz1WmRtPmQCQ3PlllnMVWjXF8NH82jPafCAMBmGt0ip--OvakUGRSOfQyze9y0K98H4r87PBaTwgXXS4LoKqB12x9nVoIkK18NnnCK3qWDw2iaMrubLAlNbx5s5ua9m-I0u0DVE-O6eetQWXN9Xe5xhZK-6Xk5C_TFcZQJTdmUFk_N_zqQRwMUoOx2-EP9xjJmlCVEqTyb1LyiHcjwJWmG9odm6WLAsspIVEKb9kNR9ZzeXriHFBdCZc5mnes-Qj9ExdKwZbPStytBiK-QqEZf0-4/p.jpeg">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Neptune
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACubIPd8ZHPIkxTAwqgLg_LZLYPtbIIkQOoR6ah8F-ja4ZQDrV3KE0upeb6rkiXsiBKv2r-nJK6OIT3QTj2Wruemtod8VtmB7vt4WtlNDTFRnucefvF8qZWPuZND4yoG4Ru8u36jSoq8FyOMkmFZ21nWApFzo-PclbMm-B9_UkLUyUMtVZCQJPmTcFtQJysIh14gcCUNZdrtX3_o5Ih4gWke-vce-4DJ9PIUvQFUzC4hQhj2IPbWIv2wp3HcosrNfz14ki048rkDL8nPUggHsoo9lu5EMBwh7kJoxsd8mjwv1nKXz3aqt7aAZy_3nG54cBc/p.png">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Contact Us Poster
+</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        <img src="https://previews.dropbox.com/p/thumb/ACudSIGSg21Kn0HnwNFdOL31En61oZQHeSBuVitKKt04r_BlASPyuXNQ80ODYFhn_KJUxrJ8y2OePAhG5wYaEIqSQBEG8WBFlGKNxWydYe2LTqNkNJpdRXlJZSSGuhbKwAnJ5olcar_4RdX16QyfouyGw_2PaIlLz4127NMotyYXlX-L5CxGu5lQ5AKCHWx3yxUSzlLftWe9z3yJS1E0p4Lva_Ey9sQj2rTwVbLuZnGoJFIVCwJzZfvL3Etpgob4omxJLuThHZGnQTB6f-bWX8Dp1CYSOkYKLRXGf273dMt_vX9QCqGZGfl0reIXjv79hSk/p.png">
+                        <div class="p-4 bg-space-light text-star-medium">
+                            <p class="font-semibold">Promotional Poster
+</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- Connect With Us Section for QR Code -->
         <section id="connect-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-purple">Contact Us</h2>
                 <p class="text-lg text-star-medium mb-6 max-w-3xl mx-auto">
                     Scan the QR code or visit our website to stay updated on our latest voyages and offers! Alternatively, use the form below to send any inquiries regarding the services we offer.
                 </p>
-                <div class="flex flex-col items-center justify-center space-y-6 max-w-xl mx-auto"> <!-- Changed max-w-lg to max-w-xl -->
-
-                    <!-- Using the provided Dropbox link for the QR code image -->
-                    
+                <div class="flex flex-col items-center justify-center space-y-6 max-w-xl mx-auto"> 
                                <style>
     /* CSS Variables for Theme - Mirroring the main website's palette */
     :root {
@@ -1047,7 +985,6 @@
         --message-error-bg: rgba(153, 27, 27, 0.5);
         --message-error-text: #F87171;
     }
-
     /* Light Mode Overrides */
     body.light-mode { /* Assumes the embedding document's body can have this class */
         --bg-dark: #fbfbfb; /* Main background */
@@ -1071,7 +1008,6 @@
         --message-error-bg: rgba(153, 27, 27, 0.5);
         --message-error-text: #F87171;
     }
-
     /* General Body Styles (adjust if embedding in a non-body context) */
     /* These styles might need to be adjusted based on where you embed this snippet. */
     /* For direct embedding into a <div>, you might apply these to the .form-container */
@@ -1088,7 +1024,6 @@
         overflow-x: hidden;
         box-sizing: border-box; /* Ensure padding is included in element's total width and height */
     }
-
     /* Form Container Styling */
     .form-container {
         background-color: var(--form-container-bg);
@@ -1099,13 +1034,11 @@
         padding: 2.5rem;
         border-radius: 1.5rem;
         max-width: 700px; /* Changed from 600px to 700px */
-
         width: 100%;
         margin-top: 2rem;
         margin-bottom: 2rem;
         box-sizing: border-box;
     }
-
     /* Input and Textarea Styling */
     .form-input, .form-textarea {
         background-color: var(--input-bg);
@@ -1116,18 +1049,15 @@
         width: 100%;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-
     .form-input:focus, .form-textarea:focus {
         outline: none;
         border-color: var(--accent-blue);
         box-shadow: 0 0 0 3px rgba(130, 170, 255, 0.5);
     }
-
     .form-input::placeholder, .form-textarea::placeholder {
         color: var(--text-medium);
         opacity: 0.7;
     }
-
     /* Button Styling */
     .submit-button {
         background-color: var(--button-primary-bg);
@@ -1138,18 +1068,15 @@
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.3s ease;
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-
     .submit-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 15px var(--shadow-color);
         opacity: 0.9;
     }
-
     .submit-button:active {
         transform: translateY(0);
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-
     /* Message Box Styling */
     .message-box {
         padding: 1rem;
@@ -1159,27 +1086,22 @@
         text-align: center;
         display: none; /* Hidden by default, shown by JS */
     }
-
     .message-box.success {
         background-color: var(--message-success-bg);
         color: var(--message-success-text);
         border: 1px solid var(--success-border);
     }
-
     .message-box.error {
         background-color: var(--message-error-bg);
         color: var(--message-error-text);
         border: 1px solid var(--error-border);
     }
 </style>
-
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <div class="contact-form-wrapper">
     <div class="form-container">
         <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-accent-purple">Contact Us</h1>
         <p class="text-center text-lg mb-8 text-text-medium">We'd love to hear from you! Send us a message.</p>
-
         <form id="contactForm" class="space-y-6">
             <div>
                 <label for="name" class="block text-lg font-medium mb-2 text-form-text">Your Name</label>
@@ -1201,47 +1123,37 @@
                 <button type="submit" class="submit-button">Send Message</button>
             </div>
         </form>
-
-        <!-- Message Box for feedback -->
         <div id="messageBox" class="message-box"></div>
     </div>
 </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const contactForm = document.getElementById('contactForm');
         const messageBox = document.getElementById('messageBox');
-
         // Initialize EmailJS with your Public Key        // Initialize EmailJS with your Public Key
         // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key        // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
         (function() {
             emailjs.init("h4n6S2RHz_TFSZf8K");
         })();
-
         // --- Form Submission Logic ---
         if (contactForm) {
             contactForm.addEventListener('submit', async (event) => {
                 event.preventDefault(); // Prevent default form submission
-
                 // Clear previous messages
                 messageBox.textContent = '';
                 messageBox.classList.remove('success', 'error');
                 messageBox.style.display = 'none';
-
                 // IMPORTANT: Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID'
                 // These come from your EmailJS dashboard setup.
                 const serviceID = 'service_91znt2n';
                 const templateID = 'template_rglc9rw';
-
                 try {
                     // Send the form using EmailJS
                     const response = await emailjs.sendForm(serviceID, templateID, contactForm);
-
                     console.log('EmailJS Success:', response);
                     messageBox.classList.add('success');
                     messageBox.textContent = 'Thank you for your message! We will get back to you soon.';
                     contactForm.reset(); // Clear form fields on success
-
                 } catch (error) {
                     console.error('EmailJS Error:', error);
                     messageBox.classList.add('error');
@@ -1255,8 +1167,6 @@
         }
     });
 </script>
-                    
-                    
                     <img src="https://previews.dropbox.com/p/thumb/ACtXPIU6IbbiQPLOONTq3vKEJm-CpRSQV9naARq16rBRr93eqH5g7c8sqQ_co3OjEqe1ou7Og203qLI5Pvc-qjTJBMPfP6doK9_nuWHoQbkrEUF97LAUn1XgLMx0uYx4Gw1RmBvrHgZqN6gsa7-c9MTiptlt6aoMe4SO0CMJ9udePV_Ic4QBRfScpyzAN57NiMlecxdVtrr7dOfL7GeCZpOqJMFzEpRk5_AMwD9Y3NI4VDgjhjEagDcFZqnP0w5HZpsPULCWkTvHs2mJDqWw1z1r-FWqaZQvydJUL6nzLLAa_DaZsxLL6ZWBNy2dT6qcvXVV_jDMLfv9vrducufsWgFJ/p.png" alt="Connect with Us QR Code" class="max-w-md md:max-w-lg rounded-lg shadow-xl border-4 border-accent-blue" onerror="this.onerror=null;this.src='https://placehold.co/250x250/2d1a42/f0f0f0?text=QR+Code+Not+Found';">
                     <div class="flex flex-col space-y-2 text-star-medium text-lg">
                         <a href="https://bit.ly/geminivoyages" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">https://bit.ly/geminivoyages</a>
@@ -1264,13 +1174,10 @@
                 </div>
             </div>
         </section>
-
-        <!-- Planet Sections -->
         <section id="mercury-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Mercury</h2>
                                 <img src="https://images-assets.nasa.gov/image/PIA11406/PIA11406~orig.jpg?w=720&h=486&fit=clip&crop=faces%2Cfocalpoint" alt="Mercury" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
-
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Mercury is the smallest planet and the closest to the Sun. It gets super hot during the day because it's so close to the Sun, and super cold at night. This is because it doesn't have much air to hold onto the heat.
@@ -1295,12 +1202,10 @@
                 </div>
             </div>
         </section>
-
         <section id="venus-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Venus</h2>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Venus_globe.jpg/2048px-Venus_globe.jpg" alt="Venus" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
-
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Venus is often called Earth's "sister planet" because it's about the same size. But it's a very harsh place! It's covered in thick clouds of sulphuric acid and has air mostly made of carbon dioxide.
@@ -1325,12 +1230,10 @@
                 </div>
             </div>
         </section>
-
         <section id="earth-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Earth</h2>
                 <img src="https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg" alt="Earth" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
-
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Our home, Earth, is a beautiful blue planet full of life! It has huge oceans, big landmasses, and air that helps us breathe. Earth is the only known planet with lots of liquid water on its surface, which is super important for life.
@@ -1356,13 +1259,10 @@
                 </div>
             </div>
         </section>
-
         <section id="mars-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Mars</h2>
                 <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2007/02/true-colour_image_of_mars_seen_by_osiris/9969705-2-eng-GB/True-colour_image_of_Mars_seen_by_OSIRIS_article.jpg" alt="Mars" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
-
-
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Mars is called the "Red Planet" because of the rusty iron on its surface. Many people wonder if we could live there one day! It has features like Earth, such as ice caps (made of water ice and frozen carbon dioxide), huge canyons, and old riverbeds. This tells us water was once on Mars.
@@ -1388,13 +1288,10 @@
                 </div>
             </div>
         </section>
-
         <section id="jupiter-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Jupiter</h2>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Jupiter.jpg/500px-Jupiter.jpg" alt="Jupiter" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
-
-
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Jupiter is the biggest planet in our solar system – it's a giant ball of gas! Its swirling, colourful clouds are made mostly of hydrogen and helium. These clouds form stripes and spots because of super-fast winds.
@@ -1420,13 +1317,10 @@
                 </div>
             </div>
         </section>
-
         <section id="saturn-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Saturn</h2>
                 <img src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/06/pia21046.jpg?w=2012&h=1024&fit=clip&crop=faces%2Cfocalpoint" alt="Saturn" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
-
-
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Saturn is famous for its beautiful, icy rings! These rings aren't solid; they're made of billions of tiny pieces of ice and rock, all orbiting Saturn. They look amazing from far away.
@@ -1452,12 +1346,10 @@
                 </div>
             </div>
         </section>
-
         <section id="uranus-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Uranus</h2>
                 <img src="https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000100/GSFC_20171208_Archive_e000100~orig.jpg?w=1280&h=1083&fit=clip&crop=faces%2Cfocalpoint" alt="Uranus" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
-
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Uranus is a strange ice giant because it spins on its side! This means it rolls around the Sun like a ball, giving it very long, unusual seasons where one pole gets sunlight for decades and then darkness for decades.
@@ -1483,12 +1375,10 @@
                 </div>
             </div>
         </section>
-
         <section id="neptune-section" class="content-section py-16 px-6 bg-space-medium rounded-lg shadow-lg my-8">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-accent-blue">Destination: Neptune</h2>
                 <img src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/p/i/a/0/PIA01492-1.jpg?w=2188&h=2185&fit=clip&crop=faces%2Cfocalpoint" alt="Neptune" class="mx-auto mt-8 rounded-lg shadow-md mb-8" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d1a42/f0f0f0?text=Image+Not+Found';">
-
                 <div class="text-star-medium text-lg max-w-3xl mx-auto text-left space-y-4">
                     <p>
                         Neptune is the farthest major planet from the Sun and looks deep blue because of methane in its air. It's known for having the fastest, super-strong winds in our solar system!
@@ -1514,24 +1404,18 @@
                 </div>
             </div>
         </section>
-
-        <!-- Quiz Page Section -->
         <section id="quiz-page-section" class="content-section py-8 px-6 my-8 flex justify-center items-center">
             <div class="quiz-page-container w-full">
                 <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-lg animate-pulse">
                     Planet Trivia Quiz!
                 </h1>
-
                 <div id="quiz-container" class="space-y-6 w-full max-w-xl mx-auto">
-                    <!-- Questions will be loaded here by JavaScript -->
                 </div>
-
                 <div class="flex justify-center mt-8">
                     <button id="submit-quiz-btn" class="submit-button">
                         Submit Quiz
                     </button>
                 </div>
-
                 <div id="results-container" class="mt-10 p-6 bg-purple-900 bg-opacity-70 rounded-2xl shadow-xl hidden border border-purple-700 w-full max-w-xl mx-auto">
                     <h2 class="text-3xl font-semibold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-cyan-300">
                         Your Results
@@ -1540,7 +1424,6 @@
                         You scored: <span class="font-bold text-yellow-300"></span>
                     </p>
                     <div id="feedback-details" class="space-y-4">
-                        <!-- Detailed feedback will go here -->
                     </div>
                     <div class="flex justify-center mt-6">
                         <button id="retake-quiz-btn" class="submit-button">
@@ -1550,10 +1433,7 @@
                 </div>
             </div>
         </section>
-
     </main>
-
-    <!-- Footer -->
     <footer class="text-star-medium py-10 px-6 rounded-t-lg mt-8" style="background-color: var(--footer-bg);">
         <div class="container mx-auto text-center">
             <p class="text-lg mb-4">&copy; 2025 Gemini Voyages. All rights reserved.</p>
@@ -1562,11 +1442,8 @@
             <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.en" target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors duration-200">View the full legal code here.</a>
         </div>
     </footer>
-
-    <!-- Main site general modal for button clicks -->
     <div id="actionModal" class="modal hidden">
         <div class="modal-content">
-            <!-- Removed the close button "X" -->
             <h3 class="text-2xl font-bold mb-4 text-star-light" id="modalTitle"></h3>
             <p class="text-star-medium mb-6" id="modalMessage"></p>
             <button id="modalProceedBtn" class="bg-accent-purple hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out button-glow transform active:scale-95">
@@ -1574,8 +1451,6 @@
             </button>
         </div>
     </div>
-
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Get all interactive elements
@@ -1583,14 +1458,11 @@
             const learnMoreBtn = document.getElementById('learnMoreBtn');
             const navLinks = document.querySelectorAll('.nav-link');
             const allContentSections = document.querySelectorAll('.content-section');
-
-
             // Main site general modal elements
             const actionModal = document.getElementById('actionModal');
             const modalProceedBtn = document.getElementById('modalProceedBtn');
             const modalTitle = document.getElementById('modalTitle');
             const modalMessage = document.getElementById('modalMessage');
-
             // Quiz elements
             const quizAnnouncementBanner = document.getElementById('quizAnnouncementBanner');
             const openQuizBtn = document.getElementById('openQuizBtn');
@@ -1601,24 +1473,19 @@
             const scoreDisplay = resultsContainer.querySelector('#score-display span');
             const feedbackDetails = resultsContainer.querySelector('#feedback-details');
             const retakeQuizButton = resultsContainer.querySelector('#retake-quiz-btn');
-
             // Special elements for the "Planets" dropdown
             const planetsDropdownToggle = document.getElementById('planetsDropdownToggle');
             const planetsDropdownContainer = planetsDropdownToggle.closest('.dropdown');
             const dropdownArrow = planetsDropdownToggle.querySelector('.dropdown-arrow');
             const dropdownContent = planetsDropdownContainer.querySelector('.dropdown-content');
-
             // Theme Toggle elements
             const themeToggleBtn = document.getElementById('themeToggleBtn');
             const moonIcon = document.getElementById('moonIcon');
             const sunIcon = document.getElementById('sunIcon');
-
             // Audio element
             const backgroundMusic = document.getElementById('backgroundMusic');
-
             // Variable to track which button opened the modal
             let modalSourceButton = null;
-
             // Quiz Questions Data
             const quizQuestions = [
                 {
@@ -1722,8 +1589,6 @@
                     answer: "c) Titan"
                 }
             ];
-
-
             // Function to show the general action modal
             const showActionModal = (title, message, sourceButtonId = null) => {
                 modalTitle.textContent = title;
@@ -1731,7 +1596,6 @@
                 actionModal.style.display = 'flex'; // Make sure it's flex for centering
                 modalSourceButton = sourceButtonId; // Store which button opened the modal
             };
-
             // Function to hide the general action modal
             const hideActionModal = () => {
                 actionModal.style.display = 'none'; // Hide it
@@ -1741,36 +1605,29 @@
                 }
                 modalSourceButton = null; // Reset the source button
             };
-
             // Function to dynamically update header positions and body padding
             const updateHeaderPositions = () => {
                 const banner = document.getElementById('quizAnnouncementBanner');
                 const navElement = document.querySelector('nav');
-
                 if (!banner || !navElement) {
                     console.error("Banner or Navigation element not found. Cannot update header positions.");
                     return;
                 }
-
                 requestAnimationFrame(() => {
                     const bannerHeight = banner.offsetHeight;
                     const navHeight = navElement.offsetHeight;
                     // The marquee is now within the main content flow, not part of the fixed header height calculation
                     const totalHeaderHeight = bannerHeight + navHeight;
-
                     navElement.style.top = `${bannerHeight}px`;
                     // Use scroll-padding-top for smooth and accurate scrolling to anchored sections
                     document.documentElement.style.scrollPaddingTop = `${totalHeaderHeight}px`;
                     // Also adjust body padding-top for initial content display
                     document.body.style.paddingTop = `${totalHeaderHeight}px`;
-
                     console.log(`[Header Update] Banner Height: ${bannerHeight}px`);
                     console.log(`[Header Update] Nav Height: ${navHeight}px`);
                     console.log(`[Header Update] Scroll Padding Top: ${totalHeaderHeight}px`);
                 });
             };
-
-
             // Function to show a specific content section and hide others
             const showSection = (sectionId) => {
                 console.log(`Attempting to show section: ${sectionId}`);
@@ -1785,12 +1642,10 @@
                         console.log(`Section '${section.id}' deactivated.`);
                     }
                 });
-
                 if (!targetSectionFound) {
                     console.warn(`Section with ID '${sectionId}' not found. No section will be active.`);
                     // This log helps identify if an incorrect ID is being passed.
                 }
-
                 const targetSection = document.getElementById(sectionId);
                 if (targetSection) {
                     requestAnimationFrame(() => {
@@ -1801,11 +1656,9 @@
                     console.error(`Attempted to scroll to non-existent section: ${sectionId}`);
                 }
             };
-
             // Initial section display
             console.log("DOM Content Loaded. Initializing home section.");
             showSection('home-section');
-
             // Event Listeners for main site Buttons (with modals reinstated)
             if (aboutUsBtn) {
                 aboutUsBtn.addEventListener('click', () => {
@@ -1813,29 +1666,24 @@
                     showActionModal('About Us', 'Unveiling our origin story. Proceeding to the About Us page.', 'aboutUsBtn');
                 });
             }
-
             if (learnMoreBtn) {
                 learnMoreBtn.addEventListener('click', () => {
                     showSection('quiz-page-section'); // Link to quiz section
                     showActionModal('Test your Knowledge', 'Are you up for the challenge? Proceeding to the quiz.', 'learnMoreBtn'); // Store source button ID
                 });
             }
-
             // Event Listeners for Navigation Links (SPA behavior)
             navLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
                     event.preventDefault(); // Prevent default link behavior
                     console.log("Navigation link clicked.");
-
                     const clickedLinkElement = event.currentTarget;
                     const href = clickedLinkElement.getAttribute('href');
                     console.log(`Clicked link href: ${href}`);
-
                     if (href === null) {
                         console.error("Error: Clicked navigation link is missing its href attribute.", clickedLinkElement);
                         return;
                     }
-
                     // For the logo and home link, ensure it always goes to 'home-section'
                     const targetId = href.substring(1);
                     if (targetId === '' || targetId === 'home') { // Handles both empty hash and #home
@@ -1843,8 +1691,6 @@
                     } else {
                         showSection(targetId);
                     }
-
-
                     // Close dropdown if it's open and a planet link was clicked
                     if (planetsDropdownContainer.classList.contains('open')) {
                         console.log("Closing planets dropdown.");
@@ -1852,14 +1698,12 @@
                     }
                 });
             });
-
             // Event listener for the "Planets" dropdown toggle (click-based)
             if (planetsDropdownToggle) {
                 planetsDropdownToggle.addEventListener('click', (event) => {
                     event.preventDefault(); // Stop default hash link behavior
                     planetsDropdownContainer.classList.toggle('open'); // Toggle 'open' class
                 });
-
                 // Close dropdown when clicking anywhere outside of it
                 document.addEventListener('click', (event) => {
                     // Check if the click occurred outside the dropdown container AND outside the toggle button itself
@@ -1870,13 +1714,10 @@
                     }
                 });
             }
-
-
             // Event Listeners for General Modal "Proceed" Button
             if (modalProceedBtn) { // Using the new ID
                 modalProceedBtn.addEventListener('click', hideActionModal);
             }
-
             // Close general modal if clicking outside the content
             if (actionModal) {
                 actionModal.addEventListener('click', (event) => {
@@ -1885,9 +1726,7 @@
                     }
                 });
             }
-
             // --- Quiz Page Logic ---
-
             // Open Quiz button listener
             if (openQuizBtn) {
                 openQuizBtn.addEventListener('click', () => {
@@ -1895,7 +1734,6 @@
                     renderQuiz();
                 });
             }
-
             /**
              * Renders the quiz questions and options into the HTML.
              */
@@ -1921,21 +1759,17 @@
                 submitQuizButton.classList.remove('hidden');
                 resultsContainer.classList.add('hidden');
             }
-
             /**
              * Calculates the score and displays results.
              */
             function showResults() {
                 let score = 0;
                 feedbackDetails.innerHTML = '';
-
                 quizQuestions.forEach((q, index) => {
                     const selectedInput = quizContainer.querySelector(`input[name="question${index}"]:checked`);
                     const userAnswer = selectedInput ? selectedInput.value : null;
-
                     const feedbackDiv = document.createElement('div');
                     feedbackDiv.classList.add('p-3', 'rounded-lg', 'border', 'mb-2');
-
                     if (userAnswer === q.answer) {
                         score++;
                         feedbackDiv.classList.add('bg-green-900');
@@ -1951,14 +1785,12 @@
                     }
                     feedbackDetails.appendChild(feedbackDiv);
                 });
-
                 scoreDisplay.textContent = `${score} out of ${quizQuestions.length}`;
                 resultsContainer.classList.remove('hidden');
                 quizContainer.classList.add('hidden');
                 submitQuizButton.classList.add('hidden');
                 resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-
             /**
              * Resets the quiz for a new attempt.
              */
@@ -1966,7 +1798,6 @@
                 quizContainer.querySelectorAll('input[type="radio"]').forEach(radio => {
                     radio.checked = false;
                 });
-
                 resultsContainer.classList.add('hidden');
                 quizContainer.classList.remove('hidden');
                 submitQuizButton.classList.remove('hidden');
@@ -1974,12 +1805,9 @@
                 quizPageSection.scrollTop = 0;
                 quizPageSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-
             // Event Listeners for Quiz buttons
             submitQuizButton.addEventListener('click', showResults);
             retakeQuizButton.addEventListener('click', retakeQuiz);
-
-
             // Audio control logic: Autoplay with fallback for user interaction
             const playAudioWithFallback = () => {
                 backgroundMusic.play().then(() => {
@@ -1996,10 +1824,7 @@
                     }
                 });
             };
-
             playAudioWithFallback();
-
-
             // --- Theme Toggle Logic ---
             const applyTheme = (isLightMode) => {
                 if (isLightMode) {
@@ -2012,53 +1837,40 @@
                     sunIcon.style.display = 'none';
                 }
             };
-
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'light') {
                 applyTheme(true);
             } else {
                 applyTheme(false);
             }
-
             themeToggleBtn.addEventListener('click', () => {
                 const isLightMode = document.body.classList.contains('light-mode');
                 applyTheme(!isLightMode);
                 localStorage.setItem('theme', !isLightMode ? 'light' : 'dark');
             });
-
-
             // --- Three.js Rippling Stars Effect ---
             let scene, camera, renderer, points, material;
             let mouseX = 0, mouseY = 0;
             let isDragging = false;
             let previousMouseX = 0;
             let previousMouseY = 0;
-
             const canvas = document.getElementById('threeJsCanvas');
             let animationFrameId;
-
             const boxSize = 30;
-
-
             const initThreeJs = () => {
                 const width = window.innerWidth;
                 const height = window.innerHeight;
-
                 scene = new THREE.Scene();
-
                 camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
                 camera.position.z = 10;
-
                 renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
                 renderer.setSize(width, height);
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setClearAlpha(0);
-
                 const numStars = 15000;
                 const positions = new Float32Array(numStars * 3);
                 const sizes = new Float32Array(numStars);
                 const colors = new Float32Array(numStars * 3);
-
                 const starColors = [
                     new THREE.Color(0xffffff),
                     new THREE.Color(0xadd8e6),
@@ -2066,25 +1878,20 @@
                     new THREE.Color(0xd8bfd8),
                     new THREE.Color(0xffa07a)
                 ];
-
                 for (let i = 0; i < numStars; i++) {
                     positions[i * 3] = (Math.random() * 2 - 1) * boxSize;
                     positions[i * 3 + 1] = (Math.random() * 2 - 1) * boxSize;
                     positions[i * 3 + 2] = (Math.random() * 2 - 1) * boxSize;
-
                     sizes[i] = Math.random() * 0.8 + 0.2;
-
                     const color = starColors[Math.floor(Math.random() * starColors.length)];
                     colors[i * 3] = color.r;
                     colors[i * 3 + 1] = color.g;
                     colors[i * 3 + 2] = color.b;
                 }
-
                 const geometry = new THREE.BufferGeometry();
                 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
                 geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
                 geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
                 material = new THREE.ShaderMaterial({
                     uniforms: {
                         time: { value: 0.0 },
@@ -2100,31 +1907,22 @@
                         attribute vec3 color;
                         varying vec3 vColor;
                         varying float vOpacity;
-
                         void main() {
                             vColor = color;
-
                             vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-
                             float rippleStrength = 1.5;
                             float rippleSpeed = 0.5;
                             float rippleFreqX = 0.7;
                             float rippleFreqY = 0.9;
-
                             float displacementZ = 0.0;
                             displacementZ += sin(position.x * rippleFreqX + time * rippleSpeed) * rippleStrength * 0.5;
                             displacementZ += cos(position.y * rippleFreqY + time * rippleSpeed * 0.7) * rippleStrength * 0.4;
                             displacementZ += sin((position.x + position.y) * 0.5 + time * rippleSpeed * 1.2) * rippleStrength * 0.3;
-
                             mvPosition.z += displacementZ;
-
                             gl_PointSize = size * (300.0 / -mvPosition.z);
-
                             vOpacity = 1.0;
                             if (mvPosition.z > -1.0) vOpacity *= smoothstep(0.0, 1.0, (-mvPosition.z - 0.5) * 2.0);
                             if (mvPosition.z < -boxSize + 5.0) vOpacity *= smoothstep(0.0, 1.0, (mvPosition.z + boxSize - 5.0) / 5.0);
-
-
                             gl_Position = projectionMatrix * mvPosition;
                         }
                     `,
@@ -2135,18 +1933,14 @@
                         uniform float time;
                         varying vec3 vColor;
                         varying float vOpacity;
-
                         void main() {
                             float r = distance(gl_PointCoord, vec2(0.5, 0.5));
                             if (r > 0.5) discard;
-
                             float strength = 1.0 - r * 2.0;
                             strength = pow(strength, 2.0);
-
                             vec3 finalStarColor = vColor * strength;
                             float sparkle = sin(vColor.r * 10.0 + time * 5.0) * 0.2 + 0.8;
                             finalStarColor *= sparkle;
-
                             gl_FragColor = vec4(finalStarColor, strength * vOpacity * 0.2);
                         }
                     `,
@@ -2154,68 +1948,52 @@
                     blending: THREE.AdditiveBlending,
                     depthWrite: false
                 });
-
                 points = new THREE.Points(geometry, material);
                 scene.add(points);
-
                 document.addEventListener('mousemove', (event) => {
                     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
                     mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
                 });
-
                 canvas.addEventListener('mousedown', (event) => {
                     isDragging = true;
                     previousMouseX = event.clientX;
                     previousMouseY = event.clientY;
                 });
-
                 canvas.addEventListener('mouseup', () => {
                     isDragging = false;
                 });
-
                 canvas.addEventListener('mousemove', (event) => {
                     if (isDragging) {
                         const deltaX = event.clientX - previousMouseX;
                         const deltaY = event.clientY - previousMouseY;
-
                         const rotationSpeed = 0.01;
                         const angleY = deltaX * rotationSpeed;
                         const angleX = deltaY * rotationSpeed;
-
                         const spherical = new THREE.Spherical().setFromVector3(camera.position);
-
                         spherical.theta -= angleY;
                         spherical.phi -= angleX;
-
                         spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi));
-
                         camera.position.setFromSpherical(spherical);
                         camera.lookAt(new THREE.Vector3(0, 0, 0));
-
                         previousMouseX = event.clientX;
                         previousMouseY = event.clientY;
                     }
                 });
             };
-
             const animate = () => {
                 animationFrameId = requestAnimationFrame(animate);
-
                 if (material) {
                     material.uniforms.time.value += 0.005;
                 }
-
                 if (camera && !isDragging) {
                      camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
                      camera.position.y += (mouseY * 2 - camera.position.y) * 0.05;
                      camera.lookAt(new THREE.Vector3(0,0,0));
                 }
-
                 if (renderer && scene && camera) {
                     renderer.render(scene, camera);
                 }
             };
-
             const onWindowResize = () => {
                 if (camera && renderer) {
                     const width = window.innerWidth;
@@ -2229,14 +2007,11 @@
                 }
                 updateHeaderPositions();
             };
-
             window.onload = function () {
                 initThreeJs();
                 animate();
             };
-
             window.addEventListener('resize', onWindowResize);
-
             window.addEventListener('beforeunload', () => {
                 if (animationFrameId) {
                     cancelAnimationFrame(animationFrameId);
@@ -2248,7 +2023,6 @@
                     scene.clear();
                 }
             });
-
             updateHeaderPositions();
         });
     </script>
